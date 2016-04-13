@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Proyecto2_SimuladorCiudades.Buildings
 {
@@ -10,6 +11,7 @@ namespace Proyecto2_SimuladorCiudades.Buildings
     {
         // Declaración de atributos de la Clase
         private string _strTipoAlimento;
+        private Image _imgImage = Properties.Resources.imgRestaurant;
 
         // Propiedades de la Clase
         public string strTipoAlimento
@@ -21,6 +23,17 @@ namespace Proyecto2_SimuladorCiudades.Buildings
             set
             {
                 _strTipoAlimento = value;
+            }
+        }
+        public Image imgImage
+        {
+            get
+            {
+                return _imgImage;
+            }
+            set
+            {
+                value = _imgImage;
             }
         }
 

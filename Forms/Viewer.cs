@@ -11,14 +11,15 @@ using System.Windows.Forms;
 
 namespace Proyecto2_SimuladorCiudades
 {
+    
     public partial class Viewer : Form
     {
         IngresoDatos DI;
         DateTime dtFecha;
-        
 
         public Viewer(int calles, int avenidas, DateTime unaFecha, IngresoDatos objIngresoDatos)
         {
+            
             InitializeComponent();
             timer1.Start();
             dibujarGrid(mapDGV, calles, avenidas);
@@ -65,16 +66,16 @@ namespace Proyecto2_SimuladorCiudades
                 switch (i % 4)
                 {
                     case 0:
-                        dg.Columns[i].Width = 20;
+                        dg.Columns[i].Width = 15;
                         break;
                     case 1:
-                        dg.Columns[i].Width = 50;
+                        dg.Columns[i].Width = 35;
                         break;
                     case 2:
-                        dg.Columns[i].Width = 20;
+                        dg.Columns[i].Width = 15;
                         break;
                     case 3:
-                        dg.Columns[i].Width = 60;
+                        dg.Columns[i].Width = 65;
                         break;
                 }
             }
@@ -85,16 +86,16 @@ namespace Proyecto2_SimuladorCiudades
                 switch (i % 4)
                 {
                     case 0:
-                        dg.Rows[i].Height = 20;
+                        dg.Rows[i].Height = 15;
                         break;
                     case 1:
-                        dg.Rows[i].Height = 50;
+                        dg.Rows[i].Height = 35;
                         break;
                     case 2:
-                        dg.Rows[i].Height = 20;
+                        dg.Rows[i].Height = 15;
                         break;
                     case 3:
-                        dg.Rows[i].Height = 60;
+                        dg.Rows[i].Height = 65;
                         break;
                 }
             }
@@ -111,6 +112,9 @@ namespace Proyecto2_SimuladorCiudades
                     {
                         if(j%4 == 3 || j%4 == 3)
                         {
+                            DataGridViewImageCell imgCell = new DataGridViewImageCell();
+                            imgCell.Value = Properties.Resources.imgAmbulance;
+                            dg[i, j] = imgCell;
                             dg[i, j].Style.BackColor = System.Drawing.Color.RoyalBlue;
                         }
                     }
