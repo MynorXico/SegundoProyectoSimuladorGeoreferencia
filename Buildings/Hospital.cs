@@ -12,7 +12,7 @@ namespace Proyecto2_SimuladorCiudades.Buildings
         #region Atributos
         // Declaración de atibutos
         private bool _bolEsPublico;
-        private Image _imgImage;
+        string _strTipo;
         #endregion
         #region Propiedades
         // Propiedades de la Clase
@@ -27,25 +27,33 @@ namespace Proyecto2_SimuladorCiudades.Buildings
                 _bolEsPublico = value;
             }
         }
-        public Image imgImage
+        public string strTipo
         {
             get
             {
-                return _imgImage;
+                return _strTipo;
             }
             set
             {
-                value = _imgImage;
+                _strTipo = value;
             }
         }
         #endregion
 
-        public Hospital(string unNombre, bool esPublico, address unaDireccion)
+        public Hospital(string unNombre, address unaDireccion, bool esPublico)
         {
             strNombre = unNombre;
             _bolEsPublico = esPublico;
             adDireccion = unaDireccion;
-            _imgImage = Properties.Resources.imgHospital;
+
+            if (esPublico)
+            {
+                strTipo = "Público";
+            }
+            else
+            {
+                strTipo = "False";
+            }
         }
     }
 }

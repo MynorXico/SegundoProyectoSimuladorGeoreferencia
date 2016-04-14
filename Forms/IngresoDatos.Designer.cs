@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IngresoDatos));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.lbObjects = new System.Windows.Forms.ListBox();
             this.btnAbrirArchivo = new System.Windows.Forms.Button();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -48,7 +50,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Candara", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(151, 16);
+            this.label1.Location = new System.Drawing.Point(243, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 19);
             this.label1.TabIndex = 0;
@@ -56,6 +58,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.progressBar1);
+            this.groupBox1.Controls.Add(this.lbObjects);
             this.groupBox1.Controls.Add(this.btnAbrirArchivo);
             this.groupBox1.Controls.Add(this.txtAddress);
             this.groupBox1.Controls.Add(this.label5);
@@ -70,9 +74,28 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(434, 236);
+            this.groupBox1.Size = new System.Drawing.Size(602, 607);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(13, 420);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(577, 23);
+            this.progressBar1.TabIndex = 11;
+            // 
+            // lbObjects
+            // 
+            this.lbObjects.BackColor = System.Drawing.SystemColors.WindowText;
+            this.lbObjects.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbObjects.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lbObjects.FormattingEnabled = true;
+            this.lbObjects.HorizontalScrollbar = true;
+            this.lbObjects.Location = new System.Drawing.Point(12, 214);
+            this.lbObjects.Name = "lbObjects";
+            this.lbObjects.Size = new System.Drawing.Size(578, 199);
+            this.lbObjects.TabIndex = 10;
             // 
             // btnAbrirArchivo
             // 
@@ -80,9 +103,9 @@
             this.btnAbrirArchivo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnAbrirArchivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAbrirArchivo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAbrirArchivo.Location = new System.Drawing.Point(363, 166);
+            this.btnAbrirArchivo.Location = new System.Drawing.Point(485, 166);
             this.btnAbrirArchivo.Name = "btnAbrirArchivo";
-            this.btnAbrirArchivo.Size = new System.Drawing.Size(24, 23);
+            this.btnAbrirArchivo.Size = new System.Drawing.Size(27, 23);
             this.btnAbrirArchivo.TabIndex = 9;
             this.btnAbrirArchivo.UseVisualStyleBackColor = true;
             this.btnAbrirArchivo.Click += new System.EventHandler(this.btnAbrirArchivo_Click);
@@ -91,16 +114,16 @@
             // 
             this.txtAddress.Enabled = false;
             this.txtAddress.Font = new System.Drawing.Font("Candara", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(187, 166);
+            this.txtAddress.Location = new System.Drawing.Point(279, 166);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(176, 23);
+            this.txtAddress.Size = new System.Drawing.Size(200, 23);
             this.txtAddress.TabIndex = 8;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Candara", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(20, 166);
+            this.label5.Location = new System.Drawing.Point(112, 166);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(112, 18);
             this.label5.TabIndex = 7;
@@ -109,7 +132,7 @@
             // txtCalles
             // 
             this.txtCalles.Font = new System.Drawing.Font("Candara", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCalles.Location = new System.Drawing.Point(187, 95);
+            this.txtCalles.Location = new System.Drawing.Point(279, 95);
             this.txtCalles.Name = "txtCalles";
             this.txtCalles.Size = new System.Drawing.Size(200, 23);
             this.txtCalles.TabIndex = 6;
@@ -118,7 +141,7 @@
             // txtAvenidas
             // 
             this.txtAvenidas.Font = new System.Drawing.Font("Candara", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAvenidas.Location = new System.Drawing.Point(187, 55);
+            this.txtAvenidas.Location = new System.Drawing.Point(279, 55);
             this.txtAvenidas.Name = "txtAvenidas";
             this.txtAvenidas.Size = new System.Drawing.Size(200, 23);
             this.txtAvenidas.TabIndex = 5;
@@ -130,7 +153,7 @@
             this.dtpFechaHora.CustomFormat = "ddd dd/MMM/yyyy/ hh:mm:ss tt";
             this.dtpFechaHora.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dtpFechaHora.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaHora.Location = new System.Drawing.Point(187, 130);
+            this.dtpFechaHora.Location = new System.Drawing.Point(279, 130);
             this.dtpFechaHora.Name = "dtpFechaHora";
             this.dtpFechaHora.ShowUpDown = true;
             this.dtpFechaHora.Size = new System.Drawing.Size(200, 20);
@@ -141,11 +164,11 @@
             // 
             this.button1.AutoSize = true;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(155, 199);
+            this.button1.Location = new System.Drawing.Point(252, 465);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 25);
+            this.button1.Size = new System.Drawing.Size(111, 77);
             this.button1.TabIndex = 3;
-            this.button1.Text = "btnGenerarMapa";
+            this.button1.Text = "Generar Mapa";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button1_MouseClick);
             // 
@@ -153,7 +176,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Candara", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(20, 130);
+            this.label4.Location = new System.Drawing.Point(112, 130);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 18);
             this.label4.TabIndex = 2;
@@ -163,7 +186,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Candara", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(20, 95);
+            this.label3.Location = new System.Drawing.Point(112, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(137, 18);
             this.label3.TabIndex = 1;
@@ -173,7 +196,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Candara", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 60);
+            this.label2.Location = new System.Drawing.Point(112, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 18);
             this.label2.TabIndex = 0;
@@ -184,13 +207,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(434, 236);
+            this.ClientSize = new System.Drawing.Size(602, 607);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(450, 275);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(450, 275);
             this.Name = "IngresoDatos";
             this.Text = "Simulador de Ciudades";
             this.groupBox1.ResumeLayout(false);
@@ -213,5 +234,7 @@
         private System.Windows.Forms.Button btnAbrirArchivo;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox lbObjects;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

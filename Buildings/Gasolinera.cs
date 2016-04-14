@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Proyecto2_SimuladorCiudades
+namespace Proyecto2_SimuladorCiudades.Buildings
 {
 
     class Gasolinera : Edificio
@@ -13,7 +13,6 @@ namespace Proyecto2_SimuladorCiudades
         #region Atributos
         // Declaración de atributos de la Clase
         private double _dblPrecio;
-        private Image _imgImage;
         #endregion
         #region Propiedades
         // Propiedades de la Clase
@@ -28,26 +27,15 @@ namespace Proyecto2_SimuladorCiudades
                 _dblPrecio = value;
             }
         }
-        public Image imgImage
-        {
-            get
-            {
-                return _imgImage;
-            }
-            set
-            {
-                _imgImage = value;
-            }
-        }
         #endregion
 
         // Método Constructor de la Clase
-        public Gasolinera(string unNombre, double unPrecio, address unaDireccion){
+        public Gasolinera(string unNombre, address unaDireccion, double unPrecio){
             strNombre = unNombre;
             dblPrecio = unPrecio;
             adDireccion = unaDireccion;
             strLabel = "Gasolinera";
-            _imgImage = Properties.Resources.imgGas;
+            imgImage = Properties.Resources.imgGas;
         }
         
 

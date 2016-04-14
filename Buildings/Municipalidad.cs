@@ -10,20 +10,8 @@ namespace Proyecto2_SimuladorCiudades.Buildings
     class Municipalidad:Edificio
     {
         // Atributos de la clase
-        private Image _imgImage;
 
         // Propiedades de los objetos
-        public Image imgImage
-        {
-            get
-            {
-                return _imgImage;
-            }
-            set
-            {
-                _imgImage = value;
-            }
-        }
 
         
         // Método constructor de la clase
@@ -32,7 +20,7 @@ namespace Proyecto2_SimuladorCiudades.Buildings
             strNombre = "Municipalidad";
             strLabel = "Municipalidad";
             adDireccion = unaDireccion;
-            _imgImage = Properties.Resources.imgCityHall;
+            imgImage = Properties.Resources.imgCityHall;
         }
     }
 }

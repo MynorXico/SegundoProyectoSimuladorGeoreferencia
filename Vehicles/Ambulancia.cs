@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Proyecto2_SimuladorCiudades.Vehicles
 {
-    class Policia:Emergencia
+    class Ambulancia:Emergencia
     {
-        public Policia(string unNombre, int unaCalle, int unaAvenida, int unaCalleAvenida)
+        public Ambulancia(string unNombre, int unaCalle, int unaAvenida, int unaCalleAvenida)
         {
             strNombre = unNombre;
             intCalle = unaCalle;
             intAvenida = unaAvenida;
             intCalleAvenida = unaCalleAvenida;
-            if(intCalleAvenida == 1)
+            if (intCalleAvenida == 1)
             {
                 strCalleAvenida = "Avenida";
             }

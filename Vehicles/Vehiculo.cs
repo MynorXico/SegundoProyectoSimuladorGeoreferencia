@@ -6,25 +6,27 @@ using System.Threading.Tasks;
 
 namespace Proyecto2_SimuladorCiudades
 {
-    class Emergencia
+    class Vehiculo
     {
-        // Declaración de atributos
-        private string _strNombre;
+        #region Atritubos
+        // Atributos de la clase
+        private string _strPlaca;
         private int _intCalle;
         private int _intAvenida;
         private int _intCalleAvenida;
-        private string _strCalleAvenida;
-        
-        // Propiedades de la Clase
-        public string strNombre
+        private string _strMarca;
+        #endregion
+        #region Propiedades
+        // Propiedades de la clase
+        public string strPlaca
         {
             get
             {
-                return _strNombre;
+                return _strPlaca;
             }
             set
             {
-                _strNombre = value;
+                _strPlaca = value;
             }
         }
         public int intCalle
@@ -60,16 +62,28 @@ namespace Proyecto2_SimuladorCiudades
                 _intCalleAvenida = value;
             }
         }
-        public string strCalleAvenida
+        public string strMarca
         {
             get
             {
-                return _strCalleAvenida;
+                return _strMarca;
             }
             set
             {
-                _strCalleAvenida = value;
+                _strMarca = value;
             }
         }
+        #endregion
+
+        //Constructor
+        public Vehiculo(string unaPlaca, int unaCalle, int unaAvenida, int unaCalleAvenida, string unaMarca)
+        {
+            strPlaca = unaPlaca;
+            intCalle = unaCalle;
+            intAvenida = unaAvenida;
+            intCalleAvenida = unaCalleAvenida;
+            strMarca = unaMarca;
+        }
+
     }
 }

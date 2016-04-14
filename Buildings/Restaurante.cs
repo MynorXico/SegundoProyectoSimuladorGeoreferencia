@@ -11,7 +11,6 @@ namespace Proyecto2_SimuladorCiudades.Buildings
     {
         // Declaración de atributos de la Clase
         private string _strTipoAlimento;
-        private Image _imgImage = Properties.Resources.imgRestaurant;
 
         // Propiedades de la Clase
         public string strTipoAlimento
@@ -25,22 +24,12 @@ namespace Proyecto2_SimuladorCiudades.Buildings
                 _strTipoAlimento = value;
             }
         }
-        public Image imgImage
-        {
-            get
-            {
-                return _imgImage;
-            }
-            set
-            {
-                value = _imgImage;
-            }
-        }
 
         // Método constructor de la Clase
-        public Restaurante(string unNombre, int unTipoAlimento, address unaDireccion)
+        public Restaurante(string unNombre, address unaDireccion, int unTipoAlimento)
         {
             strNombre = unNombre;
+            imgImage = Properties.Resources.imgRestaurant;
             #region Definir tipo de alimento
             switch (unTipoAlimento)
             {

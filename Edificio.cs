@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Proyecto2_SimuladorCiudades
 {
@@ -44,6 +45,7 @@ namespace Proyecto2_SimuladorCiudades
         private address _adDireccion;
         private string _strNombre;
         private string _strLabel;
+        private Image _imgImage;
 
         // Propiedades de la Clase
         public address adDireccion
@@ -79,5 +81,17 @@ namespace Proyecto2_SimuladorCiudades
                 _strLabel = value;
             }
         }
+        public Image imgImage
+        {
+            get
+            {
+                return _imgImage;
+            }
+            set
+            {
+                _imgImage = value;
+            }
+        }
+
     }
 }

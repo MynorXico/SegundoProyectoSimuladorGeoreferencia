@@ -76,14 +76,7 @@ namespace Proyecto2_SimuladorCiudades
 
         private void btnAbrirArchivo_Click(object sender, EventArgs e)
         {
-            OpenFileDialog OFD = new OpenFileDialog();
-            OFD.Filter = "Archivo de texto| *.txt";
-            OFD.Title = "Cargar un archivo";
-            if (OFD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                System.IO.FileInfo fi = new System.IO.FileInfo(OFD.FileName);
-                txtAddress.Text = System.IO.Path.GetFileName(OFD.FileName);
-            }
+            ManejoDatos.lecturadearchivo(txtAddress, lbObjects, progressBar1);        
         }
     }
 }

@@ -28,6 +28,9 @@ namespace Proyecto2_SimuladorCiudades
             ViewerControl vc = new ViewerControl(mapDGV);
         }
 
+        int[] a = new int[4];
+        
+
         private void dibujarGrid(DataGridView dg, int columnas, int filas)
         {
             // Ajusta color a blanco
@@ -38,7 +41,7 @@ namespace Proyecto2_SimuladorCiudades
             #region Dibuja las Columnas
             for (int i = 0; i < columnas; i++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < 6; j++)
                 {
                     dg.Columns.Add("", "");
                 }
@@ -47,13 +50,13 @@ namespace Proyecto2_SimuladorCiudades
             #region Dibuja las Filas
             for (int i = 0; i < filas; i++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < 6; j++)
                 {
                     dg.Rows.Add("", "");
                 }
             }
             #endregion
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 5; i++)
             {
                 dg.Columns.Add("", "");
                 dg.Rows.Add("", "");
@@ -61,9 +64,9 @@ namespace Proyecto2_SimuladorCiudades
             #endregion
             #region Ajusta los espacios
             #region Ajusta columnas
-            for (int i = 0; i < (columnas * 4)+3; i++)
+            for (int i = 0; i < (columnas * 6) + 5; i++)
             {
-                switch (i % 4)
+                switch (i % 6)
                 {
                     case 0:
                         dg.Columns[i].Width = 15;
@@ -72,18 +75,24 @@ namespace Proyecto2_SimuladorCiudades
                         dg.Columns[i].Width = 35;
                         break;
                     case 2:
-                        dg.Columns[i].Width = 15;
+                        dg.Columns[i].Width = 5;
                         break;
                     case 3:
-                        dg.Columns[i].Width = 65;
+                        dg.Columns[i].Width = 35;
+                        break;
+                    case 4:
+                        dg.Columns[i].Width = 15;
+                        break;
+                    case 5:
+                        dg.Columns[i].Width = 95;
                         break;
                 }
             }
             #endregion
             #region Ajusta las Filas
-            for (int i = 0; i < (filas * 4)+3; i++)
+            for (int i = 0; i < (filas * 6) + 5; i++)
             {
-                switch (i % 4)
+                switch (i % 6)
                 {
                     case 0:
                         dg.Rows[i].Height = 15;
@@ -92,80 +101,84 @@ namespace Proyecto2_SimuladorCiudades
                         dg.Rows[i].Height = 35;
                         break;
                     case 2:
-                        dg.Rows[i].Height = 15;
+                        dg.Rows[i].Height = 5;
                         break;
                     case 3:
-                        dg.Rows[i].Height = 65;
+                        dg.Rows[i].Height = 35;
+                        break;
+                    case 4:
+                        dg.Rows[i].Height = 15;
+                        break;
+                    case 5:
+                        dg.Rows[i].Height = 95;
                         break;
                 }
             }
             #endregion
             #endregion
             #region Pinta los edificios
-            for(int i=0; i < (columnas*4)+3; i++)
+            for (int i = 0; i < (columnas * 6) + 5; i++)
             {
-                for(int j=0; j < (filas*4)+3; j++)
+                for (int j = 0; j < (filas * 6) + 5; j++)
                 {
                     // Cuadros que corresponden a edificios
                     #region Dibujo de edificios
-                    if (i%4 == 3 || i%4 == 3)
+                    if (i % 6 == 5 && j % 6 == 5)
                     {
-                        if(j%4 == 3 || j%4 == 3)
-                        {
-                            DataGridViewImageCell imgCell = new DataGridViewImageCell();
-                            imgCell.Value = Properties.Resources.imgAmbulance;
-                            dg[i, j] = imgCell;
-                            dg[i, j].Style.BackColor = System.Drawing.Color.RoyalBlue;
-                        }
+                        DataGridViewImageCell imgCell = new DataGridViewImageCell();
+                        imgCell.Value = Properties.Resources.imgAmbulance;
+                        dg[i, j] = imgCell;
+                        dg[i, j].Style.BackColor = System.Drawing.Color.DarkBlue;
                     }
                     #endregion
-
                     // Cuadros que corresponden a la carretera
                     #region Dibujo de carretera
-                    if (i%4 == 1 )
+                    else if (i % 6 == 1 || i % 6 == 3)
                     {
-                        dg[i, j].Style.BackColor = System.Drawing.Color.Gray;
-                    }
-                    if(i%4 == 2)
-                    {
-                        if (j%4 == 1)
-                        {
-                            dg[i, j].Style.BackColor = System.Drawing.Color.Gray;
-
-                        }
-                    }
-                    if (i % 4 == 0)
-                    {
-                        if(j%4 == 1)
+                        if (j % 6 != 2)
                         {
                             dg[i, j].Style.BackColor = System.Drawing.Color.Gray;
                         }
                     }
-                    if(i%4 == 3)
+                    else if (i % 6 == 0 || i % 6 == 4)
                     {
-                        if (j%4 == 1)
+                        if (j % 6 == 1 || j % 6 == 2 || j % 6 == 3)
+                        {
+                            dg[i, j].Style.BackColor = System.Drawing.Color.Gray;
+                        }
+                    }
+                    else if (i % 6 == 5)
+                    {
+                        if (j % 6 == 3 || j % 6 == 1)
+                        {
+                            dg[i, j].Style.BackColor = System.Drawing.Color.Gray;
+                        }
+                    }
+                    else if (i % 6 == 2)
+                    {
+                        if (j % 2 == 0)
                         {
                             dg[i, j].Style.BackColor = System.Drawing.Color.Gray;
                         }
                     }
                     #endregion
-
                     // Cuadros que corresponden a la acera
-                    #region Dibujo de acera
-                    if (i%4 == 0 || i % 4 == 2)
+                    #region Dibujo de Acera
+                    if (i % 6 == 0 || i % 6 == 4)
                     {
-                        if(j%4 != 1)
+                        if (j % 6 == 0 || j % 6 == 5 || j % 6 == 4)
                         {
-                            dg[i, j].Style.BackColor = System.Drawing.Color.Yellow;
+                            dg[i, j].Style.BackColor = System.Drawing.Color.Orange;
                         }
                     }
-                    if (i%4 == 3)
+                    if (i % 6 == 5)
                     {
-                        if (j % 4 == 0 || j%4 == 2)
+                        if (j % 6 == 0 || j % 6 == 4)
                         {
-                            dg[i, j].Style.BackColor = System.Drawing.Color.Yellow;
+                            dg[i, j].Style.BackColor = System.Drawing.Color.Orange;
                         }
                     }
+                    
                     #endregion
                 }
             }
