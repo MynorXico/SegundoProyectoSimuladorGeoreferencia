@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace Proyecto2_SimuladorCiudades
 {
     public partial class IngresoDatos : Form
     {
+        ArrayList[] alObjetos = new ArrayList[6];
+
         public IngresoDatos()
         {
             InitializeComponent();
@@ -62,7 +65,7 @@ namespace Proyecto2_SimuladorCiudades
                 else
                 {
                     Console.WriteLine(dtpFechaHora.ToString());
-                    Viewer v1 = new Viewer(intCalles, intAvenidas, dtpFechaHora.Value, this);
+                    Viewer v1 = new Viewer(intCalles, intAvenidas, dtpFechaHora.Value, this, alObjetos);
                     v1.ShowDialog();
                     this.Hide();
                 }
@@ -76,7 +79,7 @@ namespace Proyecto2_SimuladorCiudades
 
         private void btnAbrirArchivo_Click(object sender, EventArgs e)
         {
-            ManejoDatos.lecturadearchivo(txtAddress, lbObjects, progressBar1);        
+            ManejoDatos.lecturadearchivo(txtAddress, lbObjects, progressBar1, alObjetos);        
         }
     }
 }

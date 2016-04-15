@@ -73,6 +73,46 @@ namespace Proyecto2_SimuladorCiudades.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap imgAmbulanceCar {
+            get {
+                object obj = ResourceManager.GetObject("imgAmbulanceCar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgBlueCar {
+            get {
+                object obj = ResourceManager.GetObject("imgBlueCar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgBlueCar2 {
+            get {
+                object obj = ResourceManager.GetObject("imgBlueCar2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgBuilding {
+            get {
+                object obj = ResourceManager.GetObject("imgBuilding", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap imgCityHall {
             get {
                 object obj = ResourceManager.GetObject("imgCityHall", resourceCulture);
@@ -113,9 +153,29 @@ namespace Proyecto2_SimuladorCiudades.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap imgPoliceCar {
+            get {
+                object obj = ResourceManager.GetObject("imgPoliceCar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap imgPoliceman {
             get {
                 object obj = ResourceManager.GetObject("imgPoliceman", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgPurpleCar {
+            get {
+                object obj = ResourceManager.GetObject("imgPurpleCar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -136,6 +196,16 @@ namespace Proyecto2_SimuladorCiudades.Properties {
         internal static System.Drawing.Bitmap imgSteeringWheel {
             get {
                 object obj = ResourceManager.GetObject("imgSteeringWheel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgWhiteCar {
+            get {
+                object obj = ResourceManager.GetObject("imgWhiteCar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

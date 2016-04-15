@@ -121,6 +121,18 @@
   <data name="imgAmbulance" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgAmbulance.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="imgAmbulanceCar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imgAmbulanceCar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgBlueCar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imgBlueCar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgBlueCar2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imgBlueCar2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgBuilding" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1460653226109-2143802514.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="imgCityHall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgCityHall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -133,13 +145,22 @@
   <data name="imgOpen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgOpen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="imgPoliceCar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imgPoliceCar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="imgPoliceman" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgPoliceman.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgPurpleCar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imgPurpleCar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imgRestaurant" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgRestaurant.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imgSteeringWheel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgSteeringWheel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgWhiteCar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imgWhiteCar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

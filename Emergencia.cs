@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Proyecto2_SimuladorCiudades
 {
@@ -14,6 +15,7 @@ namespace Proyecto2_SimuladorCiudades
         private int _intAvenida;
         private int _intCalleAvenida;
         private string _strCalleAvenida;
+        private Image _imgImage;
         
         // Propiedades de la Clase
         public string strNombre
@@ -69,6 +71,17 @@ namespace Proyecto2_SimuladorCiudades
             set
             {
                 _strCalleAvenida = value;
+            }
+        }
+        public Image imgImage
+        {
+            get
+            {
+                return _imgImage;
+            }
+            set
+            {
+                _imgImage = value;
             }
         }
     }

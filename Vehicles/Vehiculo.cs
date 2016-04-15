@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Proyecto2_SimuladorCiudades
 {
     class Vehiculo
     {
-        #region Atritubos
+        #region Atritutos
         // Atributos de la clase
         private string _strPlaca;
         private int _intCalle;
         private int _intAvenida;
         private int _intCalleAvenida;
         private string _strMarca;
+        private Image[] arrImages = {Properties.Resources.imgBlueCar, Properties.Resources.imgBlueCar2, Properties.Resources.imgPurpleCar, Properties.Resources.imgWhiteCar};
+        private Random objRandom = new Random();
+        private Image _imgImage;
         #endregion
         #region Propiedades
         // Propiedades de la clase
@@ -73,6 +77,17 @@ namespace Proyecto2_SimuladorCiudades
                 _strMarca = value;
             }
         }
+        public Image imgImage
+        {
+            get
+            {
+                return _imgImage;
+            }
+            set
+            {
+                _imgImage = value;
+            }
+        }
         #endregion
 
         //Constructor
@@ -83,6 +98,13 @@ namespace Proyecto2_SimuladorCiudades
             intAvenida = unaAvenida;
             intCalleAvenida = unaCalleAvenida;
             strMarca = unaMarca;
+            imgImage = arrImages[objRandom.Next()%4];
+            System.Threading.Thread.Sleep(1);
+            if (unaCalleAvenida == 1)
+            {
+                imgImage.RotateFlip(RotateFlipType.Rotate90FlipX);
+            }
+            
         }
 
     }

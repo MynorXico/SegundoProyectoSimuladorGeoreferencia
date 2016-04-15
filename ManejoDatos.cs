@@ -16,18 +16,20 @@ namespace Proyecto2_SimuladorCiudades
         static ProgressBar pbLoading;
 
         #region ArrayLists con cada tipo de objeto
-        static ArrayList registroCarro = new ArrayList();
-        static ArrayList registroRestaurantes = new ArrayList();
-        static ArrayList registroHospitales = new ArrayList();
-        static ArrayList registroGasolineras = new ArrayList();
-        static ArrayList registroPolicias = new ArrayList();
-        static ArrayList registroBomberos = new ArrayList();
-        static OpenFileDialog abrirarchivo = new OpenFileDialog();
-        static ArrayList[] alObjetos;
+        public static ArrayList registroCarro = new ArrayList();
+        public static ArrayList registroRestaurantes = new ArrayList();
+        public static ArrayList registroHospitales = new ArrayList();
+        public static ArrayList registroGasolineras = new ArrayList();
+        public static ArrayList registroPolicias = new ArrayList();
+        public static ArrayList registroBomberos = new ArrayList();
+        public static OpenFileDialog abrirarchivo = new OpenFileDialog();
+
+
+        public static ArrayList[] arrObjetos = new ArrayList[6];        
         #endregion
 
 
-        public static void lecturadearchivo(TextBox tb, ListBox lb, ProgressBar pb)
+        public static void lecturadearchivo(TextBox tb, ListBox lb, ProgressBar pb, ArrayList[] arrayList)
         {
             pbLoading = pb;
             pbLoading.Maximum = 6;
@@ -36,7 +38,7 @@ namespace Proyecto2_SimuladorCiudades
 
             tbDirection = tb;
             lbObjetos = lb;
-
+            arrObjetos = arrayList;
             int[] intcontador_error = new int[6];//Arreglo que contendra contadores para menejar el error descrito al final de cada sección de cada objeto
             int[] intContadorObjetos = new int[6];//Arreglo que contendra los contadore spara cada objeto que se va a crear...
             try
@@ -91,7 +93,7 @@ namespace Proyecto2_SimuladorCiudades
                                         }
                                         Vehiculo carro = new Vehiculo(placa, calle, avenida, excepcion, marca);
                                         //Cada vez que entre en este ciclo, se instanciaran las variables pero tomaran diferentes valores
-                                        
+
                                         lbObjetos.Items.Add(string.Format("Carro {0}\tPlacas: {1}\tCalle: {2}\tAvenida: {3}\tEl carro se encuentra sobre la {4}\tMarca: {5}", (intContadorObjetos[0] + 1), carro.strPlaca, carro.intCalle, carro.intAvenida, calleoAvenida, carro.strMarca));
                                         //Se añadira un la información de cada objeto a un listbox
                                         lineas = lecturadearchivo.ReadLine();//Se lee una linea
@@ -102,7 +104,7 @@ namespace Proyecto2_SimuladorCiudades
                                             throw new InvalidOperationException();
                                         }
                                         registroCarro.Add(carro);//En cada iteración exitosa se agrega el objeto a un arraylist para ser usados en la generación del mapa
-                                    }
+                                    } arrObjetos[0] = (registroCarro);
                                 }
                                 catch (InvalidOperationException)
                                 {
@@ -146,7 +148,7 @@ namespace Proyecto2_SimuladorCiudades
                                         }
                                         else if (inttipoRestaurante != 1 && inttipoRestaurante != 2 && inttipoRestaurante != 3)
                                         {//En caso de que el archivo de texto tenga un restaurante que no tenga un tipo de dato con válido, resopecto al tipo de comida que vendera se mostrara el error y se le asignara un tipo de restaurante
-                                            
+
                                             MessageBox.Show("El  restaurente (" + (strNombreRestaurante) + ") no posee un tipo de comida válido\nSe le asigno como tipo de comida rapida");
                                             tipo = "Comida Rapida";
                                         }
@@ -165,6 +167,7 @@ namespace Proyecto2_SimuladorCiudades
                                         MessageBox.Show("La cantidad de Restaurantes en el archivo de texto es inválida");
                                     }
                                 }
+                                arrObjetos[1] = (registroRestaurantes);
                                 #endregion
                                 pbLoading.PerformStep();
                                 break;
@@ -208,6 +211,7 @@ namespace Proyecto2_SimuladorCiudades
                                 {
                                     MessageBox.Show("Esta mal configurado la carga de datos");
                                 }
+                                arrObjetos[2] = (registroHospitales);
                                 #endregion
                                 pbLoading.PerformStep();
                                 break;
@@ -232,7 +236,7 @@ namespace Proyecto2_SimuladorCiudades
 
                                         Buildings.Gasolinera gasolinera = new Buildings.Gasolinera(strNombre, adDireccion, dblprecio);
                                         lbObjetos.Items.Add("Gasolinera No.: " + (intContadorObjetos[3] + 1) + "\tNombre de Gasolinera: " + gasolinera.strNombre +
-                                            "\tNo. de Calle: " + gasolinera.adDireccion.intCalle+ "\tNo. de Avenia: " + gasolinera.adDireccion.intAvenida + "\tPrecio de la gasolina: " +
+                                            "\tNo. de Calle: " + gasolinera.adDireccion.intCalle + "\tNo. de Avenia: " + gasolinera.adDireccion.intAvenida + "\tPrecio de la gasolina: " +
                                             gasolinera.dblPrecio + ".Q");
                                         registroGasolineras.Add(gasolinera);//Se agrega cada gasolinera creada a este arraylist
                                         intcontador_error[3]++;
@@ -243,6 +247,7 @@ namespace Proyecto2_SimuladorCiudades
                                 catch
                                 {
                                 }
+                                arrObjetos[3] = (registroGasolineras);
                                 #endregion
                                 pbLoading.PerformStep();
                                 break;
@@ -277,6 +282,7 @@ namespace Proyecto2_SimuladorCiudades
 
                                 }
                                 pbLoading.PerformStep();
+                                arrObjetos[4] = (registroPolicias);
                                 break;
                             #endregion
                             case "bomberos:":
@@ -310,11 +316,11 @@ namespace Proyecto2_SimuladorCiudades
                                 {
 
                                 }
+                                arrObjetos[5]=(registroBomberos);
                                 pbLoading.PerformStep();
                                 break;
                                 #endregion
                         }
-
                         lineas = lecturadearchivo.ReadLine();
                     }
                     lecturadearchivo.Close();//El archivo se cerrara cuando ya ni hayan lineas por leer
@@ -332,6 +338,7 @@ namespace Proyecto2_SimuladorCiudades
             {
                 MessageBox.Show("El archivo esta mal configurado");
             }
+            arrayList = arrObjetos;
         }
 
 

@@ -140,7 +140,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Viewer";
-            this.Text = "Viewer";
+            this.Text = "Simulador de Georeferencia";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Viewer_FormClosed);
             this.tableLayoutPanel1.ResumeLayout(false);

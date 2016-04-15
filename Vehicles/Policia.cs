@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Proyecto2_SimuladorCiudades.Vehicles
 {
@@ -21,6 +22,11 @@ namespace Proyecto2_SimuladorCiudades.Vehicles
             else
             {
                 strCalleAvenida = "Calle";
+            }
+            imgImage = Properties.Resources.imgPoliceCar;
+            if(unaCalleAvenida == 1)
+            {
+                imgImage.RotateFlip(RotateFlipType.Rotate90FlipX);
             }
         }
     }

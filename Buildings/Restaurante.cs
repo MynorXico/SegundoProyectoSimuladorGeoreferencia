@@ -30,6 +30,7 @@ namespace Proyecto2_SimuladorCiudades.Buildings
         {
             strNombre = unNombre;
             imgImage = Properties.Resources.imgRestaurant;
+            adDireccion = unaDireccion;
             #region Definir tipo de alimento
             switch (unTipoAlimento)
             {

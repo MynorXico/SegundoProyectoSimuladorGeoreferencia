@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace Proyecto2_SimuladorCiudades
 {
@@ -16,19 +17,19 @@ namespace Proyecto2_SimuladorCiudades
     {
         IngresoDatos DI;
         DateTime dtFecha;
+        ArrayList[] alObjetos = new ArrayList[6];
 
-        public Viewer(int calles, int avenidas, DateTime unaFecha, IngresoDatos objIngresoDatos)
+        public Viewer(int avenidas, int calles, DateTime unaFecha, IngresoDatos objIngresoDatos, ArrayList[] al)
         {
-            
+            alObjetos = al;
             InitializeComponent();
             timer1.Start();
             dibujarGrid(mapDGV, calles, avenidas);
             DI = objIngresoDatos;
             dtFecha = unaFecha;
-            ViewerControl vc = new ViewerControl(mapDGV);
+            ViewerControl vc = new ViewerControl(mapDGV, al);
         }
 
-        int[] a = new int[4];
         
 
         private void dibujarGrid(DataGridView dg, int columnas, int filas)
@@ -126,9 +127,9 @@ namespace Proyecto2_SimuladorCiudades
                     if (i % 6 == 5 && j % 6 == 5)
                     {
                         DataGridViewImageCell imgCell = new DataGridViewImageCell();
-                        imgCell.Value = Properties.Resources.imgAmbulance;
+                        imgCell.Value = Properties.Resources.imgBuilding;
                         dg[i, j] = imgCell;
-                        dg[i, j].Style.BackColor = System.Drawing.Color.DarkBlue;
+                        dg[i, j].Style.BackColor = System.Drawing.Color.LightBlue;
                     }
                     #endregion
                     // Cuadros que corresponden a la carretera

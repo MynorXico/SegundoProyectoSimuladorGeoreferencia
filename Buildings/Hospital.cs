@@ -42,6 +42,7 @@ namespace Proyecto2_SimuladorCiudades.Buildings
 
         public Hospital(string unNombre, address unaDireccion, bool esPublico)
         {
+            imgImage = Properties.Resources.imgHospital;
             strNombre = unNombre;
             _bolEsPublico = esPublico;
             adDireccion = unaDireccion;
