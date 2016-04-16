@@ -72,6 +72,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Reference\Colores.cs" />
     <Compile Include="Reference\Validador.cs" />
     <Compile Include="Vehicles\Ambulancia.cs" />
     <Compile Include="Vehicles\Policia.cs" />
@@ -148,6 +149,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgBlueCar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GeoReference.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MapMaker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Siren.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Walking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MapMaker - 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MapMaker2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MapMaker3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MapMaker4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -129,7 +129,7 @@ namespace Proyecto2_SimuladorCiudades
                         DataGridViewImageCell imgCell = new DataGridViewImageCell();
                         imgCell.Value = Properties.Resources.imgBuilding;
                         dg[i, j] = imgCell;
-                        dg[i, j].Style.BackColor = System.Drawing.Color.LightBlue;
+                        dg[i, j].Style.BackColor = Colores.colorEdificios;
                     }
                     #endregion
                     // Cuadros que corresponden a la carretera
@@ -138,28 +138,28 @@ namespace Proyecto2_SimuladorCiudades
                     {
                         if (j % 6 != 2)
                         {
-                            dg[i, j].Style.BackColor = System.Drawing.Color.Gray;
+                            dg[i, j].Style.BackColor = Colores.colorCarretera;
                         }
                     }
                     else if (i % 6 == 0 || i % 6 == 4)
                     {
                         if (j % 6 == 1 || j % 6 == 2 || j % 6 == 3)
                         {
-                            dg[i, j].Style.BackColor = System.Drawing.Color.Gray;
+                            dg[i, j].Style.BackColor = Colores.colorCarretera;
                         }
                     }
                     else if (i % 6 == 5)
                     {
                         if (j % 6 == 3 || j % 6 == 1)
                         {
-                            dg[i, j].Style.BackColor = System.Drawing.Color.Gray;
+                            dg[i, j].Style.BackColor = Colores.colorCarretera;
                         }
                     }
                     else if (i % 6 == 2)
                     {
                         if (j % 2 == 0)
                         {
-                            dg[i, j].Style.BackColor = System.Drawing.Color.Gray;
+                            dg[i, j].Style.BackColor = Colores.colorCarretera;
                         }
                     }
                     #endregion
@@ -169,18 +169,23 @@ namespace Proyecto2_SimuladorCiudades
                     {
                         if (j % 6 == 0 || j % 6 == 5 || j % 6 == 4)
                         {
-                            dg[i, j].Style.BackColor = System.Drawing.Color.Orange;
+                            dg[i, j].Style.BackColor = Colores.colorAcera;
                         }
                     }
                     if (i % 6 == 5)
                     {
                         if (j % 6 == 0 || j % 6 == 4)
                         {
-                            dg[i, j].Style.BackColor = System.Drawing.Color.Orange;
+                            dg[i, j].Style.BackColor = Colores.colorAcera;
                         }
                     }
-                    
+
                     #endregion
+                    // Cuadros que corresponden al espacio entre carriles
+                    if (i%6 == 2 || j%6 == 2)
+                    {
+                        dg[i, j].Style.BackColor = Colores.colorCamino;
+                    }
                 }
             }
             #endregion
@@ -209,3 +214,4 @@ namespace Proyecto2_SimuladorCiudades
 
     }
 }
+

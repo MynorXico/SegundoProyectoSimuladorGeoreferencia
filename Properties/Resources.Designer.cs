@@ -63,6 +63,16 @@ namespace Proyecto2_SimuladorCiudades.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GeoReference {
+            get {
+                object obj = ResourceManager.GetObject("GeoReference", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap imgAmbulance {
             get {
                 object obj = ResourceManager.GetObject("imgAmbulance", resourceCulture);
@@ -206,6 +216,66 @@ namespace Proyecto2_SimuladorCiudades.Properties {
         internal static System.Drawing.Bitmap imgWhiteCar {
             get {
                 object obj = ResourceManager.GetObject("imgWhiteCar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MapMaker {
+            get {
+                object obj = ResourceManager.GetObject("MapMaker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MapMaker2 {
+            get {
+                object obj = ResourceManager.GetObject("MapMaker2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MapMaker3 {
+            get {
+                object obj = ResourceManager.GetObject("MapMaker3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MapMaker4 {
+            get {
+                object obj = ResourceManager.GetObject("MapMaker4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Siren {
+            get {
+                object obj = ResourceManager.GetObject("Siren", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Walking {
+            get {
+                object obj = ResourceManager.GetObject("Walking", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

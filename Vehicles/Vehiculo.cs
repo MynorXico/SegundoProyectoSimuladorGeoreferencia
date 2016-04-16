@@ -17,7 +17,6 @@ namespace Proyecto2_SimuladorCiudades
         private int _intCalleAvenida;
         private string _strMarca;
         private Image[] arrImages = {Properties.Resources.imgBlueCar, Properties.Resources.imgBlueCar2, Properties.Resources.imgPurpleCar, Properties.Resources.imgWhiteCar};
-        private Random objRandom = new Random();
         private Image _imgImage;
         #endregion
         #region Propiedades
@@ -98,6 +97,7 @@ namespace Proyecto2_SimuladorCiudades
             intAvenida = unaAvenida;
             intCalleAvenida = unaCalleAvenida;
             strMarca = unaMarca;
+            Random objRandom = new Random();
             imgImage = arrImages[objRandom.Next()%4];
             System.Threading.Thread.Sleep(1);
             if (unaCalleAvenida == 1)

@@ -50,14 +50,15 @@ namespace Proyecto2_SimuladorCiudades
 
                     tbDirection.Text = abrirarchivo.FileName;//Este textbox recibe la dirección del archivo de texto que se lee
                     StreamReader lecturadearchivo = new StreamReader(abrirarchivo.FileName);
-                    string lineas = lecturadearchivo.ReadLine();//Esta variable leera cada linea del archivo de texto seleccionado
+                    string lineas;//Esta variable leera cada linea del archivo de texto seleccionado
                     string[] arrdatosCarro = new string[5];//Arreglo que guardara la información de cada linea de carros
                     string[] arrdatosRestaurantes = new string[4];//Arreglo que guardara la información de cada linea de restaurantes
                     string[] arrdatosHospitales = new string[4];//Arreglo que guardara la informacion de cada linea de hospitales
                     string[] arrdatosGasolineras = new string[4];//Arreglo que guardara la información de cada linea de gasolineras
                     string[] arrdatosPolicias = new string[4];//Arreglo que guardara la información de cada linea de policias
                     string[] arrdatosBomberos = new string[4];//Arreglo que guardara la información de cada linea de bomberos
-                    while (lineas != null)//Mientra haya lineas por leer
+
+                    do
                     {
                         do
                         {
@@ -104,7 +105,8 @@ namespace Proyecto2_SimuladorCiudades
                                             throw new InvalidOperationException();
                                         }
                                         registroCarro.Add(carro);//En cada iteración exitosa se agrega el objeto a un arraylist para ser usados en la generación del mapa
-                                    } arrObjetos[0] = (registroCarro);
+                                    }
+                                    arrObjetos[0] = (registroCarro);
                                 }
                                 catch (InvalidOperationException)
                                 {
@@ -316,13 +318,16 @@ namespace Proyecto2_SimuladorCiudades
                                 {
 
                                 }
-                                arrObjetos[5]=(registroBomberos);
+                                arrObjetos[5] = (registroBomberos);
                                 pbLoading.PerformStep();
                                 break;
                                 #endregion
                         }
                         lineas = lecturadearchivo.ReadLine();
-                    }
+                    
+                    } while (lineas != null);
+                    
+                        
                     lecturadearchivo.Close();//El archivo se cerrara cuando ya ni hayan lineas por leer
                 }
                 

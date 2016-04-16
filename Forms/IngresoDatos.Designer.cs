@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IngresoDatos));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lbObjects = new System.Windows.Forms.ListBox();
             this.btnAbrirArchivo = new System.Windows.Forms.Button();
@@ -39,11 +41,11 @@
             this.txtCalles = new System.Windows.Forms.TextBox();
             this.txtAvenidas = new System.Windows.Forms.TextBox();
             this.dtpFechaHora = new System.Windows.Forms.DateTimePicker();
-            this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -58,6 +60,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.pictureBox2);
             this.groupBox1.Controls.Add(this.progressBar1);
             this.groupBox1.Controls.Add(this.lbObjects);
             this.groupBox1.Controls.Add(this.btnAbrirArchivo);
@@ -66,7 +70,6 @@
             this.groupBox1.Controls.Add(this.txtCalles);
             this.groupBox1.Controls.Add(this.txtAvenidas);
             this.groupBox1.Controls.Add(this.dtpFechaHora);
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
@@ -74,9 +77,34 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(602, 607);
+            this.groupBox1.Size = new System.Drawing.Size(616, 590);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Candara", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(257, 552);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(90, 18);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Dibujar Mapa";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::Proyecto2_SimuladorCiudades.Properties.Resources.MapMaker;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox2.Location = new System.Drawing.Point(247, 449);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox2.TabIndex = 13;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox2_MouseDown);
+            this.pictureBox2.MouseEnter += new System.EventHandler(this.pictureBox2_MouseEnter);
+            this.pictureBox2.MouseLeave += new System.EventHandler(this.pictureBox2_MouseLeave);
+            this.pictureBox2.MouseHover += new System.EventHandler(this.pictureBox2_MouseHover);
             // 
             // progressBar1
             // 
@@ -160,18 +188,6 @@
             this.dtpFechaHora.TabIndex = 4;
             this.dtpFechaHora.Value = new System.DateTime(2016, 4, 12, 0, 0, 0, 0);
             // 
-            // button1
-            // 
-            this.button1.AutoSize = true;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(252, 465);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 77);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Generar Mapa";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button1_MouseClick);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -207,7 +223,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(602, 607);
+            this.ClientSize = new System.Drawing.Size(616, 590);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -216,6 +232,7 @@
             this.Text = "Simulador de Ciudades";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -226,7 +243,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtpFechaHora;
         private System.Windows.Forms.TextBox txtCalles;
@@ -236,5 +252,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox lbObjects;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label6;
     }
 }

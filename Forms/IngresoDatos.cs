@@ -79,7 +79,74 @@ namespace Proyecto2_SimuladorCiudades
 
         private void btnAbrirArchivo_Click(object sender, EventArgs e)
         {
-            ManejoDatos.lecturadearchivo(txtAddress, lbObjects, progressBar1, alObjetos);        
+            ManejoDatos.lecturadearchivo(txtAddress, lbObjects, progressBar1, alObjetos);
+            btnAbrirArchivo.Visible = false;   
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            int intCalles = -1;
+            int intAvenidas = -1;
+            if (Validador.esEntero(txtAvenidas.Text))
+            {
+                intCalles = int.Parse(txtAvenidas.Text);
+            }
+            if (Validador.esEntero(txtCalles.Text))
+            {
+                intAvenidas = int.Parse(txtCalles.Text);
+            }
+            if (intCalles != -1 && intCalles != -1)
+            {
+                if (intCalles < 10 || intCalles > 50)
+                {
+                    MessageBox.Show("La cantidad de calles debe estar entre 10 y 50.", "***ERROR***", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtAvenidas.Text = "";
+                }
+                else if (intAvenidas < 10 || intAvenidas > 100)
+                {
+                    MessageBox.Show("La cantidad de calles debe estar entre 10 y 50.", "***ERROR***", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtAvenidas.Text = "";
+                }
+                else if (txtAddress.Text == "")
+                {
+                    MessageBox.Show("Por favor realice la carga de datos", "***ERROR***", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtAvenidas.Text = "";
+                }
+                else
+                {
+                    Console.WriteLine(dtpFechaHora.ToString());
+                    Viewer v1 = new Viewer(intCalles, intAvenidas, dtpFechaHora.Value, this, alObjetos);
+                    v1.ShowDialog();
+                    this.Hide();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe ingresar datos válidos", "***ERROR***", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void pictureBox2_MouseHover(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void pictureBox2_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox2.BackgroundImage = Properties.Resources.MapMaker;
+            pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+        private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
+        {
+            pictureBox2.BackgroundImage = Properties.Resources.MapMaker4;
+            pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+        private void pictureBox2_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBox2.BackgroundImage = Properties.Resources.MapMaker3;
+            pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
         }
     }
 }
