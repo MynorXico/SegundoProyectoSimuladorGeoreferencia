@@ -40,6 +40,7 @@ namespace Proyecto2_SimuladorCiudades
             foreach (Buildings.Restaurante r in alRestaurantes)
             {
                 DataGridView[(r.adDireccion.intAvenida - 1) * 6 + 5, (r.adDireccion.intCalle - 1) * 6 + 5].Value = r.imgImage;
+                DataGridView[(r.adDireccion.intAvenida - 1) * 6 + 5, (r.adDireccion.intCalle - 1) * 6 + 5].ToolTipText = String.Format("Restaurant {0}", r.strNombre);
                 DataGridView[(r.adDireccion.intAvenida - 1) * 6 + 5, (r.adDireccion.intCalle - 1) * 6 + 5].Style.BackColor = Colores.colorRestaurante;
             }
             #endregion
@@ -48,6 +49,7 @@ namespace Proyecto2_SimuladorCiudades
             {
                 DataGridView[(h.adDireccion.intAvenida - 1) * 6 + 5, (h.adDireccion.intCalle - 1) * 6 + 5].Value = h.imgImage;
                 DataGridView[(h.adDireccion.intAvenida - 1) * 6 + 5, (h.adDireccion.intCalle - 1) * 6 + 5].Style.BackColor = Colores.colorHospital;
+                DataGridView[(h.adDireccion.intAvenida - 1) * 6 + 5, (h.adDireccion.intCalle - 1) * 6 + 5].ToolTipText = String.Format("Hospital {0}", h.strNombre);
             }
             #endregion
             #region Dibuja Gasolineras
@@ -55,7 +57,7 @@ namespace Proyecto2_SimuladorCiudades
             {
                 DataGridView[(g.adDireccion.intAvenida - 1) * 6 + 5, (g.adDireccion.intCalle - 1) * 6 + 5].Value = g.imgImage;
                 DataGridView[(g.adDireccion.intAvenida - 1) * 6 + 5, (g.adDireccion.intCalle - 1) * 6 + 5].Style.BackColor = Colores.colorGasolinera;
-
+                DataGridView[(g.adDireccion.intAvenida - 1) * 6 + 5, (g.adDireccion.intCalle - 1) * 6 + 5].ToolTipText = String.Format("Gasolinera {0}", g.strNombre);
             }
             #endregion
 
@@ -68,13 +70,14 @@ namespace Proyecto2_SimuladorCiudades
                 {
                     DataGridView[(v.intAvenida - 1) * 6 + 3, (v.intCalle - 1) * 6 + 5] = imgCell;
                     DataGridView[(v.intAvenida - 1) * 6 + 3, (v.intCalle - 1) * 6 + 5].Style.BackColor = Colores.colorCarro;
+                    DataGridView[(v.intAvenida - 1) * 6 + 5, (v.intCalle - 1) * 6 + 5].ToolTipText = String.Format("Carro #{0}", v.strPlaca);
 
                 }
                 else if (v.intCalleAvenida == 2 && DataGridView[(v.intAvenida - 1) * 6 + 5, (v.intCalle - 1) * 6 + 3].Value == null)
                 {
                     DataGridView[(v.intAvenida - 1) * 6 + 5, (v.intCalle - 1) * 6 + 3] = imgCell;
                     DataGridView[(v.intAvenida - 1) * 6 + 5, (v.intCalle - 1) * 6 + 3].Style.BackColor = Colores.colorCarro;
-
+                    DataGridView[(v.intAvenida - 1) * 6 + 5, (v.intCalle - 1) * 6 + 5].ToolTipText = String.Format("Carro #{0}", v.strPlaca);
                 }
 
             }
@@ -196,14 +199,19 @@ namespace Proyecto2_SimuladorCiudades
                     if (DataGridView[i, j].Style.BackColor == Colores.colorPolicias)
                     {
                         mapMatrix[i, j] = "P";
+                        DataGridView[i, j].Style.BackColor = Colores.colorCarretera;
                     }
                     if (DataGridView[i, j].Style.BackColor == Colores.colorBomberos)
                     {
                         mapMatrix[i, j] = "B";
+                        DataGridView[i, j].Style.BackColor = Colores.colorCarretera;
+
                     }
                     if (DataGridView[i, j].Style.BackColor == Colores.colorCarro)
                     {
                         mapMatrix[i, j] = "V";
+                        DataGridView[i, j].Style.BackColor = Colores.colorCarretera;
+
                     }
                 }
             }
@@ -219,6 +227,11 @@ namespace Proyecto2_SimuladorCiudades
             #endregion
         }
         public void dibujarMapa()
+        {
+
+        }
+
+        public void MapToMatrix(int row, int column)
         {
 
         }

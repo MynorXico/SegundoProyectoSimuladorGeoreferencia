@@ -39,6 +39,8 @@ namespace Proyecto2_SimuladorCiudades
         }
     }
 
+
+
     class Edificio
     {
         // Atributos de la clase
