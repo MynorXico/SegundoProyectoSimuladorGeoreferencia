@@ -8,7 +8,7 @@ using System.Drawing;
 namespace Proyecto2_SimuladorCiudades
 {
     // Struct para definir la dirección
-    struct address
+    public struct address
     {
         // Variables de Address
         private int _intCalle;
@@ -41,7 +41,7 @@ namespace Proyecto2_SimuladorCiudades
 
 
 
-    class Edificio
+    public class Edificio
     {
         // Atributos de la clase
         private address _adDireccion;
@@ -95,5 +95,11 @@ namespace Proyecto2_SimuladorCiudades
             }
         }
 
+        // Cambia la función toString para mostrar la información del edificio
+        public override string ToString()
+        {
+            string informacion = string.Format("{0} {1}\nDirección: {2}a. Calle {3}a. Avenida", strLabel, strNombre, adDireccion.intCalle, adDireccion.intAvenida);
+            return informacion;
+        }
     }
 }

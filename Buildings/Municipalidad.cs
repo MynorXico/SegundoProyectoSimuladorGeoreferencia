@@ -22,5 +22,11 @@ namespace Proyecto2_SimuladorCiudades.Buildings
             adDireccion = unaDireccion;
             imgImage = Properties.Resources.imgCityHall;
         }
+
+        public override string ToString()
+        {
+            string informacion = string.Format("{0}\nDirección: {1}ª Calle y {2}ª Avenida", strLabel, adDireccion.intCalle, adDireccion.intAvenida);
+            return informacion;
+        }
     }
 }

@@ -16,18 +16,28 @@ namespace Proyecto2_SimuladorCiudades.Vehicles
             intAvenida = unaAvenida;
             intCalleAvenida = unaCalleAvenida;
             imgImage = Properties.Resources.imgAmbulanceCar;
+            #region Cambio de Posición de Ambulancia
             if (intCalleAvenida == 1)
             {
                 strCalleAvenida = "Avenida";
+                if (unaAvenida % 2 != 0)
+                {
+                    imgImage.RotateFlip(RotateFlipType.Rotate270FlipX);
+                }
+                else
+                {
+                    imgImage.RotateFlip(RotateFlipType.Rotate90FlipX);
+                }
             }
             else
             {
                 strCalleAvenida = "Calle";
+                if(unaCalle % 2 == 0)
+                {
+                    imgImage.RotateFlip(RotateFlipType.Rotate180FlipY);
+                }
             }
-            if (unaCalleAvenida == 1)
-            {
-                imgImage.RotateFlip(RotateFlipType.Rotate90FlipX);
-            }
+            #endregion
         }
     }
-}
+}   

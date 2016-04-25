@@ -46,6 +46,7 @@ namespace Proyecto2_SimuladorCiudades.Buildings
             strNombre = unNombre;
             _bolEsPublico = esPublico;
             adDireccion = unaDireccion;
+            strLabel = "Hospital";
 
             if (esPublico)
             {
@@ -53,8 +54,14 @@ namespace Proyecto2_SimuladorCiudades.Buildings
             }
             else
             {
-                strTipo = "False";
+                strTipo = "Privado";
             }
+        }
+
+        public override string ToString()
+        {
+            string informacion = string.Format("{0} {1}\nDirección: {2}ª Calle y {3}ª Avenida\nTipo de Hospital: {4}", strLabel, strNombre, adDireccion.intCalle, adDireccion.intAvenida, strTipo);
+            return informacion;
         }
     }
 }

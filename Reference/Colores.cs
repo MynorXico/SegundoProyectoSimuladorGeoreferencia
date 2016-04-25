@@ -27,16 +27,58 @@ namespace Proyecto2_SimuladorCiudades
         {
             get
             {
-                return Color.Green;
+                return Color.White;
             }
         }
-        public static Color colorHospital = Color.Red;
-        public static Color colorRestaurante = Color.Yellow;
-        public static Color colorEdificios = Color.Black;
-        public static Color colorGasolinera = Color.Beige;
-        public static Color colorMunicipalidad = Color.Aqua;
-        public static Color colorPolicias = Color.AliceBlue;
-        public static Color colorBomberos = Color.AntiqueWhite;
-        public static Color colorCarro = Color.Aquamarine;
+        public static Color colorHospital
+        {
+            get
+            {
+                return Color.Red;
+            }
+        }
+        public static Color colorRestaurante {
+            get
+            {
+                return Color.Yellow;
+            }
+        }
+        public static Color colorEdificios
+        {
+            get
+            {
+                return Color.FromArgb(19, 100, 191);
+            }
+        }
+        public static Color colorGasolinera {
+            get
+            {
+                return Color.Beige;
+            }
+        }
+        public static Color colorMunicipalidad {
+            get
+            {
+                return Color.Aqua;
+            }
+        }
+        public static Color colorPolicias {
+            get
+            {
+                return Color.AliceBlue;
+            }
+        }
+        public static Color colorBomberos {
+            get
+            {
+                return Color.Aquamarine;
+            }
+        }
+        public static Color colorCarro {
+            get
+            {
+                return Color.Aquamarine;
+            }
+        }
     }
-}
+} 

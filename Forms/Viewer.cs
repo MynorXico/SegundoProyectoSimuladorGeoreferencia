@@ -18,6 +18,7 @@ namespace Proyecto2_SimuladorCiudades
         IngresoDatos DI;
         DateTime dtFecha;
         ArrayList[] alObjetos = new ArrayList[6];
+        ViewerControl vc;
 
         public Viewer(int avenidas, int calles, DateTime unaFecha, IngresoDatos objIngresoDatos, ArrayList[] al)
         {
@@ -27,7 +28,7 @@ namespace Proyecto2_SimuladorCiudades
             dibujarGrid(mapDGV, calles, avenidas);
             DI = objIngresoDatos;
             dtFecha = unaFecha;
-            ViewerControl vc = new ViewerControl(mapDGV, al);
+            vc = new ViewerControl(mapDGV, al);
         }
 
         
@@ -211,7 +212,53 @@ namespace Proyecto2_SimuladorCiudades
             lblFecha.Text = string.Format("{0:ddd} {1}/{2}/{3}", strDia, intDia, strMes, intAño);
         }
 
+        private void mapDGV_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            mapDGV[e.ColumnIndex, e.RowIndex].Style.BackColor = mapDGV[e.ColumnIndex, e.RowIndex].Style.BackColor;
+            mapDGV.CurrentCell = mapDGV[2, 2];
+            Console.WriteLine("Map: \nColumn: {0}\nRnow: {1}\nCell Value: {2}", e.ColumnIndex, e.RowIndex, vc.mapMatrix[e.ColumnIndex, e.RowIndex]);
+            int calle = (e.RowIndex+1) / 6;
+            int avenida = (e.ColumnIndex+1) / 6;
+            if (calle < vc.buildingMatrix.GetLength(0) && avenida < vc.buildingMatrix.GetLength(1))
+            {
+                Console.WriteLine("Building: \nColumn: {0}\nRow: {1}\nCell Value: {2}", calle, avenida, vc.buildingMatrix[calle, avenida]);
+                if (vc.nomenclatura.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.buildingMatrix[calle, avenida] != null)
+                {
+                    MessageBoxPersonalizado.Show(vc.buildingMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.buildingMatrix[calle, avenida].imgImage);
 
+                }
+            }
+        }
+
+        private void mapDGV_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            Console.WriteLine("Map: \nColumn: {0}\nRnow: {1}\nCell Value: {2}", e.ColumnIndex, e.RowIndex, vc.mapMatrix[e.ColumnIndex, e.RowIndex]);
+            int calle = (e.RowIndex + 1) / 6;
+            int avenida = (e.ColumnIndex + 1) / 6;
+            if (calle < vc.buildingMatrix.GetLength(0) && avenida < vc.buildingMatrix.GetLength(1))
+            {
+                Console.WriteLine("Building: \nColumn: {0}\nRow: {1}\nCell Value: {2}", calle, avenida, vc.buildingMatrix[calle, avenida]);
+                if (vc.nomenclatura.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.buildingMatrix[calle, avenida] != null)
+                {
+                    mapDGV.Cursor = Cursors.Hand;
+                }
+            }
+        }
+
+        private void mapDGV_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            Console.WriteLine("Map: \nColumn: {0}\nRnow: {1}\nCell Value: {2}", e.ColumnIndex, e.RowIndex, vc.mapMatrix[e.ColumnIndex, e.RowIndex]);
+            int calle = (e.RowIndex + 1) / 6;
+            int avenida = (e.ColumnIndex + 1) / 6;
+            if (calle < vc.buildingMatrix.GetLength(0) && avenida < vc.buildingMatrix.GetLength(1))
+            {
+                Console.WriteLine("Building: \nColumn: {0}\nRow: {1}\nCell Value: {2}", calle, avenida, vc.buildingMatrix[calle, avenida]);
+                if (vc.nomenclatura.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.buildingMatrix[calle, avenida] != null)
+                {
+                    mapDGV.Cursor = Cursors.Arrow;
+                }
+            }
+        }
     }
 }
 

@@ -97,14 +97,38 @@ namespace Proyecto2_SimuladorCiudades
             intAvenida = unaAvenida;
             intCalleAvenida = unaCalleAvenida;
             strMarca = unaMarca;
+            string strCalleAvenida;
             Random objRandom = new Random();
-            imgImage = arrImages[objRandom.Next()%4];
+            int imgNumber = objRandom.Next() % 4;
+            imgImage = arrImages[imgNumber];
             System.Threading.Thread.Sleep(1);
-            if (unaCalleAvenida == 1)
+            if (imgNumber == 3)
+                imgImage.RotateFlip(RotateFlipType.Rotate180FlipY);
+
+            #region Cambio de Posición de Policía
+            if (intCalleAvenida == 1)
             {
-                imgImage.RotateFlip(RotateFlipType.Rotate90FlipX);
+                strCalleAvenida = "Avenida";
+                if (unaAvenida % 2 == 0)
+                {
+                    imgImage.RotateFlip(RotateFlipType.Rotate270FlipX);
+                }
+                else
+                {
+                    imgImage.RotateFlip(RotateFlipType.Rotate90FlipX);
+                }
             }
-            
+            else
+            {
+                strCalleAvenida = "Calle";
+                if (unaCalle % 2 != 0)
+                {
+                    imgImage.RotateFlip(RotateFlipType.Rotate180FlipY);
+
+                }
+            }
+            #endregion
+
         }
 
     }

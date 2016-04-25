@@ -15,19 +15,31 @@ namespace Proyecto2_SimuladorCiudades.Vehicles
             intCalle = unaCalle;
             intAvenida = unaAvenida;
             intCalleAvenida = unaCalleAvenida;
-            if(intCalleAvenida == 1)
+            imgImage = Properties.Resources.imgPoliceCar;
+
+            #region Cambio de Posición de Policía
+            if (intCalleAvenida == 1)
             {
                 strCalleAvenida = "Avenida";
+                if (unaAvenida % 2 == 0)
+                {
+                    imgImage.RotateFlip(RotateFlipType.Rotate270FlipX);
+                }
+                else
+                {
+                    imgImage.RotateFlip(RotateFlipType.Rotate90FlipX);
+                }
             }
             else
             {
                 strCalleAvenida = "Calle";
+                if (unaCalle % 2 != 0)
+                {
+                    imgImage.RotateFlip(RotateFlipType.Rotate180FlipY);
+
+                }
             }
-            imgImage = Properties.Resources.imgPoliceCar;
-            if(unaCalleAvenida == 1)
-            {
-                imgImage.RotateFlip(RotateFlipType.Rotate90FlipX);
-            }
+            #endregion
         }
     }
 }

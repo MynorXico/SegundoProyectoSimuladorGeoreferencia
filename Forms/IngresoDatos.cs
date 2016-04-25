@@ -99,18 +99,22 @@ namespace Proyecto2_SimuladorCiudades
             {
                 if (intCalles < 10 || intCalles > 50)
                 {
-                    MessageBox.Show("La cantidad de calles debe estar entre 10 y 50.", "***ERROR***", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("La cantidad de calles debe estar entre 10 y 50.", "Eror", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtAvenidas.Text = "";
                 }
                 else if (intAvenidas < 10 || intAvenidas > 100)
                 {
-                    MessageBox.Show("La cantidad de calles debe estar entre 10 y 50.", "***ERROR***", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("La cantidad de calles debe estar entre 10 y 50.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtAvenidas.Text = "";
                 }
                 else if (txtAddress.Text == "")
                 {
-                    MessageBox.Show("Por favor realice la carga de datos", "***ERROR***", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Por favor realice la carga de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtAvenidas.Text = "";
+                }
+                else if(intCalles%2 != 0 || intAvenidas % 2 !=0)
+                {
+                    MessageBox.Show("El número de calles y avenidas debe ser un número par", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -135,6 +139,7 @@ namespace Proyecto2_SimuladorCiudades
         {
             pictureBox2.BackgroundImage = Properties.Resources.MapMaker;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
+            this.Cursor = Cursors.Arrow;
         }
 
         private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
@@ -147,6 +152,9 @@ namespace Proyecto2_SimuladorCiudades
         {
             pictureBox2.BackgroundImage = Properties.Resources.MapMaker3;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
+            this.Cursor = Cursors.Hand;
         }
+
+      
     }
 }

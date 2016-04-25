@@ -37,8 +37,14 @@ namespace Proyecto2_SimuladorCiudades.Buildings
             strLabel = "Gasolinera";
             imgImage = Properties.Resources.imgGas;
         }
-        
 
-        
+        public override string ToString()
+        {
+            string informacion = string.Format("{0} {1}\nDirección: {2}ª Calle y {3}ª Avenida\nPrecio de la Gasolina: Q{4:0.00}", strLabel, strNombre, adDireccion.intCalle, adDireccion.intAvenida, dblPrecio);
+            return informacion;
+        }
+
+
+
     }
 }

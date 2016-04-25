@@ -184,4 +184,34 @@
   <data name="MapMaker4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MapMaker4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="circle_grey1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\circle_grey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="firefigther1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\firefigther1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fireman_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fireman-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="no_sound_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\no-sound-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="officer_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\officer-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="policeman_512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\policeman-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_13450054841457633298glossy_blue_circle_button_md_hi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\13450054841457633298glossy-blue-circle-button-md-hi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2000px_Speaker_Icon_svg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2000px-Speaker_Icon.svg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_200469__callum_sharp279__menu_scroll_selection_sound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\200469__callum-sharp279__menu-scroll-selection-sound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

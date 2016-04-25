@@ -63,9 +63,78 @@ namespace Proyecto2_SimuladorCiudades.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _13450054841457633298glossy_blue_circle_button_md_hi {
+            get {
+                object obj = ResourceManager.GetObject("_13450054841457633298glossy_blue_circle_button_md_hi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _2000px_Speaker_Icon_svg {
+            get {
+                object obj = ResourceManager.GetObject("_2000px_Speaker_Icon_svg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream _200469__callum_sharp279__menu_scroll_selection_sound {
+            get {
+                return ResourceManager.GetStream("_200469__callum_sharp279__menu_scroll_selection_sound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap circle_grey1 {
+            get {
+                object obj = ResourceManager.GetObject("circle_grey1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap firefigther1 {
+            get {
+                object obj = ResourceManager.GetObject("firefigther1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fireman_512 {
+            get {
+                object obj = ResourceManager.GetObject("fireman_512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GeoReference {
             get {
                 object obj = ResourceManager.GetObject("GeoReference", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap images {
+            get {
+                object obj = ResourceManager.GetObject("images", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -256,6 +325,36 @@ namespace Proyecto2_SimuladorCiudades.Properties {
         internal static System.Drawing.Bitmap MapMaker4 {
             get {
                 object obj = ResourceManager.GetObject("MapMaker4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap no_sound_512 {
+            get {
+                object obj = ResourceManager.GetObject("no_sound_512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap officer_512 {
+            get {
+                object obj = ResourceManager.GetObject("officer_512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap policeman_512 {
+            get {
+                object obj = ResourceManager.GetObject("policeman_512", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

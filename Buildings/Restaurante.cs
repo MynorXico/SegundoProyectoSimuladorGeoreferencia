@@ -31,6 +31,7 @@ namespace Proyecto2_SimuladorCiudades.Buildings
             strNombre = unNombre;
             imgImage = Properties.Resources.imgRestaurant;
             adDireccion = unaDireccion;
+            strLabel = "Restaurante";
             #region Definir tipo de alimento
             switch (unTipoAlimento)
             {
@@ -45,6 +46,12 @@ namespace Proyecto2_SimuladorCiudades.Buildings
                     break;
             }
             #endregion
+        }
+
+        public override string ToString()
+        {
+            string informacion = string.Format("{0} {1}\nDirección: {2}ª Calle y {3}ª Avenida\nTipo de Venta: {4}", strLabel, strNombre, adDireccion.intCalle, adDireccion.intAvenida, strTipoAlimento);
+            return informacion;
         }
     }
 }
