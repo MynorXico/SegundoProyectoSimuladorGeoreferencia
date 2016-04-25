@@ -153,8 +153,6 @@ namespace Proyecto2_SimuladorCiudades
             pictureBox2.BackgroundImage = Properties.Resources.MapMaker3;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
             this.Cursor = Cursors.Hand;
-        }
-
-      
+        }      
     }
 }

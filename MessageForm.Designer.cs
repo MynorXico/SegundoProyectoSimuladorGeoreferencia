@@ -51,8 +51,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblText.AutoSize = true;
-            this.lblText.Location = new System.Drawing.Point(139, 39);
-            this.lblText.MaximumSize = new System.Drawing.Size(294, 0);
+            this.lblText.Location = new System.Drawing.Point(149, 30);
+            this.lblText.MaximumSize = new System.Drawing.Size(200, 0);
             this.lblText.Name = "lblText";
             this.lblText.Size = new System.Drawing.Size(28, 13);
             this.lblText.TabIndex = 0;

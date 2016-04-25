@@ -51,10 +51,12 @@
     <Compile Include="Buildings\Restaurante.cs" />
     <Compile Include="Edificio.cs" />
     <Compile Include="Buildings\Gasolinera.cs" />
-    <Compile Include="Phone\Form1.cs">
+    <Compile Include="Forms\Emergencia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Phone\Form1.Designer.cs" />
+    <Compile Include="Forms\Emergencia.Designer.cs">
+      <DependentUpon>Emergencia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\IngresoDatos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +77,10 @@
     <Compile Include="MessageForm.Designer.cs">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Phone\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Phone\Form1.Designer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Emergencia.cs" />
@@ -89,7 +95,9 @@
     <Compile Include="Vehicles\Policia.cs" />
     <Compile Include="Vehicles\Vehiculo.cs" />
     <Compile Include="ViewerControl.cs" />
-    <EmbeddedResource Include="Phone\Form1.resx" />
+    <EmbeddedResource Include="Forms\Emergencia.resx">
+      <DependentUpon>Emergencia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\IngresoDatos.resx">
       <DependentUpon>IngresoDatos.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +107,7 @@
     <EmbeddedResource Include="MessageForm.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Phone\Form1.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -218,6 +227,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\policeman-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\policeSound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sndAmbulance.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -152,6 +152,7 @@ namespace Proyecto2_SimuladorCiudades
                                         adDireccion.intAvenida = intAvenida;
                                         adDireccion.intCalle = intCalleRestaurante;
 
+                                        #region Define Tipo de Alimento
                                         string tipo = "";//variable que guardara el tipo de comida que tendra cada restaurante
                                         if (inttipoRestaurante == 1)//se evalua que el tipo de restaurantes sea de los unicos permitidos
                                         {
@@ -171,6 +172,7 @@ namespace Proyecto2_SimuladorCiudades
                                             MessageBox.Show("El  restaurente (" + (strNombreRestaurante) + ") no posee un tipo de comida válido\nSe le asigno como tipo de comida rapida");
                                             tipo = "Comida Rapida";
                                         }
+                                        #endregion
                                         Buildings.Restaurante restaurante = new Buildings.Restaurante(strNombreRestaurante, adDireccion, inttipoRestaurante);//Cada vez que entra al ciclo instancia un objeto restaurante con direrentes valores
 
                                         if (!nombresRestaurantes.Contains(restaurante.strNombre))

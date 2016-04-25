@@ -51,6 +51,7 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             // 
             // label1
             // 
@@ -58,7 +59,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Snow;
-            this.label1.Location = new System.Drawing.Point(68, 28);
+            this.label1.Location = new System.Drawing.Point(40, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(151, 37);
             this.label1.TabIndex = 0;
@@ -79,6 +80,8 @@
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             this.pictureBox2.MouseLeave += new System.EventHandler(this.pictureBox_MouseLeave);
             this.pictureBox2.MouseHover += new System.EventHandler(this.pictureBox2_MouseHover);
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+
             // 
             // pictureBox3
             // 
@@ -87,6 +90,7 @@
             this.pictureBox3.Location = new System.Drawing.Point(149, 125);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(128, 177);
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
@@ -94,6 +98,8 @@
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             this.pictureBox3.MouseLeave += new System.EventHandler(this.pictureBox3_MouseLeave);
             this.pictureBox3.MouseHover += new System.EventHandler(this.pictureBox3_MouseHover);
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+
             // 
             // label2
             // 
@@ -101,7 +107,8 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(106, 65);
+            this.label2.Location = new System.Drawing.Point(10, 65);
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 25);
             this.label2.TabIndex = 4;
@@ -116,6 +123,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.BackgroundImage = global::Proyecto2_SimuladorCiudades.Properties.Resources.images;
+            this.label2.Location = new System.Drawing.Point(75, 65);
             this.ClientSize = new System.Drawing.Size(289, 360);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox3);
@@ -124,14 +132,16 @@
             this.Controls.Add(this.pictureBox1);
             this.HelpButton = true;
             this.Name = "Form1";
-            this.Text = "phone";
+            this.Text = "Teléfono";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.MaximumSize = new System.Drawing.Size(289, 400);
+            this.MinimumSize = this.MaximumSize;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

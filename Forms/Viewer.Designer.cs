@@ -44,7 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.emergencyButton = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mapDGV)).BeginInit();
@@ -53,7 +53,7 @@
             this.browsingGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emergencyButton)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -70,7 +70,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1269, 741);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1269, 733);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // mapDGV
@@ -101,7 +101,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             this.mapDGV.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.mapDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.mapDGV.Size = new System.Drawing.Size(1065, 616);
+            this.mapDGV.Size = new System.Drawing.Size(1065, 609);
             this.mapDGV.TabIndex = 0;
             this.mapDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mapDGV_CellClick);
             this.mapDGV.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.mapDGV_CellMouseEnter);
@@ -120,7 +120,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 483F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(183, 616);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(183, 609);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // groupBox1
@@ -162,10 +162,10 @@
             this.browsingGroup.Controls.Add(this.label2);
             this.browsingGroup.Controls.Add(this.pictureBox2);
             this.browsingGroup.Controls.Add(this.label1);
-            this.browsingGroup.Controls.Add(this.pictureBox1);
+            this.browsingGroup.Controls.Add(this.emergencyButton);
             this.browsingGroup.Dock = System.Windows.Forms.DockStyle.Top;
             this.browsingGroup.Font = new System.Drawing.Font("Candara", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.browsingGroup.Location = new System.Drawing.Point(3, 136);
+            this.browsingGroup.Location = new System.Drawing.Point(3, 129);
             this.browsingGroup.Name = "browsingGroup";
             this.browsingGroup.Size = new System.Drawing.Size(177, 432);
             this.browsingGroup.TabIndex = 1;
@@ -184,6 +184,7 @@
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox3.Image = global::Proyecto2_SimuladorCiudades.Properties.Resources.Walking;
             this.pictureBox3.Location = new System.Drawing.Point(37, 298);
             this.pictureBox3.Name = "pictureBox3";
@@ -203,6 +204,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox2.Image = global::Proyecto2_SimuladorCiudades.Properties.Resources.imgSteeringWheel;
             this.pictureBox2.Location = new System.Drawing.Point(37, 156);
             this.pictureBox2.Name = "pictureBox2";
@@ -220,14 +222,16 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Llamada de Emergencia";
             // 
-            // pictureBox1
+            // emergencyButton
             // 
-            this.pictureBox1.Image = global::Proyecto2_SimuladorCiudades.Properties.Resources.Siren;
-            this.pictureBox1.Location = new System.Drawing.Point(37, 19);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.emergencyButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.emergencyButton.Image = global::Proyecto2_SimuladorCiudades.Properties.Resources.Siren;
+            this.emergencyButton.Location = new System.Drawing.Point(37, 19);
+            this.emergencyButton.Name = "emergencyButton";
+            this.emergencyButton.Size = new System.Drawing.Size(100, 100);
+            this.emergencyButton.TabIndex = 0;
+            this.emergencyButton.TabStop = false;
+            this.emergencyButton.Click += new System.EventHandler(this.emergencyButton_Click);
             // 
             // timer1
             // 
@@ -239,7 +243,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1269, 741);
+            this.ClientSize = new System.Drawing.Size(1269, 733);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Viewer";
@@ -255,7 +259,7 @@
             this.browsingGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emergencyButton)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -270,7 +274,7 @@
         private System.Windows.Forms.Label lblHora;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.GroupBox browsingGroup;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox emergencyButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;

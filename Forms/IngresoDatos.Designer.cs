@@ -229,6 +229,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "IngresoDatos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Simulador de Ciudades";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

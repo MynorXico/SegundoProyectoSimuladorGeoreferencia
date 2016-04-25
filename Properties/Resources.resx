@@ -214,4 +214,10 @@
   <data name="_200469__callum_sharp279__menu_scroll_selection_sound" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\200469__callum-sharp279__menu-scroll-selection-sound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="policeSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\policeSound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="sndAmbulance" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sndAmbulance.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

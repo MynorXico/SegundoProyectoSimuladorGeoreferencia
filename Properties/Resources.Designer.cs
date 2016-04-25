@@ -360,12 +360,30 @@ namespace Proyecto2_SimuladorCiudades.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream policeSound {
+            get {
+                return ResourceManager.GetStream("policeSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Siren {
             get {
                 object obj = ResourceManager.GetObject("Siren", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream sndAmbulance {
+            get {
+                return ResourceManager.GetStream("sndAmbulance", resourceCulture);
             }
         }
         

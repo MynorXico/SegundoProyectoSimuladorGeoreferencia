@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
+using System.Media;
 
 namespace Proyecto2_SimuladorCiudades
 {
@@ -19,12 +20,15 @@ namespace Proyecto2_SimuladorCiudades
         DateTime dtFecha;
         ArrayList[] alObjetos = new ArrayList[6];
         ViewerControl vc;
+        int intAvenidas, intCalles, intAvenidaEmergencia, intCalleEmergencia;
 
         public Viewer(int avenidas, int calles, DateTime unaFecha, IngresoDatos objIngresoDatos, ArrayList[] al)
         {
             alObjetos = al;
             InitializeComponent();
             timer1.Start();
+            intAvenidas = avenidas;
+            intCalles = calles;
             dibujarGrid(mapDGV, calles, avenidas);
             DI = objIngresoDatos;
             dtFecha = unaFecha;
@@ -198,7 +202,7 @@ namespace Proyecto2_SimuladorCiudades
         private void timer1_Tick(object sender, EventArgs e)
         {
 
-            dtFecha = dtFecha.AddMilliseconds(6000);
+            dtFecha = dtFecha.AddMilliseconds(600);
             int intAño = dtFecha.Year;
             int intMes = dtFecha.Month;
             int intDia = dtFecha.Day;
@@ -258,6 +262,21 @@ namespace Proyecto2_SimuladorCiudades
                     mapDGV.Cursor = Cursors.Arrow;
                 }
             }
+        }
+
+        private void emergencyButton_Click(object sender, EventArgs e)
+        {
+            Phone objPhone = new Phone(dtFecha, intCalles, intAvenidas);
+            objPhone.ShowDialog(this);
+            recibirEmergencia(objPhone.intCalleEmergencia, objPhone.intAvenidaEmergencia, objPhone.strMensajeEmergencia, objPhone.strSolicitudServicio, objPhone.sound);
+            
+        }
+
+
+        public void recibirEmergencia(int intCalle, int intAvenida, string strMensaje, string strServicio, SoundPlayer sp)
+        {
+            sp.Play();
+            mapDGV[intCalle * 6 + 1, intAvenida * 6 + 1].Style.BackColor = Color.Red;
         }
     }
 }
