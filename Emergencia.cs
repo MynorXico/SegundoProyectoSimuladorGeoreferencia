@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Proyecto2_SimuladorCiudades
 {
-    class Emergencia
+    public class Emergencia
     {
         // Declaración de atributos
         private string _strNombre;

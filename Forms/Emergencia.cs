@@ -174,7 +174,7 @@ namespace Proyecto2_SimuladorCiudades.Forms
             }
             else
             {
-                MessageBoxPersonalizado.Show(string.Format("Se creó un mensaje de emergencia para la {0}ª calle y {1}ª avenida\nLa emergencia es la siguiente:\n\t{2}", currentStreet.Text, currentAvenue.Text, rtxtEmergency.Text), "Mensaje Recibido", eDialogButtons.OK, Properties.Resources.Siren);
+                MessageBoxPersonalizado.Show(string.Format("Se creará un mensaje de emergencia para la {0}ª calle y {1}ª avenida\nLa emergencia es la siguiente:\n\t{2}", currentStreet.Text, currentAvenue.Text, rtxtEmergency.Text), "Mensaje Recibido", eDialogButtons.OK, Properties.Resources.Siren);
                 intCalleEmergencia = int.Parse(currentStreet.Text);
                 intAvenidaEmergencia = int.Parse(currentAvenue.Text);
                 strMensajeEmergencia = rtxtEmergency.Text;

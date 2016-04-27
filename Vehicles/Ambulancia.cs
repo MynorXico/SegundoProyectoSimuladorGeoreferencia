@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto2_SimuladorCiudades.Vehicles
 {
-    class Ambulancia:Emergencia
+    public class Ambulancia:Emergencia
     {
         public Ambulancia(string unNombre, int unaCalle, int unaAvenida, int unaCalleAvenida)
         {

@@ -80,5 +80,21 @@ namespace Proyecto2_SimuladorCiudades
                 return Color.Aquamarine;
             }
         }
+        public static Color colorTrazoPolicia
+        {
+            get
+            {
+                return Color.FromArgb(0, 0, 127);
+            }
+        }
+        public static Color colorTrazoAmbulancia
+        {
+            get
+            {
+                return Color.OrangeRed;
+            }
+        }
+
+
     }
 } 

@@ -90,6 +90,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Reference\Colores.cs" />
+    <Compile Include="Reference\TrazoDeRutas.cs" />
     <Compile Include="Reference\Validador.cs" />
     <Compile Include="Vehicles\Ambulancia.cs" />
     <Compile Include="Vehicles\Policia.cs" />
@@ -233,6 +234,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sndAmbulance.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\siren2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -46,6 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.emergencyButton = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.PathCleaner = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mapDGV)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -64,6 +65,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.Controls.Add(this.mapDGV, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.PathCleaner, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -238,6 +240,16 @@
             this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // PathCleaner
+            // 
+            this.PathCleaner.Location = new System.Drawing.Point(1080, 624);
+            this.PathCleaner.Name = "PathCleaner";
+            this.PathCleaner.Size = new System.Drawing.Size(183, 103);
+            this.PathCleaner.TabIndex = 2;
+            this.PathCleaner.Text = "LimpiarRutas";
+            this.PathCleaner.UseVisualStyleBackColor = true;
+            this.PathCleaner.Click += new System.EventHandler(this.PathCleaner_Click);
+            // 
             // Viewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,5 +292,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button PathCleaner;
     }
 }

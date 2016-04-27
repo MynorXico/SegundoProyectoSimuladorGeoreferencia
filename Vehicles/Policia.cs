@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Proyecto2_SimuladorCiudades.Vehicles
 {
-    class Policia:Emergencia
+    public class Policia:Emergencia
     {
         public Policia(string unNombre, int unaCalle, int unaAvenida, int unaCalleAvenida)
         {

@@ -176,7 +176,7 @@ namespace Proyecto2_SimuladorCiudades
             intCalleEmergencia = dialogEmergencia.intCalleEmergencia;
             intAvenidaEmergencia = dialogEmergencia.intAvenidaEmergencia;
             strMensajeEmergencia = dialogEmergencia.strMensajeEmergencia;
-            strSolicitudServicio = "Policía";
+            strSolicitudServicio = "Policia";
             sound= new SoundPlayer(Properties.Resources.policeSound);
             this.Close();
 
