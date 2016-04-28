@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -82,14 +82,23 @@ namespace Proyecto2_SimuladorCiudades
         private void btnAbrirArchivo_Click(object sender, EventArgs e)
         {
 
-            ManejoDatos.lecturadearchivo(txtAddress, lbObjects, progressBar1, alObjetos, int.Parse(txtCalles.Text), int.Parse(txtAvenidas.Text));
-            btnAbrirArchivo.Visible = false;
+            ManejoDatos.lecturadearchivo(txtAddress, lbObjects, progressBar1, alObjetos, int.Parse(txtAvenidas.Text), int.Parse(txtCalles.Text));
+            btnAbrirArchivo.Visible = false;   
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             int intCalles = -1;
             int intAvenidas = -1;
+
+            if (Validador.esEntero(txtAvenidas.Text))
+            {
+                intCalles = int.Parse(txtAvenidas.Text);
+            }
+            if (Validador.esEntero(txtCalles.Text))
+            {
+                intAvenidas = int.Parse(txtCalles.Text);
+            }
 
             if (txtAddress.Text == "")
             {
@@ -166,5 +175,7 @@ namespace Proyecto2_SimuladorCiudades
                 }
             }
         }
+        
+    
     }
 }

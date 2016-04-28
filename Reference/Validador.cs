@@ -22,11 +22,11 @@ namespace Proyecto2_SimuladorCiudades
             }
             return true;
         }
-        
         // Comprueba texto válido en textBox
         public static bool calleValida(string s)
         {
-            try {
+            try
+            {
                 int i = int.Parse(s);
                 if ((i >= 10 && i <= 50) && i % 2 == 0)
                     return true;
@@ -37,11 +37,12 @@ namespace Proyecto2_SimuladorCiudades
 
             }
             return false;
-            
+
         }
         public static bool avenidaValida(string s)
         {
-            try {
+            try
+            {
                 int i = int.Parse(s);
                 if ((i >= 10 && i <= 100) && i % 2 == 0)
                     return true;

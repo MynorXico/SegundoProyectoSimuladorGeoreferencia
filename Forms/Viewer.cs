@@ -23,7 +23,6 @@ namespace Proyecto2_SimuladorCiudades
         ViewerControl vc;
         int intAvenidas, intCalles;
 
-        //Constructor de la clase viewer
         public Viewer(int avenidas, int calles, DateTime unaFecha, IngresoDatos objIngresoDatos, ArrayList[] al)
         {
             InitializeComponent();
@@ -34,7 +33,7 @@ namespace Proyecto2_SimuladorCiudades
             dibujarGrid(mapDGV, calles, avenidas);
             DI = objIngresoDatos;
             dtFecha = unaFecha;
-            vc = new ViewerControl(mapDGV, al, intAvenidas, intCalles);
+            vc = new ViewerControl(mapDGV, al, intCalles, intAvenidas);
         }
 
 

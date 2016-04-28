@@ -12,7 +12,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
     public static class TrazoDeRutas
     {
         public static double trazarRutaEmergencia(DataGridView dgvMapa, address inicio, address final, eMedio emergencia, Viewer viewer)
-        {  
+        {
 
             double EDA = 0;
             double ETA = 0;
@@ -31,17 +31,18 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     colorTrazo = Colores.colorTrazoPersona;
                     break;
             }
-            inicio.intCalle = 6*(inicio.intCalle-1)+2;
-            inicio.intAvenida = 6 * (inicio.intAvenida-1) + 2;
-            final.intCalle = 6 * (final.intCalle-1) + 2;
-            final.intAvenida = 6 * (final.intAvenida-1) + 2;
-            dgvMapa[inicio.intAvenida+1, inicio.intCalle + 1] = celdaImagen;
-            dgvMapa[inicio.intAvenida+1, inicio.intCalle+1].Style.BackColor = Color.DarkRed;
-            while(inicio.intCalle != final.intCalle || inicio.intAvenida != final.intAvenida)
+            inicio.intCalle = 6 * (inicio.intCalle - 1) + 2;
+            inicio.intAvenida = 6 * (inicio.intAvenida - 1) + 2;
+            final.intCalle = 6 * (final.intCalle - 1) + 2;
+            final.intAvenida = 6 * (final.intAvenida - 1) + 2;
+
+            dgvMapa[inicio.intAvenida + 1, inicio.intCalle + 1] = celdaImagen;
+            dgvMapa[inicio.intAvenida + 1, inicio.intCalle + 1].Style.BackColor = Color.DarkRed;
+            while (inicio.intCalle != final.intCalle || inicio.intAvenida != final.intAvenida)
             {
-                if(inicio.intCalle < final.intCalle)
+                if (inicio.intCalle < final.intCalle)
                 {
-                    while(inicio.intCalle < final.intCalle)
+                    while (inicio.intCalle < final.intCalle)
                     {
                         inicio.intCalle += 1;
                         EDA += 100 / 6;
@@ -49,9 +50,9 @@ namespace Proyecto2_SimuladorCiudades.Reference
                         dgvMapa[inicio.intAvenida, inicio.intCalle].Style.BackColor = colorTrazo;
                     }
                 }
-                else if(inicio.intCalle > final.intCalle)
+                else if (inicio.intCalle > final.intCalle)
                 {
-                    while(inicio.intCalle > final.intCalle)
+                    while (inicio.intCalle > final.intCalle)
                     {
                         inicio.intCalle -= 1;
                         EDA += 100 / 6;
@@ -59,9 +60,9 @@ namespace Proyecto2_SimuladorCiudades.Reference
                         dgvMapa[inicio.intAvenida, inicio.intCalle].Style.BackColor = colorTrazo;
                     }
                 }
-                if(inicio.intAvenida > final.intAvenida)
+                if (inicio.intAvenida > final.intAvenida)
                 {
-                    while(inicio.intAvenida > final.intAvenida)
+                    while (inicio.intAvenida > final.intAvenida)
                     {
                         inicio.intAvenida -= 1;
                         EDA += 100 / 6;
@@ -69,9 +70,9 @@ namespace Proyecto2_SimuladorCiudades.Reference
                         dgvMapa[inicio.intAvenida, inicio.intCalle].Style.BackColor = colorTrazo;
                     }
                 }
-                else if(inicio.intAvenida < final.intAvenida)
+                else if (inicio.intAvenida < final.intAvenida)
                 {
-                    while(inicio.intAvenida < final.intAvenida)
+                    while (inicio.intAvenida < final.intAvenida)
                     {
                         inicio.intAvenida += 1;
                         EDA += 100 / 6;
@@ -80,7 +81,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     }
                 }
             }
-            return Math.Round(ETA*60, 2);
+            return Math.Round(ETA * 60, 2);
         }
         public static Vehicles.Policia buscarPoliciaCercano(ArrayList policias, address address)
         {
@@ -89,18 +90,19 @@ namespace Proyecto2_SimuladorCiudades.Reference
             foreach (Vehicles.Policia p in policias)
             {
                 alDiferenciaPosicion.Add(Math.Abs(Math.Abs(address.intCalle - p.intCalle) + Math.Abs(address.intAvenida - p.intAvenida)));
-                
+
             }
 
 
             foreach (Vehicles.Policia p in policias)
             {
-                if(Math.Abs(Math.Abs(address.intCalle - p.intCalle) + Math.Abs(address.intAvenida) - p.intAvenida) == (int) alDiferenciaPosicion.ToArray().Min())
+                if (Math.Abs(Math.Abs(address.intCalle - p.intCalle) + Math.Abs(address.intAvenida) - p.intAvenida) == (int)alDiferenciaPosicion.ToArray().Min())
                 {
                     return p;
                 }
 
-            }return (Vehicles.Policia)policias[0];
+            }
+            return (Vehicles.Policia)policias[0];
         }
         public static Vehicles.Ambulancia buscarAmbulanciaCercana(ArrayList operadores, address address)
         {
@@ -168,7 +170,8 @@ namespace Proyecto2_SimuladorCiudades.Reference
                 {
                     tiempo = distance / 30;
                 }
-            }else if(medio == eMedio.Ambulancia || medio == eMedio.Caminando || medio == eMedio.Policía)
+            }
+            else if (medio == eMedio.Ambulancia || medio == eMedio.Caminando || medio == eMedio.Policía)
             {
                 tiempo = distance / 3;
             }
@@ -177,254 +180,250 @@ namespace Proyecto2_SimuladorCiudades.Reference
         }
         public static void trazarRutaVehiculo(DataGridView dgvMapa, address inicio, address final, Viewer viewer)
         {
-            try {
-                int intCalleOrigen = (inicio.intCalle - 1) * 6 + 2;
-                int intAvenidaOrigen = (inicio.intAvenida - 1) * 6 + 2;
-                int intCalleDestino = (final.intCalle - 1) * 6 + 2;
-                int intAvenidaDestino = (final.intAvenida - 1) * 6 + 2;
-                while (intCalleOrigen != intCalleDestino || intAvenidaOrigen != intAvenidaDestino)
+            int intCalleOrigen = (inicio.intCalle - 1) * 6 + 2;
+            int intAvenidaOrigen = (inicio.intAvenida - 1) * 6 + 2;
+            int intCalleDestino = (final.intCalle - 1) * 6 + 2;
+            int intAvenidaDestino = (final.intAvenida - 1) * 6 + 2;
+            while (intCalleOrigen != intCalleDestino || intAvenidaOrigen != intAvenidaDestino)
+            {
+                if (intCalleOrigen == intCalleDestino && intAvenidaOrigen > intAvenidaDestino && esCallePar(intCalleOrigen))
                 {
-                    if (intCalleOrigen == intCalleDestino && intAvenidaOrigen > intAvenidaDestino && esCallePar(intCalleOrigen))
+                    for (int i = 0; i < 6; i++)
                     {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intCalleOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen > intCalleDestino && !esCallePar(intAvenidaOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen < intCalleDestino && esCallePar(intAvenidaOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-
-                    else if (intCalleOrigen > intCalleDestino && !esCallePar(intAvenidaDestino) && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intCalleOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen > intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaDestino))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen < intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && esCallePar(intAvenidaDestino))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen < intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && esCallePar(intAvenidaDestino))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-
-
-                    else if (intCalleOrigen > intCalleDestino && !esCallePar(intCalleDestino) && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intAvenidaOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen < intCalleDestino && intAvenidaOrigen < intAvenidaDestino && esCallePar(intAvenidaOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen > intCalleDestino && esCallePar(intCalleDestino) && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen < intCalleDestino && intAvenidaOrigen > intAvenidaDestino && esCallePar(intCalleDestino) && esCallePar(intAvenidaOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen > intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intAvenidaDestino))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen < intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && esCallePar(intAvenidaOrigen) && esCallePar(intAvenidaDestino))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen < intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && esCallePar(intAvenidaOrigen) && esCallePar(intAvenidaDestino))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen > intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intAvenidaDestino))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen > intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && esCallePar(intAvenidaOrigen) && esCallePar(intAvenidaDestino))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen > intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && esCallePar(intAvenidaOrigen) && esCallePar(intAvenidaDestino))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen < intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intAvenidaDestino))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen < intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intAvenidaDestino))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen < intAvenidaDestino && esCallePar(intCalleOrigen) && esCallePar(intAvenidaOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen > intCalleDestino && esCallePar(intAvenidaOrigen) && !esCallePar(intCalleOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen < intCalleDestino && !esCallePar(intAvenidaOrigen) && esCallePar(intCalleOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen < intAvenidaDestino && esCallePar(intCalleOrigen) && !esCallePar(intAvenidaOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intCalleOrigen) && esCallePar(intAvenidaOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    } else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen < intCalleDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intCalleOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen += 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen > intCalleDestino && esCallePar(intAvenidaOrigen) && esCallePar(intCalleOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intAvenidaOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    } else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intCalleOrigen))
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            intCalleOrigen -= 1;
-                            dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("No se pudo calcular la ruta :'(");
-                        break;
+                        intAvenidaOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                     }
                 }
-            }
-            catch
-            {
+                else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intCalleOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intAvenidaOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen > intCalleDestino && !esCallePar(intAvenidaOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen < intCalleDestino && esCallePar(intAvenidaOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
 
+                else if (intCalleOrigen > intCalleDestino && !esCallePar(intAvenidaDestino) && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intCalleOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intAvenidaOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen > intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaDestino))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intAvenidaOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen < intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && esCallePar(intAvenidaDestino))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intAvenidaOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen < intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && esCallePar(intAvenidaDestino))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intAvenidaOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+
+
+                else if (intCalleOrigen > intCalleDestino && !esCallePar(intCalleDestino) && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intAvenidaOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen < intCalleDestino && intAvenidaOrigen < intAvenidaDestino && esCallePar(intAvenidaOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen > intCalleDestino && esCallePar(intCalleDestino) && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen < intCalleDestino && intAvenidaOrigen > intAvenidaDestino && esCallePar(intCalleDestino) && esCallePar(intAvenidaOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen > intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intAvenidaDestino))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen < intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && esCallePar(intAvenidaOrigen) && esCallePar(intAvenidaDestino))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen < intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && esCallePar(intAvenidaOrigen) && esCallePar(intAvenidaDestino))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen > intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intAvenidaDestino))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen > intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && esCallePar(intAvenidaOrigen) && esCallePar(intAvenidaDestino))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intAvenidaOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen > intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && esCallePar(intAvenidaOrigen) && esCallePar(intAvenidaDestino))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intAvenidaOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen < intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intAvenidaDestino))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intAvenidaOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen < intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intAvenidaDestino))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intAvenidaOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen < intAvenidaDestino && esCallePar(intCalleOrigen) && esCallePar(intAvenidaOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen > intCalleDestino && esCallePar(intAvenidaOrigen) && !esCallePar(intCalleOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intAvenidaOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen < intCalleDestino && !esCallePar(intAvenidaOrigen) && esCallePar(intCalleOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intAvenidaOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen < intAvenidaDestino && esCallePar(intCalleOrigen) && !esCallePar(intAvenidaOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intCalleOrigen) && esCallePar(intAvenidaOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen < intCalleDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intCalleOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intAvenidaOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen > intCalleDestino && esCallePar(intAvenidaOrigen) && esCallePar(intCalleOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intAvenidaOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intCalleOrigen))
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        intCalleOrigen -= 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No se pudo calcular la ruta :'(");
+                    break;
+                }
             }
         }
 
         static bool esCallePar(double i)
         {
-            if (((i+4)/6)%2 == 0)
+            if (((i + 4) / 6) % 2 == 0)
             {
                 return true;
             }
@@ -434,12 +433,13 @@ namespace Proyecto2_SimuladorCiudades.Reference
             }
         }
 
-        public enum eMedio{
+        public enum eMedio
+        {
             Policía,
             Ambulancia,
             Caminando,
             Vehículo
-        }   
+        }
 
 
     }

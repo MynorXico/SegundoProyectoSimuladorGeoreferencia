@@ -149,8 +149,7 @@ namespace Proyecto2_SimuladorCiudades
             */
 
             mapMatrix = new string[DataGridView.Columns.Count, DataGridView.Rows.Count];
-            buildingMatrix = new Edificio[(DataGridView.Columns.Count/6)-4+100, (DataGridView.Columns.Count/6)-4+100];
-
+            buildingMatrix = new Edificio[(DataGridView.Columns.Count / 6) - 4 + 100, (DataGridView.Columns.Count / 6) - 4 + 100];
             #region Creación de la matriz
             // Creación de la matriz
             for (int i = 0; i < mapMatrix.GetLength(0); i++)
@@ -227,19 +226,17 @@ namespace Proyecto2_SimuladorCiudades
             }            
             #endregion
             #region Creación de Matriz Edificios
-
             foreach(Edificio r in alRestaurantes)
             {
-                    buildingMatrix[r.adDireccion.intCalle, r.adDireccion.intAvenida] = r;
+                buildingMatrix[r.adDireccion.intCalle, r.adDireccion.intAvenida] = r;
             }
             foreach (Edificio h in alHospitales)
             {
-                    buildingMatrix[h.adDireccion.intCalle, h.adDireccion.intAvenida] = h;
+                buildingMatrix[h.adDireccion.intCalle, h.adDireccion.intAvenida] = h;
             }
             foreach (Edificio g in alGasolineras)
             {
                 buildingMatrix[g.adDireccion.intCalle, g.adDireccion.intAvenida] = g;
-                
             }
             buildingMatrix[objMunicipalidad.adDireccion.intCalle, objMunicipalidad.adDireccion.intAvenida] = objMunicipalidad;
             #endregion

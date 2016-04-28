@@ -110,7 +110,7 @@ namespace Proyecto2_SimuladorCiudades
                                         {
                                             throw new InvalidOperationException();
                                         }
-                                        if (!(placasVehiculos.Contains(carro.strPlaca)) && carro.intCalle <= maxCalles && carro.intAvenida<=maxAvenidas && carro.intCalle > 0)
+                                        if (!(placasVehiculos.Contains(carro.strPlaca)) && carro.intCalle <= maxCalles && carro.intAvenida <= maxAvenidas && carro.intCalle > 0)
                                         {
                                             registroCarro.Add(carro);//En cada iteración exitosa se agrega el objeto a un arraylist para ser usados en la generación del mapa
                                             lbObjetos.Items.Add(string.Format("Carro con placas: {1} {2}a. Calle. {3}a. Avenida: {3}. El carro se encuentra sobre la {4} y es de marca {5}", (intContadorObjetos[0] + 1), carro.strPlaca, carro.intCalle, carro.intAvenida, calleoAvenida, carro.strMarca));
