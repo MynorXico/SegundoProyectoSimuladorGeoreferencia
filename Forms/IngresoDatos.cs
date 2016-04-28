@@ -44,10 +44,12 @@ namespace Proyecto2_SimuladorCiudades
         {
             int intCalles = -1;
             int intAvenidas = -1;
-            if (Validador.esEntero(txtAvenidas.Text)){
+            if (Validador.esEntero(txtAvenidas.Text))
+            {
                 intCalles = int.Parse(txtAvenidas.Text);
             }
-            if (Validador.esEntero(txtCalles.Text)){
+            if (Validador.esEntero(txtCalles.Text))
+            {
                 intAvenidas = int.Parse(txtCalles.Text);
             }
             if (intCalles != -1 && intCalles != -1)
@@ -81,59 +83,30 @@ namespace Proyecto2_SimuladorCiudades
         {
 
             ManejoDatos.lecturadearchivo(txtAddress, lbObjects, progressBar1, alObjetos, int.Parse(txtCalles.Text), int.Parse(txtAvenidas.Text));
-            btnAbrirArchivo.Visible = false;   
+            btnAbrirArchivo.Visible = false;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             int intCalles = -1;
             int intAvenidas = -1;
-            if (Validador.esEntero(txtAvenidas.Text))
+
+            if (txtAddress.Text == "")
             {
-                intCalles = int.Parse(txtAvenidas.Text);
-            }
-            if (Validador.esEntero(txtCalles.Text))
-            {
-                intAvenidas = int.Parse(txtCalles.Text);
-            }
-            if (intCalles != -1 && intCalles != -1)
-            {
-                if (intCalles < 10 || intCalles > 50)
-                {
-                    MessageBox.Show("La cantidad de calles debe estar entre 10 y 50.", "Eror", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtAvenidas.Text = "";
-                }
-                else if (intAvenidas < 10 || intAvenidas > 100)
-                {
-                    MessageBox.Show("La cantidad de calles debe estar entre 10 y 50.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtAvenidas.Text = "";
-                }
-                else if (txtAddress.Text == "")
-                {
-                    MessageBox.Show("Por favor realice la carga de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtAvenidas.Text = "";
-                }
-                else if(intCalles%2 != 0 || intAvenidas % 2 !=0)
-                {
-                    MessageBox.Show("El número de calles y avenidas debe ser un número par", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    Console.WriteLine(dtpFechaHora.ToString());
-                    Viewer v1 = new Viewer(intCalles, intAvenidas, dtpFechaHora.Value, this, alObjetos);
-                    v1.ShowDialog();
-                    this.Hide();
-                }
+                MessageBox.Show("Por favor realice la carga de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Debe ingresar datos válidos", "***ERROR***", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine(dtpFechaHora.ToString());
+                Viewer v1 = new Viewer(intCalles, intAvenidas, dtpFechaHora.Value, this, alObjetos);
+                v1.ShowDialog();
+                this.Hide();
             }
         }
 
         private void pictureBox2_MouseHover(object sender, EventArgs e)
         {
-           
+
         }
 
         private void pictureBox2_MouseLeave(object sender, EventArgs e)
@@ -164,7 +137,7 @@ namespace Proyecto2_SimuladorCiudades
             }
             else
             {
-                if(txtCalles.Text != "" && txtAvenidas.Text != "")
+                if (txtCalles.Text != "" && txtAvenidas.Text != "")
                 {
                     btnAbrirArchivo.Visible = true;
                 }

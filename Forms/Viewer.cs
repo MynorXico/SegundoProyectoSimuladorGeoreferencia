@@ -351,9 +351,15 @@ namespace Proyecto2_SimuladorCiudades
         {
             Forms.Navegacion frmNavegacion = new Forms.Navegacion(alObjetos);
             frmNavegacion.ShowDialog(this);
-            if (!(frmNavegacion.intCalleOrigen == null || frmNavegacion.intAvenidaOrigen == null || frmNavegacion.intCalleDestino == null || frmNavegacion.intAvenidaDestino == null))
+            try {
+                if (!(frmNavegacion.intCalleOrigen == null || frmNavegacion.intAvenidaOrigen == null || frmNavegacion.intCalleDestino == null || frmNavegacion.intAvenidaDestino == null))
+                {
+
+                    TrazoDeRutas.trazarRutaVehiculo(mapDGV, frmNavegacion.adAddressOrigen, frmNavegacion.adAddressDestino, this);
+                }
+            }
+            catch
             {
-                TrazoDeRutas.trazarRutaVehiculo(mapDGV, frmNavegacion.adAddressOrigen, frmNavegacion.adAddressDestino, this);
             }
         }
 
