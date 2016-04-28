@@ -36,7 +36,7 @@ namespace Proyecto2_SimuladorCiudades
         #endregion
 
 
-        public static void lecturadearchivo(TextBox tb, ListBox lb, ProgressBar pb, ArrayList[] arrayList)
+        public static void lecturadearchivo(TextBox tb, ListBox lb, ProgressBar pb, ArrayList[] arrayList, int maxCalles, int maxAvenidas)
         {
             pbLoading = pb;
             pbLoading.Maximum = 6;
@@ -73,12 +73,12 @@ namespace Proyecto2_SimuladorCiudades
                         } while (lineas == "" || lineas == null);
                         switch (lineas)
                         {
-                            case "vehiculos:":
+                            case ("VEHICULOS:"):
                                 #region//Lectura de los objetos carro
                                 try
                                 {
                                     lbObjetos.Items.Add("\t\tVEHÍCULOS");
-                                    while (lineas != "fin_vehiculos" && intContadorObjetos[0] <= 99)
+                                    while (lineas != "FIN_VEHICULOS" && intContadorObjetos[0] <= 99)
                                     {
                                         if (intcontador_error[0] == 0)//Esto corrige el error de que los arreglos traten de meter la sentencia fin_vehiculo como un miembro de un objeto carro
                                         {
@@ -110,7 +110,7 @@ namespace Proyecto2_SimuladorCiudades
                                         {
                                             throw new InvalidOperationException();
                                         }
-                                        if (!(placasVehiculos.Contains(carro.strPlaca)))
+                                        if (!(placasVehiculos.Contains(carro.strPlaca)) && carro.intCalle <= maxCalles && carro.intAvenida<=maxAvenidas && carro.intCalle > 0)
                                         {
                                             registroCarro.Add(carro);//En cada iteración exitosa se agrega el objeto a un arraylist para ser usados en la generación del mapa
                                             lbObjetos.Items.Add(string.Format("Carro con placas: {1} {2}a. Calle. {3}a. Avenida: {3}. El carro se encuentra sobre la {4} y es de marca {5}", (intContadorObjetos[0] + 1), carro.strPlaca, carro.intCalle, carro.intAvenida, calleoAvenida, carro.strMarca));
@@ -131,10 +131,10 @@ namespace Proyecto2_SimuladorCiudades
                                 #endregion
                                 pbLoading.PerformStep();
                                 break;
-                            case "restaurantes:":
+                            case "RESTAURANTES":
                                 #region//Lectura de datos de Restaurantes
                                 lbObjetos.Items.Add("\t\tRESTAURANTES");
-                                while (lineas != "fin_restaurantes" && intContadorObjetos[1] <= 49)//Solo se podran crear un máximo de 50 objetos carros
+                                while (lineas != "FIN_RESTAURANTES" && intContadorObjetos[1] <= 49)//Solo se podran crear un máximo de 50 objetos carros
                                 {
                                     try
                                     {
@@ -175,7 +175,7 @@ namespace Proyecto2_SimuladorCiudades
                                         #endregion
                                         Buildings.Restaurante restaurante = new Buildings.Restaurante(strNombreRestaurante, adDireccion, inttipoRestaurante);//Cada vez que entra al ciclo instancia un objeto restaurante con direrentes valores
 
-                                        if (!nombresRestaurantes.Contains(restaurante.strNombre))
+                                        if (!nombresRestaurantes.Contains(restaurante.strNombre) && restaurante.adDireccion.intCalle <= maxCalles && restaurante.adDireccion.intAvenida <= maxAvenidas && restaurante.adDireccion.intCalle > 0)
                                         {
                                             nombresRestaurantes.Add(restaurante.strNombre);
                                             
@@ -200,12 +200,12 @@ namespace Proyecto2_SimuladorCiudades
                                 #endregion
                                 pbLoading.PerformStep();
                                 break;
-                            case "hospitales:":
+                            case "HOSPITALES":
                                 #region//Inicio de lectura de los objetos hospitales
                                 try
                                 {
                                     lbObjetos.Items.Add("\t\tHOSPITALES");
-                                    while (lineas != "fin_hospitales" && intContadorObjetos[2] <= 19)
+                                    while (lineas != "FIN_HOSPITALES" && intContadorObjetos[2] <= 19)
                                     {
                                         if (intcontador_error[2] == 0)
                                         {
@@ -235,7 +235,7 @@ namespace Proyecto2_SimuladorCiudades
                                         }
                                         Buildings.Hospital hospital = new Buildings.Hospital(strNombreHospital, adDireccion, esPublico);
 
-                                        if (!nombresHospitales.Contains(hospital.strNombre))
+                                        if (!nombresHospitales.Contains(hospital.strNombre) && hospital.adDireccion.intCalle <= maxCalles && hospital.adDireccion.intAvenida <= maxAvenidas && hospital.adDireccion.intCalle > 0)
                                         {
                                             
                                             lbObjetos.Items.Add(string.Format("{0} {1}a. Calle, {2}a. Avenida. Hospital {3}", hospital.strNombre, hospital.adDireccion.intCalle, hospital.adDireccion.intAvenida, hospital.strTipo));
@@ -259,12 +259,12 @@ namespace Proyecto2_SimuladorCiudades
                                 #endregion
                                 pbLoading.PerformStep();
                                 break;
-                            case "gasolineras:":
+                            case "GASOLINERAS":
                                 #region//Inicio de lectura de las gasolineras
                                 try
                                 {
                                     lbObjetos.Items.Add("\t\tGASOLINERAS");
-                                    while (lineas != "fin_gasolineras" && intContadorObjetos[3] <= 49)//Solo se permitira el ingreso de 50 gasolineras
+                                    while (lineas != "FIN_GASOLINERAS" && intContadorObjetos[3] <= 49)//Solo se permitira el ingreso de 50 gasolineras
                                     {
                                         if (intcontador_error[3] == 0)
                                         {
@@ -280,7 +280,7 @@ namespace Proyecto2_SimuladorCiudades
                                         adDireccion.intAvenida = intAvenida;
 
                                         Buildings.Gasolinera gasolinera = new Buildings.Gasolinera(strNombre, adDireccion, dblprecio);
-                                        if (!nombresGasolineras.Contains(gasolinera.strNombre))
+                                        if (!nombresGasolineras.Contains(gasolinera.strNombre) && gasolinera.adDireccion.intCalle <= maxCalles && gasolinera.adDireccion.intAvenida <= maxAvenidas && gasolinera.adDireccion.intCalle > 0)
                                         {
                                             lbObjetos.Items.Add(string.Format("{0} {1}a. Calle, {2}a. Avenida, Precio de la gasolina: {3}", gasolinera.strNombre, gasolinera.adDireccion.intCalle, gasolinera.adDireccion.intAvenida, gasolinera.dblPrecio));
                                             registroGasolineras.Add(gasolinera);//Se agrega cada gasolinera creada a este arraylist
@@ -299,12 +299,12 @@ namespace Proyecto2_SimuladorCiudades
                                 #endregion
                                 pbLoading.PerformStep();
                                 break;
-                            case "policias:":
+                            case "POLICIAS":
                                 #region //Inicio de lectura de los policías
                                 try
                                 {
                                     lbObjetos.Items.Add("\t\tPOLICÍAS");
-                                    while (lineas != "fin_policias" && intContadorObjetos[4] <= 19)//Solo se permitiran un maximo de 20 oficiales de policia
+                                    while (lineas != "FIN_POLICIAS" && intContadorObjetos[4] <= 19)//Solo se permitiran un maximo de 20 oficiales de policia
                                     {
                                         if (intcontador_error[4] == 0)
                                         {
@@ -318,7 +318,7 @@ namespace Proyecto2_SimuladorCiudades
 
                                         Vehicles.Policia patrulla = new Vehicles.Policia(strNombrePolicia, intcallePolicia, intAvenidaPolicia, intUbicacionPolicia);
 
-                                        if (!nombresPolicias.Contains(patrulla.strNombre))
+                                        if (!nombresPolicias.Contains(patrulla.strNombre) && patrulla.intCalle <= maxCalles && patrulla.intAvenida <= maxAvenidas && patrulla.intCalle > 0)
                                         {
                                             lbObjetos.Items.Add(string.Format("{0} {1}a. Calle, {2}a. Avenida, está sobre la {3}", patrulla.strNombre, patrulla.intCalle, patrulla.intAvenida, patrulla.strCalleAvenida));
                                             registroPolicias.Add(patrulla);//Se agrega cada gasolinera creada a este arraylist
@@ -341,12 +341,12 @@ namespace Proyecto2_SimuladorCiudades
                                 arrObjetos[4] = (registroPolicias);
                                 break;
                             #endregion
-                            case "bomberos:":
+                            case "BOMBEROS":
                                 #region //Inicio de lectura de los policías
                                 try
                                 {
                                     lbObjetos.Items.Add("\t\tAMBULANCIAS");
-                                    while (lineas != "fin_bomberos" && intContadorObjetos[5] <= 19)//Solo se permitiran un maximo de 20 bomberos
+                                    while (lineas != "FIN_BOMBEROS" && intContadorObjetos[5] <= 19)//Solo se permitiran un maximo de 20 bomberos
                                     {
                                         if (intcontador_error[5] == 0)
                                         {
@@ -360,7 +360,7 @@ namespace Proyecto2_SimuladorCiudades
 
                                         Vehicles.Ambulancia ambulancia = new Vehicles.Ambulancia(strNombreBombero, intCalleBombero, intAvenidaBombero, intUbicacionBombero);
 
-                                        if (!nombresBomberos.Contains(ambulancia.strNombre))
+                                        if (!nombresBomberos.Contains(ambulancia.strNombre) && ambulancia.intCalle <= maxCalles && ambulancia.intAvenida <= maxAvenidas && ambulancia.intCalle > 0)
                                         {
                                             lbObjetos.Items.Add(string.Format("{0} {1}a. calle, {2}a. avenida, se encuentra sobre la {3}",ambulancia.strNombre, ambulancia.intCalle, ambulancia.intAvenida, ambulancia.strCalleAvenida));
                                             registroBomberos.Add(ambulancia);//Se agrega cada gasolinera creada a este arraylist

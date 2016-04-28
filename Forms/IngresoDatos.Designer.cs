@@ -136,6 +136,7 @@
             this.btnAbrirArchivo.Size = new System.Drawing.Size(27, 23);
             this.btnAbrirArchivo.TabIndex = 9;
             this.btnAbrirArchivo.UseVisualStyleBackColor = true;
+            this.btnAbrirArchivo.Visible = false;
             this.btnAbrirArchivo.Click += new System.EventHandler(this.btnAbrirArchivo_Click);
             // 
             // txtAddress
@@ -165,6 +166,7 @@
             this.txtCalles.Size = new System.Drawing.Size(200, 23);
             this.txtCalles.TabIndex = 6;
             this.txtCalles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.txtCalles.Leave += new System.EventHandler(this.txtCalles_Leave);
             // 
             // txtAvenidas
             // 
@@ -174,6 +176,7 @@
             this.txtAvenidas.Size = new System.Drawing.Size(200, 23);
             this.txtAvenidas.TabIndex = 5;
             this.txtAvenidas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.txtAvenidas.Leave += new System.EventHandler(this.txtAvenidas_Leave);
             // 
             // dtpFechaHora
             // 

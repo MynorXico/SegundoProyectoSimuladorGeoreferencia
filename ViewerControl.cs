@@ -26,7 +26,7 @@ namespace Proyecto2_SimuladorCiudades
         public string[] nomenclatura = { "M", "G", "H", "E", "R" };
 
 
-        public ViewerControl(DataGridView DataGridView, ArrayList[] al)
+        public ViewerControl(DataGridView DataGridView, ArrayList[] al, int calleMax, int avenidaMax)
         {
             alObjetos = al;
             alCarros = alObjetos[0];
@@ -149,7 +149,7 @@ namespace Proyecto2_SimuladorCiudades
             */
 
             mapMatrix = new string[DataGridView.Columns.Count, DataGridView.Rows.Count];
-            buildingMatrix = new Edificio[(DataGridView.Columns.Count/6)-4, (DataGridView.Columns.Count/6)-4];
+            buildingMatrix = new Edificio[(DataGridView.Columns.Count/6)-4+100, (DataGridView.Columns.Count/6)-4+100];
 
             #region Creación de la matriz
             // Creación de la matriz
@@ -227,17 +227,19 @@ namespace Proyecto2_SimuladorCiudades
             }            
             #endregion
             #region Creación de Matriz Edificios
+
             foreach(Edificio r in alRestaurantes)
             {
-                buildingMatrix[r.adDireccion.intCalle, r.adDireccion.intAvenida] = r;
+                    buildingMatrix[r.adDireccion.intCalle, r.adDireccion.intAvenida] = r;
             }
             foreach (Edificio h in alHospitales)
             {
-                buildingMatrix[h.adDireccion.intCalle, h.adDireccion.intAvenida] = h;
+                    buildingMatrix[h.adDireccion.intCalle, h.adDireccion.intAvenida] = h;
             }
             foreach (Edificio g in alGasolineras)
             {
                 buildingMatrix[g.adDireccion.intCalle, g.adDireccion.intAvenida] = g;
+                
             }
             buildingMatrix[objMunicipalidad.adDireccion.intCalle, objMunicipalidad.adDireccion.intAvenida] = objMunicipalidad;
             #endregion
@@ -263,15 +265,6 @@ namespace Proyecto2_SimuladorCiudades
                 Console.WriteLine();
             }
             #endregion
-        }
-        public void dibujarMapa()
-        {
-
-        }
-
-        public void MapToMatrix(int row, int column)
-        {
-
         }
     }
 }

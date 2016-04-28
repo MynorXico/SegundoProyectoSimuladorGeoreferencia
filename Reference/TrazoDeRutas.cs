@@ -196,8 +196,8 @@ namespace Proyecto2_SimuladorCiudades.Reference
                 {
                     for (int i = 0; i < 6; i++)
                     {
-                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         intAvenidaOrigen += 1;
+                        dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                     }
                 }
                 else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen > intCalleDestino && !esCallePar(intAvenidaOrigen))
@@ -394,7 +394,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                     }
                 }
-                else if(intAvenidaOrigen==intAvenidaDestino && intCalleOrigen>intCalleDestino && esCallePar(intAvenidaOrigen) && intCalleOrigen % 2 == 0)
+                else if(intAvenidaOrigen==intAvenidaDestino && intCalleOrigen>intCalleDestino && esCallePar(intAvenidaOrigen) && esCallePar(intCalleOrigen))
                 {
                     for(int i= 0; i < 6; i++)
                     {

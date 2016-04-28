@@ -79,7 +79,8 @@ namespace Proyecto2_SimuladorCiudades
 
         private void btnAbrirArchivo_Click(object sender, EventArgs e)
         {
-            ManejoDatos.lecturadearchivo(txtAddress, lbObjects, progressBar1, alObjetos);
+
+            ManejoDatos.lecturadearchivo(txtAddress, lbObjects, progressBar1, alObjetos, int.Parse(txtCalles.Text), int.Parse(txtAvenidas.Text));
             btnAbrirArchivo.Visible = false;   
         }
 
@@ -153,6 +154,44 @@ namespace Proyecto2_SimuladorCiudades
             pictureBox2.BackgroundImage = Properties.Resources.MapMaker3;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
             this.Cursor = Cursors.Hand;
-        }      
+        }
+
+        private void txtAvenidas_Leave(object sender, EventArgs e)
+        {
+            if (!Validador.avenidaValida(txtAvenidas.Text))
+            {
+                txtAvenidas.Clear();
+            }
+            else
+            {
+                if(txtCalles.Text != "" && txtAvenidas.Text != "")
+                {
+                    btnAbrirArchivo.Visible = true;
+                }
+                else
+                {
+                    btnAbrirArchivo.Visible = false;
+                }
+            }
+        }
+
+        private void txtCalles_Leave(object sender, EventArgs e)
+        {
+            if (!Validador.calleValida(txtCalles.Text))
+            {
+                txtCalles.Clear();
+            }
+            else
+            {
+                if (txtCalles.Text != "" && txtAvenidas.Text != "")
+                {
+                    btnAbrirArchivo.Visible = true;
+                }
+                else
+                {
+                    btnAbrirArchivo.Visible = false;
+                }
+            }
+        }
     }
 }

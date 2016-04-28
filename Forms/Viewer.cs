@@ -21,8 +21,9 @@ namespace Proyecto2_SimuladorCiudades
         public DateTime dtFecha;
         ArrayList[] alObjetos = new ArrayList[6];
         ViewerControl vc;
-        int intAvenidas, intCalles, intAvenidaEmergencia, intCalleEmergencia;
+        int intAvenidas, intCalles;
 
+        //Constructor de la clase viewer
         public Viewer(int avenidas, int calles, DateTime unaFecha, IngresoDatos objIngresoDatos, ArrayList[] al)
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace Proyecto2_SimuladorCiudades
             dibujarGrid(mapDGV, calles, avenidas);
             DI = objIngresoDatos;
             dtFecha = unaFecha;
-            vc = new ViewerControl(mapDGV, al);
+            vc = new ViewerControl(mapDGV, al, intAvenidas, intCalles);
         }
 
 
@@ -333,7 +334,7 @@ namespace Proyecto2_SimuladorCiudades
         {
             timer1.Start();
             redibujarGrid(mapDGV, intCalles, intAvenidas);
-            vc = new ViewerControl(mapDGV, alObjetos);
+            vc = new ViewerControl(mapDGV, alObjetos, intCalles, intAvenidas);
         }
 
         private void walkingBrowsingButton_Click(object sender, EventArgs e)
