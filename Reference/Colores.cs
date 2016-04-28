@@ -94,7 +94,13 @@ namespace Proyecto2_SimuladorCiudades
                 return Color.OrangeRed;
             }
         }
-
+        public static Color colorTrazoPersona
+        {
+            get
+            {
+                return Color.FromArgb(33,  150, 243);
+            }
+        }
 
     }
 } 

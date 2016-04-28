@@ -34,7 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +53,12 @@
     <Compile Include="Buildings\Restaurante.cs" />
     <Compile Include="Edificio.cs" />
     <Compile Include="Buildings\Gasolinera.cs" />
+    <Compile Include="Forms\AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Emergencia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +70,12 @@
     </Compile>
     <Compile Include="Forms\IngresoDatos.Designer.cs">
       <DependentUpon>IngresoDatos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Navegacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Navegacion.Designer.cs">
+      <DependentUpon>Navegacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Viewer.cs">
       <SubType>Form</SubType>
@@ -96,11 +110,17 @@
     <Compile Include="Vehicles\Policia.cs" />
     <Compile Include="Vehicles\Vehiculo.cs" />
     <Compile Include="ViewerControl.cs" />
+    <EmbeddedResource Include="Forms\AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Emergencia.resx">
       <DependentUpon>Emergencia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\IngresoDatos.resx">
       <DependentUpon>IngresoDatos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Navegacion.resx">
+      <DependentUpon>Navegacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Viewer.resx">
       <DependentUpon>Viewer.cs</DependentUpon>

@@ -336,6 +336,26 @@ namespace Proyecto2_SimuladorCiudades
             vc = new ViewerControl(mapDGV, alObjetos);
         }
 
+        private void walkingBrowsingButton_Click(object sender, EventArgs e)
+        {
+            Forms.Navegacion frmNavegacion = new Forms.Navegacion(alObjetos);
+            frmNavegacion.ShowDialog(this);
+            if (!(frmNavegacion.intCalleOrigen == null || frmNavegacion.intAvenidaOrigen == null || frmNavegacion.intCalleDestino == null || frmNavegacion.intAvenidaDestino == null))
+            {
+                TrazoDeRutas.trazarRutaEmergencia(mapDGV, frmNavegacion.adAddressOrigen, frmNavegacion.adAddressDestino, TrazoDeRutas.eMedio.Caminando, this);
+            }
+        }
+
+        private void DrivingBrowsingButton_Click(object sender, EventArgs e)
+        {
+            Forms.Navegacion frmNavegacion = new Forms.Navegacion(alObjetos);
+            frmNavegacion.ShowDialog(this);
+            if (!(frmNavegacion.intCalleOrigen == null || frmNavegacion.intAvenidaOrigen == null || frmNavegacion.intCalleDestino == null || frmNavegacion.intAvenidaDestino == null))
+            {
+                TrazoDeRutas.trazarRutaVehiculo(mapDGV, frmNavegacion.adAddressOrigen, frmNavegacion.adAddressDestino, this);
+            }
+        }
+
         private void mapDGV_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
             Console.WriteLine("Map: \nColumn: {0}\nRnow: {1}\nCell Value: {2}", e.ColumnIndex, e.RowIndex, vc.mapMatrix[e.ColumnIndex, e.RowIndex]);
@@ -376,7 +396,7 @@ namespace Proyecto2_SimuladorCiudades
                 Vehicles.Policia policiaCercano = Reference.TrazoDeRutas.buscarPoliciaCercano(alPolicia, currentAddress);
                 finalAddress.intCalle = policiaCercano.intCalle;
                 finalAddress.intAvenida = policiaCercano.intAvenida;
-                MessageBox.Show(String.Format("El tiempo estimado de llegada es {0} minutos\nPor favor sea paciente y conserve la calma!", dblETA = Reference.TrazoDeRutas.trazarRutaEmergencia(mapDGV, currentAddress, finalAddress, TrazoDeRutas.eEmergencia.Policía, this)), "ALERTA RECIBIDA", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show(String.Format("El tiempo estimado de llegada es {0} minutos\nPor favor sea paciente y conserve la calma!", dblETA = Reference.TrazoDeRutas.trazarRutaEmergencia(mapDGV, currentAddress, finalAddress, TrazoDeRutas.eMedio.Policía, this)), "ALERTA RECIBIDA", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 
             }
             else if (strServicio == "Bombero")
@@ -391,10 +411,8 @@ namespace Proyecto2_SimuladorCiudades
                 Vehicles.Ambulancia ambulanciaCercana = Reference.TrazoDeRutas.buscarAmbulanciaCercana(alAmbulancias, currentAddress);
                 finaAddress.intCalle = ambulanciaCercana.intCalle;
                 finaAddress.intAvenida = ambulanciaCercana.intAvenida;
-                MessageBox.Show(String.Format("El tiempo estimado de llegada es {0} minutos\nPor favor sea paciente y conserve la calma!", dblETA = Reference.TrazoDeRutas.trazarRutaEmergencia(mapDGV, currentAddress, finaAddress, TrazoDeRutas.eEmergencia.Ambulancia, this)), "ALERTA RECIBIDA", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-
+                MessageBox.Show(String.Format("El tiempo estimado de llegada es {0} minutos\nPor favor sea paciente y conserve la calma!", dblETA = Reference.TrazoDeRutas.trazarRutaEmergencia(mapDGV, currentAddress, finaAddress, TrazoDeRutas.eMedio.Ambulancia, this)), "ALERTA RECIBIDA", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
-
 
         }
     }

@@ -17,7 +17,6 @@ namespace Proyecto2_SimuladorCiudades
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
             Application.Run(new IngresoDatos());
         }
 

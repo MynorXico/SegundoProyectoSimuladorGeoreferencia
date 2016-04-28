@@ -40,20 +40,20 @@
             this.lblHora = new System.Windows.Forms.Label();
             this.browsingGroup = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.walkingBrowsingButton = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.DrivingBrowsingButton = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.emergencyButton = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.PathCleaner = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mapDGV)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.browsingGroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.walkingBrowsingButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DrivingBrowsingButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emergencyButton)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,9 +160,9 @@
             // browsingGroup
             // 
             this.browsingGroup.Controls.Add(this.label3);
-            this.browsingGroup.Controls.Add(this.pictureBox3);
+            this.browsingGroup.Controls.Add(this.walkingBrowsingButton);
             this.browsingGroup.Controls.Add(this.label2);
-            this.browsingGroup.Controls.Add(this.pictureBox2);
+            this.browsingGroup.Controls.Add(this.DrivingBrowsingButton);
             this.browsingGroup.Controls.Add(this.label1);
             this.browsingGroup.Controls.Add(this.emergencyButton);
             this.browsingGroup.Dock = System.Windows.Forms.DockStyle.Top;
@@ -184,15 +184,16 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Navegación sin vehículo";
             // 
-            // pictureBox3
+            // walkingBrowsingButton
             // 
-            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox3.Image = global::Proyecto2_SimuladorCiudades.Properties.Resources.Walking;
-            this.pictureBox3.Location = new System.Drawing.Point(37, 298);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox3.TabIndex = 4;
-            this.pictureBox3.TabStop = false;
+            this.walkingBrowsingButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.walkingBrowsingButton.Image = global::Proyecto2_SimuladorCiudades.Properties.Resources.Walking;
+            this.walkingBrowsingButton.Location = new System.Drawing.Point(37, 298);
+            this.walkingBrowsingButton.Name = "walkingBrowsingButton";
+            this.walkingBrowsingButton.Size = new System.Drawing.Size(100, 100);
+            this.walkingBrowsingButton.TabIndex = 4;
+            this.walkingBrowsingButton.TabStop = false;
+            this.walkingBrowsingButton.Click += new System.EventHandler(this.walkingBrowsingButton_Click);
             // 
             // label2
             // 
@@ -204,15 +205,16 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Navegación con Vehículo";
             // 
-            // pictureBox2
+            // DrivingBrowsingButton
             // 
-            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox2.Image = global::Proyecto2_SimuladorCiudades.Properties.Resources.imgSteeringWheel;
-            this.pictureBox2.Location = new System.Drawing.Point(37, 156);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
+            this.DrivingBrowsingButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DrivingBrowsingButton.Image = global::Proyecto2_SimuladorCiudades.Properties.Resources.imgSteeringWheel;
+            this.DrivingBrowsingButton.Location = new System.Drawing.Point(37, 156);
+            this.DrivingBrowsingButton.Name = "DrivingBrowsingButton";
+            this.DrivingBrowsingButton.Size = new System.Drawing.Size(100, 100);
+            this.DrivingBrowsingButton.TabIndex = 2;
+            this.DrivingBrowsingButton.TabStop = false;
+            this.DrivingBrowsingButton.Click += new System.EventHandler(this.DrivingBrowsingButton_Click);
             // 
             // label1
             // 
@@ -235,11 +237,6 @@
             this.emergencyButton.TabStop = false;
             this.emergencyButton.Click += new System.EventHandler(this.emergencyButton_Click);
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 1;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // PathCleaner
             // 
             this.PathCleaner.Location = new System.Drawing.Point(1080, 624);
@@ -249,6 +246,11 @@
             this.PathCleaner.Text = "LimpiarRutas";
             this.PathCleaner.UseVisualStyleBackColor = true;
             this.PathCleaner.Click += new System.EventHandler(this.PathCleaner_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Viewer
             // 
@@ -269,8 +271,8 @@
             this.groupBox1.PerformLayout();
             this.browsingGroup.ResumeLayout(false);
             this.browsingGroup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.walkingBrowsingButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DrivingBrowsingButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emergencyButton)).EndInit();
             this.ResumeLayout(false);
 
@@ -289,9 +291,9 @@
         private System.Windows.Forms.PictureBox emergencyButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox DrivingBrowsingButton;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox walkingBrowsingButton;
         private System.Windows.Forms.Button PathCleaner;
     }
 }

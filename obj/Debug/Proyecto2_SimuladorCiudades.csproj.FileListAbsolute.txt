@@ -31,3 +31,5 @@ C:\Users\Sony i3\Documents\GitHub\SegundoProyectoSimuladorGeoreferencia\obj\Debu
 C:\Users\Sony i3\Documents\GitHub\SegundoProyectoSimuladorGeoreferencia\obj\Debug\Proyecto2_SimuladorCiudades.MessageForm.resources
 C:\Users\Sony i3\Documents\GitHub\SegundoProyectoSimuladorGeoreferencia\obj\Debug\Proyecto2_SimuladorCiudades.Phone.Form1.resources
 C:\Users\Sony i3\Documents\GitHub\SegundoProyectoSimuladorGeoreferencia\obj\Debug\Proyecto2_SimuladorCiudades.Forms.Emergencia.resources
+C:\Users\Sony i3\Documents\GitHub\SegundoProyectoSimuladorGeoreferencia\obj\Debug\Proyecto2_SimuladorCiudades.Forms.AboutBox1.resources
+C:\Users\Sony i3\Documents\GitHub\SegundoProyectoSimuladorGeoreferencia\obj\Debug\Proyecto2_SimuladorCiudades.Forms.Navegacion.resources
