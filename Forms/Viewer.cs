@@ -22,6 +22,7 @@ namespace Proyecto2_SimuladorCiudades
         ArrayList[] alObjetos = new ArrayList[6];
         ViewerControl vc;
         int intAvenidas, intCalles;
+        ArrayList direccionesRuta = new ArrayList();
 
         public Viewer(int avenidas, int calles, DateTime unaFecha, IngresoDatos objIngresoDatos, ArrayList[] al)
         {
@@ -300,48 +301,68 @@ namespace Proyecto2_SimuladorCiudades
             int avenida = (e.ColumnIndex + 4) / 6;
             if (calle < vc.buildingMatrix.GetLength(0) && avenida < vc.buildingMatrix.GetLength(1))
             {
+                bool cambPosicion = false;
                 Console.WriteLine("Building: \nColumn: {0}\nRow: {1}\nCell Value: {2}", calle, avenida, vc.buildingMatrix[calle, avenida]);
                 if (vc.nomenclaturaEdificios.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.buildingMatrix[calle, avenida] != null)
                 {
                     MessageBoxPersonalizado.Show(vc.buildingMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.buildingMatrix[calle, avenida].imgImage);
 
                 }
-                if (vc.nomenclaturaVehiculos.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.streetVehiclesMatrix[calle, avenida] != null)
+                else if (vc.nomenclaturaVehiculos.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.streetVehiclesMatrix[calle, avenida] != null)
                 {
                     VehiclesMessageForm v = new VehiclesMessageForm(vc.streetVehiclesMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.streetVehiclesMatrix[calle, avenida].imgImage, intCalles, intAvenidas);
                     v.ShowDialog(this);
-                    if(v.nuevaCalle != -1 && v.nuevaAvenida != -1)
+                    try
                     {
-                        vc.cambiarPosicionVehiculo(vc.streetVehiclesMatrix[calle, avenida], calle, avenida, v.nuevaCalle, v.nuevaAvenida, 2, this.mapDGV);
+                        if (cambPosicion == false && v.nuevaCalle != 0 && v.nuevaAvenida != 0)
+                        {
+                            vc.cambiarPosicionVehiculo(vc.streetVehiclesMatrix[calle, avenida], calle, avenida, v.nuevaCalle, v.nuevaAvenida, 2, this.mapDGV);
+                            cambPosicion = true;
+                        }
                     }
+                    catch { }
                 }
-                if (vc.nomenclaturaVehiculos.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.avenueVehiclesMatrix[calle, avenida] != null)
+                else if (vc.nomenclaturaVehiculos.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.avenueVehiclesMatrix[calle, avenida] != null)
                 {
                     VehiclesMessageForm v = new VehiclesMessageForm(vc.avenueVehiclesMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.avenueVehiclesMatrix[calle, avenida].imgImage, intCalles, intAvenidas);
                     
                     v.ShowDialog(this);
-                    if (v.nuevaCalle != -1 && v.nuevaAvenida != -1)
-                    {
-                        vc.cambiarPosicionVehiculo(vc.avenueVehiclesMatrix[calle, avenida], calle, avenida, v.nuevaCalle, v.nuevaAvenida, 1, this.mapDGV);
+                    try {
+                        if (v.nuevaCalle != 0 && v.nuevaAvenida != 0)
+                        {
+                            vc.cambiarPosicionVehiculo(vc.avenueVehiclesMatrix[calle, avenida], calle, avenida, v.nuevaCalle, v.nuevaAvenida, 1, this.mapDGV);
+                            cambPosicion = true;
+                        }
                     }
+                    catch { }
                 }
-                if (vc.nomenclaturaEmergencia.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.streetEmergencyMatrix[calle, avenida] != null)
+                else if (vc.nomenclaturaEmergencia.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.streetEmergencyMatrix[calle, avenida] != null)
                 {
                     VehiclesMessageForm v = new VehiclesMessageForm(vc.streetEmergencyMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.streetEmergencyMatrix[calle, avenida].imgImage, intCalles, intAvenidas);
                     v.ShowDialog(this);
-                    if (v.nuevaCalle != -1 && v.nuevaAvenida != -1)
+                    try
                     {
-                        vc.cambiarPosicionEmergencia(vc.streetEmergencyMatrix[calle, avenida], calle, avenida, v.nuevaCalle, v.nuevaAvenida, 2, this.mapDGV);
+                        if (v.nuevaCalle != 0 && v.nuevaAvenida != 0)
+                        {
+                            vc.cambiarPosicionEmergencia(vc.streetEmergencyMatrix[calle, avenida], calle, avenida, v.nuevaCalle, v.nuevaAvenida, 2, this.mapDGV);
+                            cambPosicion = true;
+                        }
                     }
+                    catch { }
                 }
                 if (vc.nomenclaturaEmergencia.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.avenueEmergencyMatrix[calle, avenida] != null)
                 {
                     VehiclesMessageForm v = new VehiclesMessageForm(vc.avenueEmergencyMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.avenueEmergencyMatrix[calle, avenida].imgImage, intCalles, intAvenidas);
                     v.ShowDialog(this);
-                    if (v.nuevaCalle != -1 && v.nuevaAvenida != -1)
+                    try
                     {
-                        vc.cambiarPosicionEmergencia(vc.avenueEmergencyMatrix[calle, avenida], calle, avenida, v.nuevaCalle, v.nuevaAvenida, 1, this.mapDGV);
+                        if (v.nuevaCalle != 0 && v.nuevaAvenida != 0)
+                        {
+                            vc.cambiarPosicionEmergencia(vc.avenueEmergencyMatrix[calle, avenida], calle, avenida, v.nuevaCalle, v.nuevaAvenida, 1, this.mapDGV);
+                            cambPosicion = true;
+                        }
                     }
+                    catch { }
                 }
                 //redibujarGrid(mapDGV, intAvenidas, intCalles);
             }
@@ -387,7 +408,7 @@ namespace Proyecto2_SimuladorCiudades
                 frmNavegacion.ShowDialog(this);
                 if (!(frmNavegacion.intCalleOrigen == null || frmNavegacion.intAvenidaOrigen == null || frmNavegacion.intCalleDestino == null || frmNavegacion.intAvenidaDestino == null))
                 {
-                    MessageBox.Show(String.Format("Tiempo estimado de llegada: {0} minutos",TrazoDeRutas.trazarRutaEmergencia(mapDGV, frmNavegacion.adAddressOrigen, frmNavegacion.adAddressDestino, TrazoDeRutas.eMedio.Caminando, this)));
+                    MessageBox.Show(String.Format("Tiempo estimado de llegada: {0} minutos",TrazoDeRutas.trazarRutaEmergencia(mapDGV, frmNavegacion.adAddressOrigen, frmNavegacion.adAddressDestino, TrazoDeRutas.eMedio.Caminando, this, direccionesRuta)));
                 }
             }
             catch
@@ -403,7 +424,7 @@ namespace Proyecto2_SimuladorCiudades
                 if (!(frmNavegacion.intCalleOrigen == null || frmNavegacion.intAvenidaOrigen == null || frmNavegacion.intCalleDestino == null || frmNavegacion.intAvenidaDestino == null))
                 {
 
-                    TrazoDeRutas.trazarRutaVehiculo(mapDGV, frmNavegacion.adAddressOrigen, frmNavegacion.adAddressDestino, this);
+                    TrazoDeRutas.trazarRutaVehiculo(mapDGV, frmNavegacion.adAddressOrigen, frmNavegacion.adAddressDestino, this, direccionesRuta);
                 }
             }
             catch
@@ -447,6 +468,12 @@ namespace Proyecto2_SimuladorCiudades
                 recibirEmergencia(objPhone.intCalleEmergencia, objPhone.intAvenidaEmergencia, objPhone.strMensajeEmergencia, objPhone.strSolicitudServicio, objPhone.sound);
             }
         }
+
+        private void btnBorrarRuta_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public void recibirEmergencia(int intCalle, int intAvenida, string strMensaje, string strServicio, SoundPlayer sp)
         {
             if (strServicio == "Policia")
@@ -461,7 +488,7 @@ namespace Proyecto2_SimuladorCiudades
                 Vehicles.Policia policiaCercano = Reference.TrazoDeRutas.buscarPoliciaCercano(alPolicia, currentAddress);
                 finalAddress.intCalle = policiaCercano.intCalle;
                 finalAddress.intAvenida = policiaCercano.intAvenida;
-                MessageBox.Show(String.Format("El tiempo estimado de llegada es {0} minutos\nPor favor sea paciente y conserve la calma!", dblETA = Reference.TrazoDeRutas.trazarRutaEmergencia(mapDGV, currentAddress, finalAddress, TrazoDeRutas.eMedio.Policía, this)), "ALERTA RECIBIDA", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show(String.Format("El tiempo estimado de llegada es {0} minutos\nPor favor sea paciente y conserve la calma!", dblETA = Reference.TrazoDeRutas.trazarRutaEmergencia(mapDGV, currentAddress, finalAddress, TrazoDeRutas.eMedio.Policía, this, direccionesRuta)), "ALERTA RECIBIDA", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 
             }
             else if (strServicio == "Bombero")
@@ -476,7 +503,7 @@ namespace Proyecto2_SimuladorCiudades
                 Vehicles.Ambulancia ambulanciaCercana = Reference.TrazoDeRutas.buscarAmbulanciaCercana(alAmbulancias, currentAddress);
                 finaAddress.intCalle = ambulanciaCercana.intCalle;
                 finaAddress.intAvenida = ambulanciaCercana.intAvenida;
-                MessageBox.Show(String.Format("El tiempo estimado de llegada es {0} minutos\nPor favor sea paciente y conserve la calma!", dblETA = Reference.TrazoDeRutas.trazarRutaEmergencia(mapDGV, currentAddress, finaAddress, TrazoDeRutas.eMedio.Ambulancia, this)), "ALERTA RECIBIDA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format("El tiempo estimado de llegada es {0} minutos\nPor favor sea paciente y conserve la calma!", dblETA = Reference.TrazoDeRutas.trazarRutaEmergencia(mapDGV, currentAddress, finaAddress, TrazoDeRutas.eMedio.Ambulancia, this, direccionesRuta)), "ALERTA RECIBIDA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }

@@ -11,14 +11,26 @@ namespace Proyecto2_SimuladorCiudades.Reference
 {
     public static class TrazoDeRutas
     {
-        public static double trazarRutaEmergencia(DataGridView dgvMapa, address inicio, address final, eMedio emergencia, Viewer viewer)
+        public static double trazarRutaEmergencia(DataGridView dgvMapa, address inicio, address final, eMedio emergencia, Viewer viewer, ArrayList direcciones)
         {
-
+            if (direcciones != null)
+            {
+                foreach(DataGridViewCell celdaPorPintar in direcciones)
+                {
+                    celdaPorPintar.Style.BackColor = Colores.colorCamino;
+                    if(celdaPorPintar is DataGridViewImageCell)
+                    {
+                        dgvMapa[celdaPorPintar.ColumnIndex, celdaPorPintar.RowIndex].Value = Properties.Resources.transparencia;
+                    }
+                }
+            }
+            direcciones.Clear();
             double EDA = 0;
             double ETA = 0;
-            Color colorTrazo = Color.Transparent;
+            Color colorTrazo = Color.Orange;
             DataGridViewImageCell celdaImagen = new DataGridViewImageCell();
             celdaImagen.Value = Properties.Resources.SirenaEncendida;
+
             switch (emergencia)
             {
                 case eMedio.Policía:
@@ -37,6 +49,10 @@ namespace Proyecto2_SimuladorCiudades.Reference
             final.intAvenida = 6 * (final.intAvenida - 1) + 2;
 
             dgvMapa[inicio.intAvenida + 1, inicio.intCalle + 1] = celdaImagen;
+            direcciones.Add(dgvMapa[inicio.intAvenida + 1, inicio.intCalle + 1]);
+            //direcciones.Add(dgvMapa[inicio.intAvenida + 1, inicio.intCalle + 1]);
+
+
             dgvMapa[inicio.intAvenida + 1, inicio.intCalle + 1].Style.BackColor = Color.DarkRed;
             while (inicio.intCalle != final.intCalle || inicio.intAvenida != final.intAvenida)
             {
@@ -47,6 +63,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                         inicio.intCalle += 1;
                         EDA += 100 / 6;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, emergencia);
+                        direcciones.Add(dgvMapa[inicio.intAvenida, inicio.intCalle]);
                         dgvMapa[inicio.intAvenida, inicio.intCalle].Style.BackColor = colorTrazo;
                     }
                 }
@@ -57,6 +74,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                         inicio.intCalle -= 1;
                         EDA += 100 / 6;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, emergencia);
+                        direcciones.Add(dgvMapa[inicio.intAvenida, inicio.intCalle]);
                         dgvMapa[inicio.intAvenida, inicio.intCalle].Style.BackColor = colorTrazo;
                     }
                 }
@@ -67,6 +85,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                         inicio.intAvenida -= 1;
                         EDA += 100 / 6;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, emergencia);
+                        direcciones.Add(dgvMapa[inicio.intAvenida, inicio.intCalle]);
                         dgvMapa[inicio.intAvenida, inicio.intCalle].Style.BackColor = colorTrazo;
                     }
                 }
@@ -77,6 +96,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                         inicio.intAvenida += 1;
                         EDA += 100 / 6;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, emergencia);
+                        direcciones.Add(dgvMapa[inicio.intAvenida, inicio.intCalle]);
                         dgvMapa[inicio.intAvenida, inicio.intCalle].Style.BackColor = colorTrazo;
                     }
                 }
@@ -179,8 +199,24 @@ namespace Proyecto2_SimuladorCiudades.Reference
 
             return tiempo;
         }
-        public static void trazarRutaVehiculo(DataGridView dgvMapa, address inicio, address final, Viewer viewer)
+
+
+
+        public static void trazarRutaVehiculo(DataGridView dgvMapa, address inicio, address final, Viewer viewer, ArrayList direcciones)
         {
+            if (direcciones != null)
+            {
+                foreach (DataGridViewCell celdaPorPintar in direcciones)
+                {
+                    celdaPorPintar.Style.BackColor = Colores.colorCamino;
+                    if (celdaPorPintar is DataGridViewImageCell)
+                    {
+                        dgvMapa[celdaPorPintar.ColumnIndex, celdaPorPintar.RowIndex].Value = Properties.Resources.transparencia;
+                    }
+                }
+            }
+            direcciones.Clear();
+
             double ETA = 0;
             int intCalleOrigen = (inicio.intCalle - 1) * 6 + 2;
             int intAvenidaOrigen = (inicio.intAvenida - 1) * 6 + 2;
@@ -193,6 +229,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intAvenidaOrigen -= 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -202,6 +239,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intAvenidaOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -211,6 +249,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen -= 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -220,6 +259,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
 
@@ -231,6 +271,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intAvenidaOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
 
@@ -241,6 +282,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intAvenidaOrigen -= 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -250,6 +292,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intAvenidaOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -259,6 +302,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intAvenidaOrigen -= 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -269,6 +313,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen -= 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -278,6 +323,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -287,6 +333,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen -= 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -296,6 +343,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -305,6 +353,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen -= 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -314,6 +363,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -323,6 +373,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -332,6 +383,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen -= 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -341,6 +393,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intAvenidaOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -350,6 +403,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intAvenidaOrigen -= 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
 
@@ -360,6 +414,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intAvenidaOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -369,6 +424,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intAvenidaOrigen -= 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -378,6 +434,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -387,6 +444,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intAvenidaOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -396,6 +454,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intAvenidaOrigen -= 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -405,6 +464,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen -= 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -414,6 +474,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -423,6 +484,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intAvenidaOrigen += 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
@@ -441,6 +503,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     for (int i = 0; i < 6; i++)
                     {
                         intCalleOrigen -= 1;
+                        direcciones.Add(dgvMapa[intAvenidaOrigen, intCalleOrigen]);
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
                         ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }

@@ -30,10 +30,12 @@ namespace Proyecto2_SimuladorCiudades
         public string[] nomenclaturaEdificios = {"M", "G", "H", "E", "R" };
         public string[] nomenclaturaVehiculos = {"V"};
         public string[] nomenclaturaEmergencia = { "P", "B" };
+        public DataGridView dg;
 
 
         public ViewerControl(DataGridView DataGridView, ArrayList[] al, int calleMax, int avenidaMax)
         {
+            dg = DataGridView;
             alObjetos = al;
             alCarros = alObjetos[0];
             alRestaurantes = alObjetos[1];
@@ -160,7 +162,8 @@ namespace Proyecto2_SimuladorCiudades
             streetVehiclesMatrix = new Vehiculo[(DataGridView.Columns.Count / 6) - 4 + 100, (DataGridView.Columns.Count / 6) - 4 + 100];
             streetEmergencyMatrix = new Emergencia[(DataGridView.Columns.Count / 6) - 4 + 100, (DataGridView.Columns.Count / 6) - 4 + 100];
 
-            #region Creación de la matriz
+            crearMatriz(DataGridView);
+            /*#region Creación de la matriz
             // Creación de la matriz
             for (int i = 0; i < mapMatrix.GetLength(0); i++)
             {
@@ -231,7 +234,7 @@ namespace Proyecto2_SimuladorCiudades
                     }
                 }
             }            
-            #endregion
+            #endregion*/
             #region Creación de Matriz para VehículosAvenida
             foreach(Vehiculo v in alCarros)
             {
@@ -324,6 +327,82 @@ namespace Proyecto2_SimuladorCiudades
             */
         }
 
+        private void crearMatriz(DataGridView DataGridView)
+        {
+            #region Creación de la matriz
+            // Creación de la matriz
+            for (int i = 0; i < mapMatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < mapMatrix.GetLength(1); j++)
+                {
+                    if (DataGridView[i, j].Style.BackColor == Colores.colorCarretera)
+                    {
+                        mapMatrix[i, j] = "c";
+                    }
+                    else if ((DataGridView[i, j].Style.BackColor == Colores.colorCamino) && (i % 12 == 2))
+                    {
+                        mapMatrix[i, j] = "^";
+                    }
+                    else if ((i % 12 == 8) && (DataGridView[i, j].Style.BackColor == Colores.colorCamino))
+                    {
+                        mapMatrix[i, j] = "v";
+                    }
+                    else if ((DataGridView[i, j].Style.BackColor == Colores.colorCamino) && (j % 12 == 2))
+                    {
+                        mapMatrix[i, j] = ">";
+                    }
+                    else if ((DataGridView[i, j].Style.BackColor == Colores.colorCamino) && (j % 12 == 8))
+                    {
+                        mapMatrix[i, j] = "<";
+                    }
+                    else if (DataGridView[i, j].Style.BackColor == Colores.colorAcera)
+                    {
+                        mapMatrix[i, j] = "a";
+                    }
+                    else if (DataGridView[i, j].Style.BackColor == Colores.colorRestaurante)
+                    {
+                        mapMatrix[i, j] = "R";
+                    }
+                    else if (DataGridView[i, j].Style.BackColor == Colores.colorEdificios)
+                    {
+                        mapMatrix[i, j] = "E";
+                    }
+                    else if (DataGridView[i, j].Style.BackColor == Colores.colorHospital)
+                    {
+                        mapMatrix[i, j] = "H";
+                    }
+                    else if (DataGridView[i, j].Style.BackColor == Colores.colorGasolinera)
+                    {
+                        mapMatrix[i, j] = "G";
+                    }
+                    else if (DataGridView[i, j].Style.BackColor == Colores.colorMunicipalidad)
+                    {
+                        mapMatrix[i, j] = "M";
+                    }
+                    else
+                    {
+                        mapMatrix[i, j] = " ";
+                    }
+
+
+                    if (DataGridView[i, j].Style.BackColor == Colores.colorPolicias)
+                    {
+                        mapMatrix[i, j] = "P";
+                    }
+                    if (DataGridView[i, j].Style.BackColor == Colores.colorBomberos)
+                    {
+                        mapMatrix[i, j] = "B";
+
+                    }
+                    if (DataGridView[i, j].Style.BackColor == Colores.colorCarro)
+                    {
+                        mapMatrix[i, j] = "V";
+
+                    }
+                }
+            }
+            #endregion
+        }
 
         public void cambiarPosicionVehiculo(Vehiculo v, int calleAntigua, int avenidaAntigua, int calleNueva, int avenidaNueva, int calleAvenida, DataGridView mapa)
         {
@@ -333,6 +412,8 @@ namespace Proyecto2_SimuladorCiudades
             }
             else
             {
+                bool posicionCambiada = false;
+
                 if (calleAvenida == 2 && ((streetEmergencyMatrix[calleNueva, avenidaNueva])!=null || (streetVehiclesMatrix[calleNueva, avenidaNueva] != null)))
                 {
                     MessageBox.Show("El lugar ya lo ocupa un objeto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -345,18 +426,19 @@ namespace Proyecto2_SimuladorCiudades
                     mapa[6 * (avenidaAntigua - 1) + 5, 6 * (calleAntigua - 1)+3] = celda;
 
                     DataGridViewImageCell imgCelda = new DataGridViewImageCell();
-                    imgCelda.Style.BackColor = Colores.colorCarretera;
+                    imgCelda.Style.BackColor = Colores.colorCarro;
                     imgCelda.Value = v.imgImage;
                     mapa[6 * (avenidaNueva - 1) + 5, 6 * (calleNueva - 1) + 3] = imgCelda;
                     streetVehiclesMatrix[calleNueva, avenidaNueva] = v;
                     streetVehiclesMatrix[calleAntigua, avenidaAntigua] = null;
+                    posicionCambiada = true;
                 }
 
-                if(calleAvenida == 1 && ((avenueEmergencyMatrix[calleNueva, avenidaNueva])!=null || (avenueVehiclesMatrix[calleNueva, avenidaNueva] != null)))
+                if(posicionCambiada == false && calleAvenida == 1 && ((avenueEmergencyMatrix[calleNueva, avenidaNueva])!=null || (avenueVehiclesMatrix[calleNueva, avenidaNueva] != null)))
                 {
                     MessageBox.Show("El lugar ya lo ocupa un objeto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else
+                else if(posicionCambiada == false)
                 {
                     v.intCalle = calleNueva;
                     v.intAvenida = avenidaNueva;
@@ -367,13 +449,22 @@ namespace Proyecto2_SimuladorCiudades
                     mapa[6 * (avenidaAntigua - 1) + 5, 6 * (calleAntigua - 1) + 3] = celda;
 
                     DataGridViewImageCell imgCelda = new DataGridViewImageCell();
-                    imgCelda.Style.BackColor = Colores.colorCarretera;
+                    imgCelda.Style.BackColor = Colores.colorCarro;
                     imgCelda.Value = v.imgImage;
                     mapa[6 * (avenidaNueva - 1) + 5, 6 * (calleNueva - 1) + 3] = imgCelda;
                     avenueVehiclesMatrix[calleNueva, avenidaNueva] = v;
                     avenueVehiclesMatrix[calleAntigua, avenidaAntigua] = null;
                 }
             }
+            this.crearMatriz(dg);
+            for(int i= 0; i < mapMatrix.GetLength(0); i++)
+            {
+                for(int j = 0; j < mapMatrix.GetLength(1); j++)
+                {
+                    Console.WriteLine("{0}", mapMatrix[i, j]);
+                }Console.WriteLine();
+            }
+            
         }
 
         public void cambiarPosicionEmergencia(Emergencia v, int calleAntigua, int avenidaAntigua, int calleNueva, int avenidaNueva, int calleAvenida, DataGridView mapa)
@@ -384,32 +475,29 @@ namespace Proyecto2_SimuladorCiudades
             }
             else
             {
-                if (calleAvenida == 2 && ((streetEmergencyMatrix[calleNueva, avenidaNueva]) != null || (streetVehiclesMatrix[calleNueva, avenidaNueva] != null)))
-                {
-                    MessageBox.Show("El lugar ya lo ocupa un objeto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
+
+                if (calleAvenida == 2 && (streetEmergencyMatrix[calleNueva, avenidaNueva] == null || streetVehiclesMatrix[calleNueva, avenidaNueva] == null))
                 {
                     v.intCalle = calleNueva;
                     v.intAvenida = avenidaNueva;
                     DataGridViewTextBoxCell celda = new DataGridViewTextBoxCell();
                     celda.Style.BackColor = Colores.colorCarretera;
-                    mapa[6 * (avenidaAntigua - 1)+5, 6 * (calleAntigua - 1) + 3] = celda;
+                    mapa[6 * (avenidaAntigua - 1) + 5, 6 * (calleAntigua - 1) + 3] = celda;
 
                     DataGridViewImageCell imgCelda = new DataGridViewImageCell();
-                    imgCelda.Style.BackColor = Colores.colorCarretera;
+                    if (alBomberos.Contains(v))
+                    {
+                        imgCelda.Style.BackColor = Colores.colorBomberos;
+                    }else if (alPolicia.Contains(v))
+                    {
+                        imgCelda.Style.BackColor = Colores.colorPolicias;
+                    }
                     imgCelda.Value = v.imgImage;
                     mapa[6 * (avenidaNueva - 1) + 5, 6 * (calleNueva - 1) + 3] = imgCelda;
                     streetEmergencyMatrix[calleNueva, avenidaNueva] = v;
                     streetEmergencyMatrix[calleAntigua, avenidaAntigua] = null;
-
                 }
-
-                if (calleAvenida == 1 && ((avenueEmergencyMatrix[calleNueva, avenidaNueva]) != null || (avenueVehiclesMatrix[calleNueva, avenidaNueva]) != null))
-                {
-                    MessageBox.Show("El lugar ya lo ocupa un objeto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
+                else if (calleAvenida == 1 && (avenueEmergencyMatrix[calleNueva, avenidaNueva] == null && avenueVehiclesMatrix[calleNueva, avenidaNueva] == null))
                 {
                     v.intCalle = calleNueva;
                     v.intAvenida = avenidaNueva;
@@ -422,12 +510,33 @@ namespace Proyecto2_SimuladorCiudades
                     mapa[6 * (avenidaAntigua - 1) + 3, 6 * (calleAntigua - 1) + 5] = celda;
 
                     DataGridViewImageCell imgCelda = new DataGridViewImageCell();
-                    imgCelda.Style.BackColor = Colores.colorCarretera;
+
+                    if (alBomberos.Contains(v))
+                    {
+                        imgCelda.Style.BackColor = Colores.colorBomberos;
+                    }
+                    if (alPolicia.Contains(v))
+                    {
+                        imgCelda.Style.BackColor = Colores.colorPolicias;
+                    }
                     imgCelda.Value = v.imgImage;
                     mapa[6 * (avenidaNueva - 1) + 3, 6 * (calleNueva - 1) + 5] = imgCelda;
                     avenueEmergencyMatrix[calleNueva, avenidaNueva] = v;
                     avenueEmergencyMatrix[calleAntigua, avenidaAntigua] = null;
                 }
+                else
+                {
+                    MessageBox.Show("El lugar ya lo ocupa un objeto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            this.crearMatriz(dg);
+            for (int i = 0; i < mapMatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < mapMatrix.GetLength(1); j++)
+                {
+                    Console.Write("{0}", mapMatrix[j, i]);
+                }
+                Console.WriteLine();
             }
         }
 

@@ -71,14 +71,14 @@ namespace Proyecto2_SimuladorCiudades
                         {
                             lineas = lecturadearchivo.ReadLine();//El programa leera lineas vacias hasta que encuentre una con letras
                         } while (lineas == "" || lineas == null);
-                        switch (lineas)
+                        switch (lineas.ToLower())
                         {
-                            case ("VEHICULOS:"):
+                            case ("vehiculos:"):
                                 #region//Lectura de los objetos carro
                                 try
                                 {
                                     lbObjetos.Items.Add("\t\tVEHÍCULOS");
-                                    while (lineas != "FIN_VEHICULOS" && intContadorObjetos[0] <= 99)
+                                    while (lineas.ToLower() != "fin_vehiculos" && intContadorObjetos[0] <= 99)
                                     {
                                         if (intcontador_error[0] == 0)//Esto corrige el error de que los arreglos traten de meter la sentencia fin_vehiculo como un miembro de un objeto carro
                                         {
@@ -131,10 +131,10 @@ namespace Proyecto2_SimuladorCiudades
                                 #endregion
                                 pbLoading.PerformStep();
                                 break;
-                            case "RESTAURANTES":
+                            case "restaurantes:":
                                 #region//Lectura de datos de Restaurantes
                                 lbObjetos.Items.Add("\t\tRESTAURANTES");
-                                while (lineas != "FIN_RESTAURANTES" && intContadorObjetos[1] <= 49)//Solo se podran crear un máximo de 50 objetos carros
+                                while (lineas.ToLower() != "fin_restaurantes" && intContadorObjetos[1] <= 49)//Solo se podran crear un máximo de 50 objetos carros
                                 {
                                     try
                                     {
@@ -200,12 +200,12 @@ namespace Proyecto2_SimuladorCiudades
                                 #endregion
                                 pbLoading.PerformStep();
                                 break;
-                            case "HOSPITALES":
+                            case "hospitales:":
                                 #region//Inicio de lectura de los objetos hospitales
                                 try
                                 {
                                     lbObjetos.Items.Add("\t\tHOSPITALES");
-                                    while (lineas != "FIN_HOSPITALES" && intContadorObjetos[2] <= 19)
+                                    while (lineas.ToLower() != "fin_hospitales" && intContadorObjetos[2] <= 19)
                                     {
                                         if (intcontador_error[2] == 0)
                                         {
@@ -259,12 +259,12 @@ namespace Proyecto2_SimuladorCiudades
                                 #endregion
                                 pbLoading.PerformStep();
                                 break;
-                            case "GASOLINERAS":
+                            case "gasolineras:":
                                 #region//Inicio de lectura de las gasolineras
                                 try
                                 {
                                     lbObjetos.Items.Add("\t\tGASOLINERAS");
-                                    while (lineas != "FIN_GASOLINERAS" && intContadorObjetos[3] <= 49)//Solo se permitira el ingreso de 50 gasolineras
+                                    while (lineas.ToLower() != "fin_gasolineras" && intContadorObjetos[3] <= 49)//Solo se permitira el ingreso de 50 gasolineras
                                     {
                                         if (intcontador_error[3] == 0)
                                         {
@@ -299,12 +299,12 @@ namespace Proyecto2_SimuladorCiudades
                                 #endregion
                                 pbLoading.PerformStep();
                                 break;
-                            case "POLICIAS":
+                            case "policias:":
                                 #region //Inicio de lectura de los policías
                                 try
                                 {
                                     lbObjetos.Items.Add("\t\tPOLICÍAS");
-                                    while (lineas != "FIN_POLICIAS" && intContadorObjetos[4] <= 19)//Solo se permitiran un maximo de 20 oficiales de policia
+                                    while (lineas.ToLower() != "fin_policias" && intContadorObjetos[4] <= 19)//Solo se permitiran un maximo de 20 oficiales de policia
                                     {
                                         if (intcontador_error[4] == 0)
                                         {
@@ -341,12 +341,12 @@ namespace Proyecto2_SimuladorCiudades
                                 arrObjetos[4] = (registroPolicias);
                                 break;
                             #endregion
-                            case "BOMBEROS":
+                            case "bomberos:":
                                 #region //Inicio de lectura de los policías
                                 try
                                 {
                                     lbObjetos.Items.Add("\t\tAMBULANCIAS");
-                                    while (lineas != "FIN_BOMBEROS" && intContadorObjetos[5] <= 19)//Solo se permitiran un maximo de 20 bomberos
+                                    while (lineas.ToLower() != "fin_bomberos" && intContadorObjetos[5] <= 19)//Solo se permitiran un maximo de 20 bomberos
                                     {
                                         if (intcontador_error[5] == 0)
                                         {

@@ -102,6 +102,16 @@ namespace Proyecto2_SimuladorCiudades.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Erase_104 {
+            get {
+                object obj = ResourceManager.GetObject("Erase_104", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap firefigther1 {
             get {
                 object obj = ResourceManager.GetObject("firefigther1", resourceCulture);
@@ -126,6 +136,16 @@ namespace Proyecto2_SimuladorCiudades.Properties {
             get {
                 object obj = ResourceManager.GetObject("GeoReference", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon icon {
+            get {
+                object obj = ResourceManager.GetObject("icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -394,6 +414,16 @@ namespace Proyecto2_SimuladorCiudades.Properties {
         internal static System.IO.UnmanagedMemoryStream sndAmbulance {
             get {
                 return ResourceManager.GetStream("sndAmbulance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap transparencia {
+            get {
+                object obj = ResourceManager.GetObject("transparencia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

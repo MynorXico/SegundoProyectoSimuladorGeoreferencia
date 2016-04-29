@@ -223,4 +223,13 @@
   <data name="SirenaEncendida" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Siren2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stepper_104_0PT_12.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Erase_104" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Erase-104 .png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="transparencia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transparencia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

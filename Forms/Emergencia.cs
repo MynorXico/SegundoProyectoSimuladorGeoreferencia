@@ -107,8 +107,8 @@ namespace Proyecto2_SimuladorCiudades.Forms
         {
             // Restringe el ingreso de caracteres no numéricos
             #region Restricción            
-            if (Char.IsDigit(e.KeyChar))
-            {
+            if (Char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back) {
+            
                 e.Handled = false;
             }
             else
@@ -122,7 +122,7 @@ namespace Proyecto2_SimuladorCiudades.Forms
                     e.Handled = true;
                 }
             }
-            if (currentStreet.Text.Length >= 2)
+            if (currentStreet.Text.Length >= 2 && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
             }
@@ -133,7 +133,7 @@ namespace Proyecto2_SimuladorCiudades.Forms
         {
             // Restringe el ingreso de caracteres no numéricos
             #region Restricción            
-            if (Char.IsDigit(e.KeyChar))
+            if (Char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)
             {
                 e.Handled = false;
             }
@@ -148,7 +148,7 @@ namespace Proyecto2_SimuladorCiudades.Forms
                     e.Handled = true;
                 }
             }
-            if (currentAvenue.Text.Length >= 2)
+            if (currentAvenue.Text.Length >= 2 && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
             }

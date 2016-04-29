@@ -46,8 +46,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.emergencyButton = new System.Windows.Forms.PictureBox();
             this.PathCleaner = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnBorrarRuta = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mapDGV)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -56,6 +58,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.walkingBrowsingButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DrivingBrowsingButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emergencyButton)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBorrarRuta)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -72,8 +76,8 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 79.17809F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.82192F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1269, 733);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -105,7 +109,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             this.mapDGV.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.mapDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.mapDGV.Size = new System.Drawing.Size(1065, 609);
+            this.mapDGV.Size = new System.Drawing.Size(1065, 567);
             this.mapDGV.TabIndex = 0;
             this.mapDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mapDGV_CellClick);
             this.mapDGV.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.mapDGV_CellMouseEnter);
@@ -124,7 +128,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 483F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(183, 609);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(183, 567);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // groupBox1
@@ -134,7 +138,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Lucida Bright", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(177, 93);
+            this.groupBox1.Size = new System.Drawing.Size(177, 78);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Fecha y Hora";
@@ -169,7 +173,7 @@
             this.browsingGroup.Controls.Add(this.emergencyButton);
             this.browsingGroup.Dock = System.Windows.Forms.DockStyle.Top;
             this.browsingGroup.Font = new System.Drawing.Font("Candara", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.browsingGroup.Location = new System.Drawing.Point(3, 129);
+            this.browsingGroup.Location = new System.Drawing.Point(3, 87);
             this.browsingGroup.Name = "browsingGroup";
             this.browsingGroup.Size = new System.Drawing.Size(177, 432);
             this.browsingGroup.TabIndex = 1;
@@ -201,7 +205,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Candara", 11F);
-            this.label2.Location = new System.Drawing.Point(12, 259);
+            this.label2.Location = new System.Drawing.Point(14, 259);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(163, 18);
             this.label2.TabIndex = 3;
@@ -241,7 +245,7 @@
             // 
             // PathCleaner
             // 
-            this.PathCleaner.Location = new System.Drawing.Point(1080, 624);
+            this.PathCleaner.Location = new System.Drawing.Point(1080, 582);
             this.PathCleaner.Name = "PathCleaner";
             this.PathCleaner.Size = new System.Drawing.Size(183, 103);
             this.PathCleaner.TabIndex = 2;
@@ -249,18 +253,42 @@
             this.PathCleaner.UseVisualStyleBackColor = true;
             this.PathCleaner.Click += new System.EventHandler(this.PathCleaner_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.btnBorrarRuta);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(6, 582);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1065, 145);
+            this.panel1.TabIndex = 3;
+            // 
             // timer1
             // 
             this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // panel1
+            // btnBorrarRuta
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(6, 624);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1065, 103);
-            this.panel1.TabIndex = 3;
+            this.btnBorrarRuta.BackgroundImage = global::Proyecto2_SimuladorCiudades.Properties.Resources.Erase_104;
+            this.btnBorrarRuta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBorrarRuta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBorrarRuta.Location = new System.Drawing.Point(27, 13);
+            this.btnBorrarRuta.Name = "btnBorrarRuta";
+            this.btnBorrarRuta.Size = new System.Drawing.Size(100, 100);
+            this.btnBorrarRuta.TabIndex = 6;
+            this.btnBorrarRuta.TabStop = false;
+            this.btnBorrarRuta.Click += new System.EventHandler(this.btnBorrarRuta_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Candara", 11F);
+            this.label4.Location = new System.Drawing.Point(35, 116);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 18);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Borrar Ruta";
             // 
             // Viewer
             // 
@@ -284,6 +312,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.walkingBrowsingButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DrivingBrowsingButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emergencyButton)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnBorrarRuta)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -306,5 +337,7 @@
         private System.Windows.Forms.PictureBox walkingBrowsingButton;
         private System.Windows.Forms.Button PathCleaner;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox btnBorrarRuta;
     }
 }
