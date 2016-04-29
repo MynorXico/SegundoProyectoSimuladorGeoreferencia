@@ -104,7 +104,7 @@ namespace Proyecto2_SimuladorCiudades
             intAvenidas = avenidas;
             dtFecha = dt;
             InitializeComponent();
-            timer.Interval = 10;
+            timer.Interval = 1;
             timer.Tick += new EventHandler(this.timer_Tick);
             timer.Start();
         }
@@ -117,7 +117,7 @@ namespace Proyecto2_SimuladorCiudades
         private void timer_Tick(object sender,EventArgs e)
         {//Obtener la hora actual
 
-            dtFecha = dtFecha.AddMilliseconds(6000);
+            dtFecha = dtFecha.AddMilliseconds(1000);
             int intAño = dtFecha.Year;
             int intMes = dtFecha.Month;
             int intDia = dtFecha.Day;
@@ -166,7 +166,10 @@ namespace Proyecto2_SimuladorCiudades
         {
 
         }
-
+        private void botonEncendido_DoubleClick(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
 
         private void pictureBox2_Click(object sender, EventArgs e)

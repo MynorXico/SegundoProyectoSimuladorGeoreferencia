@@ -65,11 +65,23 @@
     <Compile Include="Forms\Emergencia.Designer.cs">
       <DependentUpon>Emergencia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmCambioPosicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCambioPosicion.Designer.cs">
+      <DependentUpon>frmCambioPosicion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\IngresoDatos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\IngresoDatos.Designer.cs">
       <DependentUpon>IngresoDatos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VehiclesMessageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VehiclesMessageForm.Designer.cs">
+      <DependentUpon>VehiclesMessageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Navegacion.cs">
       <SubType>Form</SubType>
@@ -104,6 +116,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Reference\Colores.cs" />
+    <Compile Include="Reference\Media.cs" />
     <Compile Include="Reference\TrazoDeRutas.cs" />
     <Compile Include="Reference\Validador.cs" />
     <Compile Include="Vehicles\Ambulancia.cs" />
@@ -116,8 +129,14 @@
     <EmbeddedResource Include="Forms\Emergencia.resx">
       <DependentUpon>Emergencia.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCambioPosicion.resx">
+      <DependentUpon>frmCambioPosicion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\IngresoDatos.resx">
       <DependentUpon>IngresoDatos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VehiclesMessageForm.resx">
+      <DependentUpon>VehiclesMessageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Navegacion.resx">
       <DependentUpon>Navegacion.cs</DependentUpon>

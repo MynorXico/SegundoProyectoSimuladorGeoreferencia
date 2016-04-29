@@ -47,6 +47,7 @@
             this.emergencyButton = new System.Windows.Forms.PictureBox();
             this.PathCleaner = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mapDGV)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -66,6 +67,7 @@
             this.tableLayoutPanel1.Controls.Add(this.mapDGV, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.PathCleaner, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -252,6 +254,14 @@
             this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(6, 624);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1065, 103);
+            this.panel1.TabIndex = 3;
+            // 
             // Viewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,5 +305,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox walkingBrowsingButton;
         private System.Windows.Forms.Button PathCleaner;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -27,7 +27,7 @@ namespace Proyecto2_SimuladorCiudades
         {
             get
             {
-                return Color.White;
+                return Color.FromArgb(128,128, 129);
             }
         }
         public static Color colorHospital
@@ -65,19 +65,19 @@ namespace Proyecto2_SimuladorCiudades
         public static Color colorPolicias {
             get
             {
-                return Color.AliceBlue;
+                return Color.FromArgb(128, 128, 130);
             }
         }
         public static Color colorBomberos {
             get
             {
-                return Color.Aquamarine;
+                return Color.FromArgb(128, 128, 131);
             }
         }
         public static Color colorCarro {
             get
             {
-                return Color.Aquamarine;
+                return Color.FromArgb(128, 128, 132);
             }
         }
         public static Color colorTrazoPolicia

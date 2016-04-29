@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Proyecto2_SimuladorCiudades
 {
-    class Vehiculo
+    public class Vehiculo
     {
         #region Atritutos
         // Atributos de la clase
@@ -129,6 +129,11 @@ namespace Proyecto2_SimuladorCiudades
             }
             #endregion
 
+        }
+        public override string ToString()
+        {
+            string info = string.Format("Vehículo con placas {0}\nDirección: {1}ª Calle y {2}ª Avenida\nMarca: {3}", strPlaca, intCalle, intAvenida, strMarca);
+            return info;
         }
 
     }

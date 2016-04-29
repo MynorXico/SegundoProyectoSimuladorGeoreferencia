@@ -126,6 +126,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
             }
             return (Vehicles.Ambulancia)operadores[0];
         }
+
         private static double Tiempo(DateTime dtHoraFecha, double distanceM, eMedio medio)
         {
 
@@ -166,7 +167,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                 {
                     tiempo = distance / 5;
                 }
-                else if (dtHoraFecha.Hour > 20 && dtHoraFecha.Hour <= 10)
+                else if (dtHoraFecha.Hour > 20 && dtHoraFecha.Hour <= 22)
                 {
                     tiempo = distance / 30;
                 }
@@ -180,6 +181,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
         }
         public static void trazarRutaVehiculo(DataGridView dgvMapa, address inicio, address final, Viewer viewer)
         {
+            double ETA = 0;
             int intCalleOrigen = (inicio.intCalle - 1) * 6 + 2;
             int intAvenidaOrigen = (inicio.intAvenida - 1) * 6 + 2;
             int intCalleDestino = (final.intCalle - 1) * 6 + 2;
@@ -192,6 +194,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intCalleOrigen))
@@ -200,6 +203,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen > intCalleDestino && !esCallePar(intAvenidaOrigen))
@@ -208,6 +212,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen < intCalleDestino && esCallePar(intAvenidaOrigen))
@@ -216,6 +221,8 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
+
                     }
                 }
 
@@ -225,6 +232,8 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
+
                     }
                 }
                 else if (intCalleOrigen > intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaDestino))
@@ -233,6 +242,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen < intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && esCallePar(intAvenidaDestino))
@@ -241,6 +251,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen < intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && esCallePar(intAvenidaDestino))
@@ -249,9 +260,9 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
-
 
                 else if (intCalleOrigen > intCalleDestino && !esCallePar(intCalleDestino) && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intAvenidaOrigen))
                 {
@@ -259,6 +270,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen < intCalleDestino && intAvenidaOrigen < intAvenidaDestino && esCallePar(intAvenidaOrigen))
@@ -267,6 +279,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen > intCalleDestino && esCallePar(intCalleDestino) && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaOrigen))
@@ -275,6 +288,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen < intCalleDestino && intAvenidaOrigen > intAvenidaDestino && esCallePar(intCalleDestino) && esCallePar(intAvenidaOrigen))
@@ -283,6 +297,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen > intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intAvenidaDestino))
@@ -291,6 +306,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen < intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && esCallePar(intAvenidaOrigen) && esCallePar(intAvenidaDestino))
@@ -299,6 +315,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen < intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && esCallePar(intAvenidaOrigen) && esCallePar(intAvenidaDestino))
@@ -307,6 +324,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen > intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intAvenidaDestino))
@@ -315,6 +333,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen > intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && esCallePar(intAvenidaOrigen) && esCallePar(intAvenidaDestino))
@@ -323,6 +342,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen > intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && esCallePar(intAvenidaOrigen) && esCallePar(intAvenidaDestino))
@@ -331,6 +351,8 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
+
                     }
                 }
                 else if (intCalleOrigen < intCalleDestino && !esCallePar(intCalleOrigen) && intAvenidaOrigen < intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intAvenidaDestino))
@@ -339,6 +361,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen < intCalleDestino && esCallePar(intCalleOrigen) && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intAvenidaDestino))
@@ -347,6 +370,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen < intAvenidaDestino && esCallePar(intCalleOrigen) && esCallePar(intAvenidaOrigen))
@@ -355,6 +379,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen > intCalleDestino && esCallePar(intAvenidaOrigen) && !esCallePar(intCalleOrigen))
@@ -363,6 +388,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen < intCalleDestino && !esCallePar(intAvenidaOrigen) && esCallePar(intCalleOrigen))
@@ -371,6 +397,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen < intAvenidaDestino && esCallePar(intCalleOrigen) && !esCallePar(intAvenidaOrigen))
@@ -379,6 +406,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intCalleOrigen) && esCallePar(intAvenidaOrigen))
@@ -387,6 +415,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen < intCalleDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intCalleOrigen))
@@ -395,6 +424,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen += 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intAvenidaOrigen == intAvenidaDestino && intCalleOrigen > intCalleDestino && esCallePar(intAvenidaOrigen) && esCallePar(intCalleOrigen))
@@ -403,6 +433,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intAvenidaOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else if (intCalleOrigen == intCalleDestino && intAvenidaOrigen > intAvenidaDestino && !esCallePar(intAvenidaOrigen) && !esCallePar(intCalleOrigen))
@@ -411,14 +442,17 @@ namespace Proyecto2_SimuladorCiudades.Reference
                     {
                         intCalleOrigen -= 1;
                         dgvMapa[intAvenidaOrigen, intCalleOrigen].Style.BackColor = Colores.colorAcera;
+                        ETA += Tiempo(viewer.dtFecha, 100 / 6, eMedio.Vehículo);
                     }
                 }
                 else
                 {
-                    Console.WriteLine("No se pudo calcular la ruta :'(");
+                    MessageBox.Show("Ocurrió un error y no se pudo calcular la ruta más corta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 }
+
             }
+                MessageBox.Show(String.Format("El tiempo estimado de llegada es de {0} minutos", Math.Round(ETA, 2)), "Tiempo estimado de llegada", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         static bool esCallePar(double i)

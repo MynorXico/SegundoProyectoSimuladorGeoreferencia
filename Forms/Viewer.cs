@@ -35,9 +35,6 @@ namespace Proyecto2_SimuladorCiudades
             dtFecha = unaFecha;
             vc = new ViewerControl(mapDGV, al, intCalles, intAvenidas);
         }
-
-
-
         private void dibujarGrid(DataGridView dg, int columnas, int filas)
         {
             // Ajusta color a blanco
@@ -196,7 +193,6 @@ namespace Proyecto2_SimuladorCiudades
             }
             #endregion
         }
-
         private void redibujarGrid(DataGridView dg, int columnas, int filas)
         {// Ajusta color a blanco
             dg.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -282,7 +278,7 @@ namespace Proyecto2_SimuladorCiudades
         private void timer1_Tick(object sender, EventArgs e)
         {
 
-            dtFecha = dtFecha.AddMilliseconds(600);
+            dtFecha = dtFecha.AddMilliseconds(1000);
             int intAño = dtFecha.Year;
             int intMes = dtFecha.Month;
             int intDia = dtFecha.Day;
@@ -295,57 +291,110 @@ namespace Proyecto2_SimuladorCiudades
             lblHora.Text = string.Format("{0}:{1}:{2} {3}", intHora.ToString("D2"), intMinuto.ToString("D2"), intSegundo.ToString("D2"), tt);
             lblFecha.Text = string.Format("{0:ddd} {1}/{2}/{3}", strDia, intDia, strMes, intAño);
         }
-
         private void mapDGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             mapDGV[e.ColumnIndex, e.RowIndex].Style.BackColor = mapDGV[e.ColumnIndex, e.RowIndex].Style.BackColor;
             mapDGV.CurrentCell = mapDGV[2, 2];
             Console.WriteLine("Map: \nColumn: {0}\nRnow: {1}\nCell Value: {2}", e.ColumnIndex, e.RowIndex, vc.mapMatrix[e.ColumnIndex, e.RowIndex]);
-            int calle = (e.RowIndex + 1) / 6;
-            int avenida = (e.ColumnIndex + 1) / 6;
+            int calle = (e.RowIndex + 4) / 6;
+            int avenida = (e.ColumnIndex + 4) / 6;
             if (calle < vc.buildingMatrix.GetLength(0) && avenida < vc.buildingMatrix.GetLength(1))
             {
                 Console.WriteLine("Building: \nColumn: {0}\nRow: {1}\nCell Value: {2}", calle, avenida, vc.buildingMatrix[calle, avenida]);
-                if (vc.nomenclatura.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.buildingMatrix[calle, avenida] != null)
+                if (vc.nomenclaturaEdificios.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.buildingMatrix[calle, avenida] != null)
                 {
                     MessageBoxPersonalizado.Show(vc.buildingMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.buildingMatrix[calle, avenida].imgImage);
 
                 }
+                if (vc.nomenclaturaVehiculos.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.streetVehiclesMatrix[calle, avenida] != null)
+                {
+                    VehiclesMessageForm v = new VehiclesMessageForm(vc.streetVehiclesMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.streetVehiclesMatrix[calle, avenida].imgImage, intCalles, intAvenidas);
+                    v.ShowDialog(this);
+                    if(v.nuevaCalle != -1 && v.nuevaAvenida != -1)
+                    {
+                        vc.cambiarPosicionVehiculo(vc.streetVehiclesMatrix[calle, avenida], calle, avenida, v.nuevaCalle, v.nuevaAvenida, 2, this.mapDGV);
+                    }
+                }
+                if (vc.nomenclaturaVehiculos.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.avenueVehiclesMatrix[calle, avenida] != null)
+                {
+                    VehiclesMessageForm v = new VehiclesMessageForm(vc.avenueVehiclesMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.avenueVehiclesMatrix[calle, avenida].imgImage, intCalles, intAvenidas);
+                    
+                    v.ShowDialog(this);
+                    if (v.nuevaCalle != -1 && v.nuevaAvenida != -1)
+                    {
+                        vc.cambiarPosicionVehiculo(vc.avenueVehiclesMatrix[calle, avenida], calle, avenida, v.nuevaCalle, v.nuevaAvenida, 1, this.mapDGV);
+                    }
+                }
+                if (vc.nomenclaturaEmergencia.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.streetEmergencyMatrix[calle, avenida] != null)
+                {
+                    VehiclesMessageForm v = new VehiclesMessageForm(vc.streetEmergencyMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.streetEmergencyMatrix[calle, avenida].imgImage, intCalles, intAvenidas);
+                    v.ShowDialog(this);
+                    if (v.nuevaCalle != -1 && v.nuevaAvenida != -1)
+                    {
+                        vc.cambiarPosicionEmergencia(vc.streetEmergencyMatrix[calle, avenida], calle, avenida, v.nuevaCalle, v.nuevaAvenida, 2, this.mapDGV);
+                    }
+                }
+                if (vc.nomenclaturaEmergencia.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.avenueEmergencyMatrix[calle, avenida] != null)
+                {
+                    VehiclesMessageForm v = new VehiclesMessageForm(vc.avenueEmergencyMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.avenueEmergencyMatrix[calle, avenida].imgImage, intCalles, intAvenidas);
+                    v.ShowDialog(this);
+                    if (v.nuevaCalle != -1 && v.nuevaAvenida != -1)
+                    {
+                        vc.cambiarPosicionEmergencia(vc.avenueEmergencyMatrix[calle, avenida], calle, avenida, v.nuevaCalle, v.nuevaAvenida, 1, this.mapDGV);
+                    }
+                }
+                //redibujarGrid(mapDGV, intAvenidas, intCalles);
             }
         }
-
         private void mapDGV_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            Console.WriteLine("Map: \nColumn: {0}\nRnow: {1}\nCell Value: {2}", e.ColumnIndex, e.RowIndex, vc.mapMatrix[e.ColumnIndex, e.RowIndex]);
-            int calle = (e.RowIndex + 1) / 6;
-            int avenida = (e.ColumnIndex + 1) / 6;
+            int calle = (e.RowIndex + 4) / 6;
+            int avenida = (e.ColumnIndex + 4) / 6;
             if (calle < vc.buildingMatrix.GetLength(0) && avenida < vc.buildingMatrix.GetLength(1))
             {
-                Console.WriteLine("Building: \nColumn: {0}\nRow: {1}\nCell Value: {2}", calle, avenida, vc.buildingMatrix[calle, avenida]);
-                if (vc.nomenclatura.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.buildingMatrix[calle, avenida] != null)
+                if (vc.nomenclaturaEdificios.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.buildingMatrix[calle, avenida] != null)
+                {
+                    mapDGV.Cursor = Cursors.Hand;
+                }if(vc.nomenclaturaVehiculos.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.streetVehiclesMatrix[calle, avenida] != null)
+                {
+                    mapDGV.Cursor = Cursors.Hand;
+                }
+                if (vc.nomenclaturaEmergencia.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.streetEmergencyMatrix[calle, avenida] != null)
+                {
+                    mapDGV.Cursor = Cursors.Hand;
+                }
+                if (vc.nomenclaturaVehiculos.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.avenueVehiclesMatrix[calle, avenida] != null)
+                {
+                    mapDGV.Cursor = Cursors.Hand;
+                }
+                if (vc.nomenclaturaEmergencia.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.avenueEmergencyMatrix[calle, avenida] != null)
                 {
                     mapDGV.Cursor = Cursors.Hand;
                 }
             }
-        }
 
+        }
         private void PathCleaner_Click(object sender, EventArgs e)
         {
             timer1.Start();
             redibujarGrid(mapDGV, intCalles, intAvenidas);
             vc = new ViewerControl(mapDGV, alObjetos, intCalles, intAvenidas);
         }
-
         private void walkingBrowsingButton_Click(object sender, EventArgs e)
         {
-            Forms.Navegacion frmNavegacion = new Forms.Navegacion(alObjetos);
-            frmNavegacion.ShowDialog(this);
-            if (!(frmNavegacion.intCalleOrigen == null || frmNavegacion.intAvenidaOrigen == null || frmNavegacion.intCalleDestino == null || frmNavegacion.intAvenidaDestino == null))
+            try {
+                Forms.Navegacion frmNavegacion = new Forms.Navegacion(alObjetos);
+                frmNavegacion.ShowDialog(this);
+                if (!(frmNavegacion.intCalleOrigen == null || frmNavegacion.intAvenidaOrigen == null || frmNavegacion.intCalleDestino == null || frmNavegacion.intAvenidaDestino == null))
+                {
+                    MessageBox.Show(String.Format("Tiempo estimado de llegada: {0} minutos",TrazoDeRutas.trazarRutaEmergencia(mapDGV, frmNavegacion.adAddressOrigen, frmNavegacion.adAddressDestino, TrazoDeRutas.eMedio.Caminando, this)));
+                }
+            }
+            catch
             {
-                TrazoDeRutas.trazarRutaEmergencia(mapDGV, frmNavegacion.adAddressOrigen, frmNavegacion.adAddressDestino, TrazoDeRutas.eMedio.Caminando, this);
+
             }
         }
-
         private void DrivingBrowsingButton_Click(object sender, EventArgs e)
         {
             Forms.Navegacion frmNavegacion = new Forms.Navegacion(alObjetos);
@@ -361,22 +410,34 @@ namespace Proyecto2_SimuladorCiudades
             {
             }
         }
-
         private void mapDGV_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
-            Console.WriteLine("Map: \nColumn: {0}\nRnow: {1}\nCell Value: {2}", e.ColumnIndex, e.RowIndex, vc.mapMatrix[e.ColumnIndex, e.RowIndex]);
-            int calle = (e.RowIndex + 1) / 6;
-            int avenida = (e.ColumnIndex + 1) / 6;
+            int calle = (e.RowIndex + 4) / 6;
+            int avenida = (e.ColumnIndex + 4) / 6;
             if (calle < vc.buildingMatrix.GetLength(0) && avenida < vc.buildingMatrix.GetLength(1))
             {
-                Console.WriteLine("Building: \nColumn: {0}\nRow: {1}\nCell Value: {2}", calle, avenida, vc.buildingMatrix[calle, avenida]);
-                if (vc.nomenclatura.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.buildingMatrix[calle, avenida] != null)
+                if (vc.nomenclaturaEdificios.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.buildingMatrix[calle, avenida] != null)
+                {
+                    mapDGV.Cursor = Cursors.Arrow;
+                }
+                if (vc.nomenclaturaVehiculos.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.streetVehiclesMatrix[calle, avenida] != null)
+                {
+                    mapDGV.Cursor = Cursors.Arrow;
+                }
+                if (vc.nomenclaturaEmergencia.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.streetEmergencyMatrix[calle, avenida] != null)
+                {
+                    mapDGV.Cursor = Cursors.Arrow;
+                }
+                if (vc.nomenclaturaVehiculos.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.avenueVehiclesMatrix[calle, avenida] != null)
+                {
+                    mapDGV.Cursor = Cursors.Arrow;
+                }
+                if (vc.nomenclaturaEmergencia.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.avenueEmergencyMatrix[calle, avenida] != null)
                 {
                     mapDGV.Cursor = Cursors.Arrow;
                 }
             }
         }
-
         private void emergencyButton_Click(object sender, EventArgs e)
         {
             Phone objPhone = new Phone(dtFecha, intCalles, intAvenidas);
@@ -386,8 +447,6 @@ namespace Proyecto2_SimuladorCiudades
                 recibirEmergencia(objPhone.intCalleEmergencia, objPhone.intAvenidaEmergencia, objPhone.strMensajeEmergencia, objPhone.strSolicitudServicio, objPhone.sound);
             }
         }
-
-
         public void recibirEmergencia(int intCalle, int intAvenida, string strMensaje, string strServicio, SoundPlayer sp)
         {
             if (strServicio == "Policia")
@@ -417,7 +476,7 @@ namespace Proyecto2_SimuladorCiudades
                 Vehicles.Ambulancia ambulanciaCercana = Reference.TrazoDeRutas.buscarAmbulanciaCercana(alAmbulancias, currentAddress);
                 finaAddress.intCalle = ambulanciaCercana.intCalle;
                 finaAddress.intAvenida = ambulanciaCercana.intAvenida;
-                MessageBox.Show(String.Format("El tiempo estimado de llegada es {0} minutos\nPor favor sea paciente y conserve la calma!", dblETA = Reference.TrazoDeRutas.trazarRutaEmergencia(mapDGV, currentAddress, finaAddress, TrazoDeRutas.eMedio.Ambulancia, this)), "ALERTA RECIBIDA", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show(String.Format("El tiempo estimado de llegada es {0} minutos\nPor favor sea paciente y conserve la calma!", dblETA = Reference.TrazoDeRutas.trazarRutaEmergencia(mapDGV, currentAddress, finaAddress, TrazoDeRutas.eMedio.Ambulancia, this)), "ALERTA RECIBIDA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }

@@ -36,10 +36,15 @@ namespace Proyecto2_SimuladorCiudades.Vehicles
                 if (unaCalle % 2 != 0)
                 {
                     imgImage.RotateFlip(RotateFlipType.Rotate180FlipY);
-
                 }
             }
             #endregion
+        }
+        public override string ToString()
+        {
+            string info = string.Format("Oficial {0}\nDirección: {1}ª Calle y {2}ª Avenida", strNombre, intCalle, intAvenida);
+
+            return info;
         }
     }
 }

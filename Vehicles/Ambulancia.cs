@@ -32,12 +32,18 @@ namespace Proyecto2_SimuladorCiudades.Vehicles
             else
             {
                 strCalleAvenida = "Calle";
-                if(unaCalle % 2 == 0)
+                if (unaCalle % 2 == 0)
                 {
                     imgImage.RotateFlip(RotateFlipType.Rotate180FlipY);
                 }
             }
             #endregion
         }
+        public override string ToString()
+        {
+            string info = string.Format("Bombero {0}\nDirección: {1}ª Calle y {2}ª Avenida\n", strNombre, intCalle, intAvenida);
+            return info;
+        }
+    
     }
 }   
