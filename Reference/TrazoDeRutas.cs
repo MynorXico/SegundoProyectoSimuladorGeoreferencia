@@ -538,7 +538,7 @@ namespace Proyecto2_SimuladorCiudades.Reference
                 }
 
             }
-                MessageBox.Show(String.Format("El tiempo estimado de llegada es de {0} minutos", Math.Round(ETA, 2)), "Tiempo estimado de llegada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format("El tiempo estimado de llegada es de {0} minutos", Math.Round(ETA*60, 2)), "Tiempo estimado de llegada", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         /// <summary>
         /// Evalua si un número de columna del grid corresponde a un número par o impar de calle o avenida
