@@ -304,6 +304,10 @@
   <ItemGroup>
     <None Include="Resources\Erase-104 .png" />
     <None Include="Resources\transparencia.png" />
+    <None Include="Resources\Building-96.png" />
+    <None Include="Resources\FireAlarm.png" />
+    <None Include="Resources\Google Alerts.png" />
+    <None Include="Resources\GPS.png" />
     <Content Include="stepper_104_0PT_12.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -40,18 +40,21 @@ namespace Proyecto2_SimuladorCiudades.Reference
             double ETA = 0;
             Color colorTrazo = Color.Orange;
             DataGridViewImageCell celdaImagen = new DataGridViewImageCell();
-            celdaImagen.Value = Properties.Resources.SirenaEncendida;
-
+            celdaImagen.Value = Properties.Resources.FireAlarm;
+            
             switch (emergencia)
             {
                 case eMedio.Policía:
                     colorTrazo = Colores.colorTrazoPolicia;
+                    celdaImagen.Value = Properties.Resources.Google_Alerts;
                     break;
                 case eMedio.Ambulancia:
                     colorTrazo = Colores.colorTrazoAmbulancia;
+                    celdaImagen.Value = Properties.Resources.FireAlarm;
                     break;
                 case eMedio.Caminando:
                     colorTrazo = Colores.colorTrazoPersona;
+                    celdaImagen.Value = Properties.Resources.GPS;
                     break;
             }
             inicio.intCalle = 6 * (inicio.intCalle - 1) + 2;

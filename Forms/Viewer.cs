@@ -149,7 +149,7 @@ namespace Proyecto2_SimuladorCiudades
                     if (i % 6 == 5 && j % 6 == 5)
                     {
                         DataGridViewImageCell imgCell = new DataGridViewImageCell();
-                        imgCell.Value = Properties.Resources.imgBuilding;
+                        imgCell.Value = Properties.Resources.Building_96;
                         dg[i, j] = imgCell;
                         dg[i, j].Style.BackColor = Colores.colorEdificios;
                     }
@@ -332,7 +332,6 @@ namespace Proyecto2_SimuladorCiudades
         private void mapDGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             mapDGV[e.ColumnIndex, e.RowIndex].Style.BackColor = mapDGV[e.ColumnIndex, e.RowIndex].Style.BackColor;
-            mapDGV.CurrentCell = mapDGV[2, 2];
             Console.WriteLine("Map: \nColumn: {0}\nRnow: {1}\nCell Value: {2}", e.ColumnIndex, e.RowIndex, vc.mapMatrix[e.ColumnIndex, e.RowIndex]);
             int calle = (e.RowIndex + 4) / 6;
             int avenida = (e.ColumnIndex + 4) / 6;

@@ -92,6 +92,16 @@ namespace Proyecto2_SimuladorCiudades.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Building_96 {
+            get {
+                object obj = ResourceManager.GetObject("Building_96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap circle_grey1 {
             get {
                 object obj = ResourceManager.GetObject("circle_grey1", resourceCulture);
@@ -105,6 +115,16 @@ namespace Proyecto2_SimuladorCiudades.Properties {
         internal static System.Drawing.Bitmap Erase_104 {
             get {
                 object obj = ResourceManager.GetObject("Erase_104", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FireAlarm {
+            get {
+                object obj = ResourceManager.GetObject("FireAlarm", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -135,6 +155,26 @@ namespace Proyecto2_SimuladorCiudades.Properties {
         internal static System.Drawing.Bitmap GeoReference {
             get {
                 object obj = ResourceManager.GetObject("GeoReference", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Google_Alerts {
+            get {
+                object obj = ResourceManager.GetObject("Google_Alerts", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GPS {
+            get {
+                object obj = ResourceManager.GetObject("GPS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

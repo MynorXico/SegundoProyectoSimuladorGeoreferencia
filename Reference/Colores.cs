@@ -36,13 +36,13 @@ namespace Proyecto2_SimuladorCiudades
         {
             get
             {
-                return Color.Red;
+                return Color.FromArgb(41,128, 186);
             }
         }
         public static Color colorRestaurante {
             get
             {
-                return Color.Yellow;
+                return Color.FromArgb(41, 128, 187);
             }
         }
         public static Color colorEdificios
@@ -55,13 +55,13 @@ namespace Proyecto2_SimuladorCiudades
         public static Color colorGasolinera {
             get
             {
-                return Color.Beige;
+                return Color.FromArgb(41, 128, 188);
             }
         }
         public static Color colorMunicipalidad {
             get
             {
-                return Color.Aqua;
+                return Color.FromArgb(41, 128, 189);
             }
         }
         public static Color colorPolicias {
