@@ -14,16 +14,28 @@ using Proyecto2_SimuladorCiudades.Reference;
 
 namespace Proyecto2_SimuladorCiudades
 {
-
+    /// <summary>
+    /// Definición del formulario Viewer
+    /// </summary>
     public partial class Viewer : Form
     {
+        // Atributos de la clase
+        #region Atributos
         IngresoDatos DI;
         public DateTime dtFecha;
         ArrayList[] alObjetos = new ArrayList[6];
         ViewerControl vc;
         int intAvenidas, intCalles;
         ArrayList direccionesRuta = new ArrayList();
-
+        #endregion
+        /// <summary>
+        /// Constructor del formulario Viewer
+        /// </summary>
+        /// <param name="avenidas">Número máximio permitido de avenidas</param>
+        /// <param name="calles">Número máximo permitido de calles</param>
+        /// <param name="unaFecha">Fecha y hora del programa (Se mueve sesenta veces más rápido de lo normal)</param>
+        /// <param name="objIngresoDatos">Formulario para el ingreso de datos</param>
+        /// <param name="al">Objetos generados desde la carga de archivos</param>
         public Viewer(int avenidas, int calles, DateTime unaFecha, IngresoDatos objIngresoDatos, ArrayList[] al)
         {
             InitializeComponent();
@@ -36,6 +48,12 @@ namespace Proyecto2_SimuladorCiudades
             dtFecha = unaFecha;
             vc = new ViewerControl(mapDGV, al, intCalles, intAvenidas);
         }
+        /// <summary>
+        /// Método para dibujar la cuardícula que representa el mapa
+        /// </summary>
+        /// <param name="dg">DataGridView sobre el cual se trazará el mapa</param>
+        /// <param name="columnas">Número de columnas que tendrá el DataGridView</param>
+        /// <param name="filas">Número de filas que tendrá el DataGridView</param>
         private void dibujarGrid(DataGridView dg, int columnas, int filas)
         {
             // Ajusta color a blanco
@@ -194,6 +212,12 @@ namespace Proyecto2_SimuladorCiudades
             }
             #endregion
         }
+        /// <summary>
+        /// Método que dibuja de nuevo la cuadrícula, omitiendo la creación de nuevas columnas y nuevas filas
+        /// </summary>
+        /// <param name="dg">DataGridView sobre la cual se traza de nuevo el mapa</param>
+        /// <param name="columnas">Número de columnas del mapa</param>
+        /// <param name="filas">Número de filas del mapa</param>
         private void redibujarGrid(DataGridView dg, int columnas, int filas)
         {// Ajusta color a blanco
             dg.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -272,13 +296,22 @@ namespace Proyecto2_SimuladorCiudades
             }
             #endregion
         }
+        /// <summary>
+        /// Evento que se ejecuta cuando el formulario es cerrado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Viewer_FormClosed(object sender, FormClosedEventArgs e)
         {
             DI.Close();
         }
+        /// <summary>
+        /// Evento que se ejecuta por cada "Tick" del timer1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
-        {
-
+        {            
             dtFecha = dtFecha.AddMilliseconds(1000);
             int intAño = dtFecha.Year;
             int intMes = dtFecha.Month;
@@ -289,9 +322,13 @@ namespace Proyecto2_SimuladorCiudades
             string strDia = string.Format("{0: ddd}", dtFecha);
             string strMes = string.Format("{0: MMM}", dtFecha);
             string tt = dtFecha.ToString("tt", CultureInfo.InvariantCulture);
+            // Actualiza el label que indica la hora
             lblHora.Text = string.Format("{0}:{1}:{2} {3}", intHora.ToString("D2"), intMinuto.ToString("D2"), intSegundo.ToString("D2"), tt);
             lblFecha.Text = string.Format("{0:ddd} {1}/{2}/{3}", strDia, intDia, strMes, intAño);
         }
+        /// <summary>
+        /// Evento que ocurre cada vez que el usuario hace clic sobre el mapa
+        /// </summary>
         private void mapDGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             mapDGV[e.ColumnIndex, e.RowIndex].Style.BackColor = mapDGV[e.ColumnIndex, e.RowIndex].Style.BackColor;
@@ -299,15 +336,18 @@ namespace Proyecto2_SimuladorCiudades
             Console.WriteLine("Map: \nColumn: {0}\nRnow: {1}\nCell Value: {2}", e.ColumnIndex, e.RowIndex, vc.mapMatrix[e.ColumnIndex, e.RowIndex]);
             int calle = (e.RowIndex + 4) / 6;
             int avenida = (e.ColumnIndex + 4) / 6;
+            // Si la cleda sobre la que se hace clic se encuentra dentro del espacio de los edificios
             if (calle < vc.buildingMatrix.GetLength(0) && avenida < vc.buildingMatrix.GetLength(1))
             {
                 bool cambPosicion = false;
                 Console.WriteLine("Building: \nColumn: {0}\nRow: {1}\nCell Value: {2}", calle, avenida, vc.buildingMatrix[calle, avenida]);
+                // Si la celda corresponde a un edificio
                 if (vc.nomenclaturaEdificios.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.buildingMatrix[calle, avenida] != null)
                 {
                     MessageBoxPersonalizado.Show(vc.buildingMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.buildingMatrix[calle, avenida].imgImage);
 
                 }
+                // Si la celda corresponde a un vehículo sobre una calle
                 else if (vc.nomenclaturaVehiculos.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.streetVehiclesMatrix[calle, avenida] != null)
                 {
                     VehiclesMessageForm v = new VehiclesMessageForm(vc.streetVehiclesMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.streetVehiclesMatrix[calle, avenida].imgImage, intCalles, intAvenidas);
@@ -322,6 +362,7 @@ namespace Proyecto2_SimuladorCiudades
                     }
                     catch { }
                 }
+                // Si la celda corresponde a un vehículo sobre una avenida
                 else if (vc.nomenclaturaVehiculos.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.avenueVehiclesMatrix[calle, avenida] != null)
                 {
                     VehiclesMessageForm v = new VehiclesMessageForm(vc.avenueVehiclesMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.avenueVehiclesMatrix[calle, avenida].imgImage, intCalles, intAvenidas);
@@ -336,6 +377,7 @@ namespace Proyecto2_SimuladorCiudades
                     }
                     catch { }
                 }
+                // Si la celda corresponde a un policía o bomberos sobre una calle
                 else if (vc.nomenclaturaEmergencia.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.streetEmergencyMatrix[calle, avenida] != null)
                 {
                     VehiclesMessageForm v = new VehiclesMessageForm(vc.streetEmergencyMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.streetEmergencyMatrix[calle, avenida].imgImage, intCalles, intAvenidas);
@@ -350,6 +392,7 @@ namespace Proyecto2_SimuladorCiudades
                     }
                     catch { }
                 }
+                // Si la celda corresponde a un policía o bomberos sobre una avenida
                 if (vc.nomenclaturaEmergencia.Contains(vc.mapMatrix[e.ColumnIndex, e.RowIndex]) && vc.avenueEmergencyMatrix[calle, avenida] != null)
                 {
                     VehiclesMessageForm v = new VehiclesMessageForm(vc.avenueEmergencyMatrix[calle, avenida].ToString(), "Información", eDialogButtons.OK, vc.avenueEmergencyMatrix[calle, avenida].imgImage, intCalles, intAvenidas);
@@ -364,9 +407,11 @@ namespace Proyecto2_SimuladorCiudades
                     }
                     catch { }
                 }
-                //redibujarGrid(mapDGV, intAvenidas, intCalles);
             }
         }
+        /// <summary>
+        /// Evento que ocurre cuando el mouse entra a determinada celda
+        /// </summary>
         private void mapDGV_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             int calle = (e.RowIndex + 4) / 6;
@@ -395,12 +440,9 @@ namespace Proyecto2_SimuladorCiudades
             }
 
         }
-        private void PathCleaner_Click(object sender, EventArgs e)
-        {
-            timer1.Start();
-            redibujarGrid(mapDGV, intCalles, intAvenidas);
-            vc = new ViewerControl(mapDGV, alObjetos, intCalles, intAvenidas);
-        }
+        /// <summary>
+        /// Evento que sucede cuando el usuario hace clic sobre el pictureBox walkingBrowsingButton
+        /// </summary>
         private void walkingBrowsingButton_Click(object sender, EventArgs e)
         {
             try {
@@ -416,6 +458,9 @@ namespace Proyecto2_SimuladorCiudades
 
             }
         }
+        /// <summary>
+        /// Evento que sucede cuando el usuario hace clic sobre el pictureBox DrivingBrowsingButton
+        /// </summary>
         private void DrivingBrowsingButton_Click(object sender, EventArgs e)
         {
             Forms.Navegacion frmNavegacion = new Forms.Navegacion(alObjetos);
@@ -431,6 +476,11 @@ namespace Proyecto2_SimuladorCiudades
             {
             }
         }
+        /// <summary>
+        /// Evento que sucede cuando el usuario abandona determinada celda del mapa
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mapDGV_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
             int calle = (e.RowIndex + 4) / 6;
@@ -459,6 +509,11 @@ namespace Proyecto2_SimuladorCiudades
                 }
             }
         }
+        /// <summary>
+        /// Evento que sucede cuando el usuario hace clic sobre el botón de emergencia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void emergencyButton_Click(object sender, EventArgs e)
         {
             Phone objPhone = new Phone(dtFecha, intCalles, intAvenidas);
@@ -467,13 +522,10 @@ namespace Proyecto2_SimuladorCiudades
             {
                 recibirEmergencia(objPhone.intCalleEmergencia, objPhone.intAvenidaEmergencia, objPhone.strMensajeEmergencia, objPhone.strSolicitudServicio, objPhone.sound);
             }
-        }
-
-        private void btnBorrarRuta_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        }        
+        /// <summary>
+        /// Método que recibe la emergencia y calcula el tiempo y ruta
+        /// </summary>
         public void recibirEmergencia(int intCalle, int intAvenida, string strMensaje, string strServicio, SoundPlayer sp)
         {
             if (strServicio == "Policia")

@@ -115,7 +115,6 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Day";
             this.label2.Visible = false;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Form1
             // 
@@ -134,7 +133,6 @@
             this.HelpButton = true;
             this.Name = "Form1";
             this.Text = "Teléfono";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.MaximumSize = new System.Drawing.Size(289, 400);
             this.MinimumSize = this.MaximumSize;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

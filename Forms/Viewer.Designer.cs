@@ -251,7 +251,6 @@
             this.PathCleaner.TabIndex = 2;
             this.PathCleaner.Text = "LimpiarRutas";
             this.PathCleaner.UseVisualStyleBackColor = true;
-            this.PathCleaner.Click += new System.EventHandler(this.PathCleaner_Click);
             // 
             // panel1
             // 
@@ -278,7 +277,6 @@
             this.btnBorrarRuta.Size = new System.Drawing.Size(100, 100);
             this.btnBorrarRuta.TabIndex = 6;
             this.btnBorrarRuta.TabStop = false;
-            this.btnBorrarRuta.Click += new System.EventHandler(this.btnBorrarRuta_Click);
             // 
             // label4
             // 

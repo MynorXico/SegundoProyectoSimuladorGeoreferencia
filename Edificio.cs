@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Proyecto2_SimuladorCiudades
 {
-    // Struct para definir la dirección
+    // Struct para definir direcciones
     public struct address
     {
         // Variables de Address
@@ -38,8 +38,6 @@ namespace Proyecto2_SimuladorCiudades
             }
         }
     }
-
-
 
     public class Edificio
     {

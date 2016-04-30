@@ -9,6 +9,8 @@ namespace Proyecto2_SimuladorCiudades
 {
     public static class Colores
     {
+        // Propiedades que definen distintos colores que se utilizan durante la ejecución del programa
+        #region Propiedades
         public static Color colorCarretera
         {
             get
@@ -101,6 +103,6 @@ namespace Proyecto2_SimuladorCiudades
                 return Color.FromArgb(33,  150, 243);
             }
         }
-
+        #endregion
     }
 } 

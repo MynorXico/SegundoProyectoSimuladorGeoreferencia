@@ -13,8 +13,13 @@ using Proyecto2_SimuladorCiudades.Vehicles;
 
 namespace Proyecto2_SimuladorCiudades.Forms
 {
+    /// <summary>
+    /// Definición del formulario de Navegación
+    /// </summary>
     public partial class Navegacion : Form
     {
+        // Atributos de la clase
+        #region Atributos
         ArrayList[] alObjetos;
         ArrayList alVehiculos;
         ArrayList alRestaurantes;
@@ -22,14 +27,15 @@ namespace Proyecto2_SimuladorCiudades.Forms
         ArrayList alGasolinera;
         ArrayList alPatrullas;
         ArrayList alAmbulancias;
-
         private int _intCalleOrigen;
         private int _intAvenidaOrigen;
         private int _intCalleDestino;
         private int _intAvenidaDestino;
         private address _adAddressOrigen;
         private address _adAddressDestino;
-
+        #endregion
+        // Propiedades de la clase
+        #region
         public int intCalleOrigen
         {
             get
@@ -60,7 +66,12 @@ namespace Proyecto2_SimuladorCiudades.Forms
         }
         public address adAddressOrigen;
         public address adAddressDestino;
+        #endregion
 
+        /// <summary>
+        /// Método constructor del formulario
+        /// </summary>
+        /// <param name="anObjectsArrayList">ArrayList que contiene los objetos creados en el formulario de ingreso de datos</param>
         public Navegacion(ArrayList[] anObjectsArrayList)
         {
             InitializeComponent();
@@ -72,7 +83,9 @@ namespace Proyecto2_SimuladorCiudades.Forms
             alPatrullas = alObjetos[4];
             alAmbulancias = alObjetos[5];
         }
-
+        /// <summary>
+        /// Evento que sucede cuando la listBox cambia de elemento actualizando una segunda comboBox con elementos propios del tipo de elemento seleccionado
+        /// </summary>
         private void seleccionTipoPartida_SelectedIndexChanged(object sender, EventArgs e)
         {
             elementoPartidaSeleccion.Items.Clear();
@@ -123,7 +136,9 @@ namespace Proyecto2_SimuladorCiudades.Forms
                     break;
             }
         }
-
+        /// <summary>
+        /// Evento que sucede cuando se selecciona el elemento específico de un comboBox
+        /// </summary>
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             elementoDestinoSeleccion.Items.Clear();
@@ -174,7 +189,11 @@ namespace Proyecto2_SimuladorCiudades.Forms
                     break;
             }
         }
-
+        /// <summary>
+        /// Evento para el botón utilizado para trazar la ruta
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTrazarRuta_Click(object sender, EventArgs e)
         {
             #region Selecciona elemento de partida
@@ -320,19 +339,30 @@ namespace Proyecto2_SimuladorCiudades.Forms
             adAddressOrigen.intAvenida = intAvenidaOrigen;
             this.Close();
         }
-
+        /// <summary>
+        /// Evento utilizado para restringir el ingreso de nuevas opciones al comboBox seleccionTipoPartida
+        /// </summary>
         private void seleccionTipoPartida_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
+        /// <summary>
+        /// Evento utilizado para restringir el ingreso de nuevas opciones al comboBox2 (comboBox de elementos específicos)
+        /// </summary>
         private void comboBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
+        /// <summary>
+        /// Evento utilizado para  restringir el ingreso de nuevas opciones al comboBox para sleccionar el elemento específico de partida
+        /// </summary>
         private void elementoPartidaSeleccion_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }
+        /// <summary>
+        /// Evento utilizado para restringir el ingreso de nuevas opciones al combboBox para la selección del elemento específico de destino
+        /// </summary>
         private void elementoDestinoSeleccion_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;

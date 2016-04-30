@@ -7,9 +7,13 @@ using System.Windows.Forms;
 
 namespace Proyecto2_SimuladorCiudades
 {
+    // Definición de clase validador
     public static class Validador
     {
-        // Comprueba que un número sea entero
+        /// <summary>
+        /// Comprueba que un número sea entero
+        /// </summary>
+        /// <returns>Verdadero o Falso</returns>
         public static bool esEntero(string s)
         {
             try
@@ -22,7 +26,11 @@ namespace Proyecto2_SimuladorCiudades
             }
             return true;
         }
-        // Comprueba texto válido en textBox
+        /// <summary>
+        /// Comprueba si el número ingresado corresponde a una calle válida
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static bool calleValida(string s)
         {
             try
@@ -39,6 +47,11 @@ namespace Proyecto2_SimuladorCiudades
             return false;
 
         }
+        /// <summary>
+        ///  Comprueba si el número ingresado corresponde a una avenida válida
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static bool avenidaValida(string s)
         {
             try

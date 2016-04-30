@@ -9,8 +9,19 @@ using System.Drawing;
 
 namespace Proyecto2_SimuladorCiudades.Reference
 {
+    // Definición de clase estática TrazoDeRutas
     public static class TrazoDeRutas
     {
+        /// <summary>
+        /// Método que traza la ruta de emergencia
+        /// </summary>
+        /// <param name="dgvMapa">Mapa sobre el cual se dibuja</param>
+        /// <param name="inicio">En donde inicia el trazo</param>
+        /// <param name="final">En donde finaliza el trazo</param>
+        /// <param name="emergencia">El servicio que se solicita</param>
+        /// <param name="viewer">La ventana principal en la cual se muestran los resultados</param>
+        /// <param name="direcciones">Arreglo que cuarda cada una de las posiciones a seguir para alcanzar el objetivo</param>
+        /// <returns></returns>
         public static double trazarRutaEmergencia(DataGridView dgvMapa, address inicio, address final, eMedio emergencia, Viewer viewer, ArrayList direcciones)
         {
             if (direcciones != null)
@@ -103,6 +114,12 @@ namespace Proyecto2_SimuladorCiudades.Reference
             }
             return Math.Round(ETA * 60, 2);
         }
+        /// <summary>
+        /// Función que devuelve al policía más cercano en base a su posición
+        /// </summary>
+        /// <param name="policias"></param>
+        /// <param name="address"></param>
+        /// <returns></returns>
         public static Vehicles.Policia buscarPoliciaCercano(ArrayList policias, address address)
         {
             ArrayList alDiferenciaPosicion = new ArrayList();
@@ -112,18 +129,19 @@ namespace Proyecto2_SimuladorCiudades.Reference
                 alDiferenciaPosicion.Add(Math.Abs(Math.Abs(address.intCalle - p.intCalle) + Math.Abs(address.intAvenida - p.intAvenida)));
 
             }
-
-
             foreach (Vehicles.Policia p in policias)
             {
-                if (Math.Abs(Math.Abs(address.intCalle - p.intCalle) + Math.Abs(address.intAvenida) - p.intAvenida) == (int)alDiferenciaPosicion.ToArray().Min())
+                if ((Math.Abs(Math.Abs(address.intCalle - p.intCalle) + Math.Abs(address.intAvenida - p.intAvenida))) == (int)alDiferenciaPosicion.ToArray().Min())
                 {
                     return p;
                 }
-
             }
             return (Vehicles.Policia)policias[0];
         }
+        /// <summary>
+        /// Función que devuelve la ambulancia más cercana en base a su posición
+        /// </summary>
+        /// <returns>Ambulancia más cercana</returns>
         public static Vehicles.Ambulancia buscarAmbulanciaCercana(ArrayList operadores, address address)
         {
 
@@ -146,10 +164,12 @@ namespace Proyecto2_SimuladorCiudades.Reference
             }
             return (Vehicles.Ambulancia)operadores[0];
         }
-
+        /// <summary>
+        /// Calcula el tiempo con base al medio en el que se viaja y el horario en el que se ejecuta la instrucción
+        /// </summary>
+        /// <returns>EL tiempo que tarda determinado objeto en llegar a determinar a determinada posición</returns>
         private static double Tiempo(DateTime dtHoraFecha, double distanceM, eMedio medio)
         {
-
             double distance = distanceM / 1000;
             double tiempo = 0;
 
@@ -199,9 +219,9 @@ namespace Proyecto2_SimuladorCiudades.Reference
 
             return tiempo;
         }
-
-
-
+        /// <summary>
+        /// Traza la ruta más corta si se maneja en vehículo
+        /// </summary>
         public static void trazarRutaVehiculo(DataGridView dgvMapa, address inicio, address final, Viewer viewer, ArrayList direcciones)
         {
             if (direcciones != null)
@@ -517,7 +537,11 @@ namespace Proyecto2_SimuladorCiudades.Reference
             }
                 MessageBox.Show(String.Format("El tiempo estimado de llegada es de {0} minutos", Math.Round(ETA, 2)), "Tiempo estimado de llegada", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
+        /// <summary>
+        /// Evalua si un número de columna del grid corresponde a un número par o impar de calle o avenida
+        /// </summary>
+        /// <param name="i">Número de columna o avenida del grid</param>
+        /// <returns></returns>
         static bool esCallePar(double i)
         {
             if (((i + 4) / 6) % 2 == 0)
@@ -529,7 +553,9 @@ namespace Proyecto2_SimuladorCiudades.Reference
                 return false;
             }
         }
-
+        /// <summary>
+        /// Enum con el listado de posibles medio en los cuáles puede viajarse
+        /// </summary>
         public enum eMedio
         {
             Policía,

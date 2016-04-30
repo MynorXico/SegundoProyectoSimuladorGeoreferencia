@@ -130,6 +130,10 @@ namespace Proyecto2_SimuladorCiudades
             #endregion
 
         }
+        /// <summary>
+        /// Modificación de método toString();
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string info = string.Format("Vehículo con placas {0}\nDirección: {1}ª Calle y {2}ª Avenida\nMarca: {3}", strPlaca, intCalle, intAvenida, strMarca);
